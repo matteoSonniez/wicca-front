@@ -1,0 +1,40 @@
+
+.patterns {
+  height: 60px;
+  &__one {
+    width: 240px;
+  }
+  &__two {
+    margin-left: 20px;
+    width: 430px;
+  }
+  &__three {
+    width: 200px;
+  }
+  svg {
+    width: 100%;
+    text {
+      font-family: 'inter';
+      stroke: #A084DC;
+      stroke-width: 3;
+      animation: textAnimate 6s infinite alternate;
+    }
+  }
+  
+  @keyframes textAnimate {
+    0% {
+      stroke-dasharray: 0 50%;
+      stroke-dashoffset:  20%;
+      fill:hsl(0, 0%, 0%)
+  
+    }
+    
+    100% {
+      stroke-dasharray: 50% 0;
+      stroke-dashoffset: -20%;
+      fill: hsla(189, 68%, 75%,0%)
+    }
+    
+  }
+}
+ 

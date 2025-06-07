@@ -1,101 +1,125 @@
+"use client";
 import Image from "next/image";
+import gifHome from "@/img/giffinal.gif";
+import { Ubuntu, Roboto_Condensed } from "next/font/google";
+import { useState } from "react";
+
+const roboto = Ubuntu({
+  subsets: ["latin"],
+  weight: ["500"],
+  display: "swap",
+});
+const robotosmall = Roboto_Condensed({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [itForm, setItForm] = useState(false);
+  const [itForm2, setItForm2] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  return (
+    // Lorsque l'utilisateur clique sur cet élément (hors aubergine), itForm passe à false
+    <div
+      className="relative w-full min-h-screen overflow-x-hidden"
+      onClick={() => (setItForm(false), setItForm2(false))}
+    >
+      {/* SVG en position absolue, ancré en haut à gauche, derrière le contenu (-z-10) */}
+      {/* <div className="absolute top-0 left-0 -z-10 w-full h-auto opacity-60">
+        <svg
+          viewBox="0 0 900 600"
+          preserveAspectRatio="xMinYMin meet"
+          className="w-full h-auto"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g transform="translate(0, 0)">
+            <path
+              d="M405.6 0C364.4 52.8 323.1 105.7 294.4 170C265.8 234.3 249.8 310.1 202.8 351.3C155.8 392.5 77.9 399 0 405.6L0 0Z"
+              fill="#A0006D"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </g>
+        </svg>
+      </div> */}
+
+      {/* Contenu principal */}
+      <div className="flex flex-col px-[7vw] mt-[140px]">
+        <div className="flex justify-between items-center px-2">
+          <div className="w-[40vw] flex flex-col space-y-12">
+            <span
+              className={`${roboto.className} text-blacktext text-[43px] leading-[3.5rem] scale-y-110 tracking-tighter`}
+            >
+              Explorez votre chemin
+              <span className="text-aubergine opacity-80"> spirituel</span> avec
+              des <span className="text-aubergine opacity-80">praticiens</span>{" "}
+              & experts certifiés
+            </span>
+            <span
+              className={`${robotosmall.className} text-[19px] text-gray-500`}
+            >
+              Trouvez votre chemin spirituel avec des praticiens certifiés
+            </span>
+          </div>
+
+          <div className="w-[35vw] flex justify-center items-center">
+            <img src={gifHome.src} className="w-full" alt="Gif Home" />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <div className="w-[86vw] h-[15vh] rounded-2xl shadow-[0_0_10px_rgba(0,0,0,0.1)] bg-white flex justify-center items-center border-gray-300 border-[1px]">
+          {/* Div avec bg-aubergine : on arrête la propagation pour éviter de déclencher le clic sur le container principal */}
+          <div
+            className="w-[95%] h-[50%] bg-opacity-[0.05] rounded-full border-gray-200 border-2 flex items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              className={`w-1/2 ${
+                itForm ? "bg-white" : ""
+              } transition-all duration-300 h-full rounded-full`}
+              onClick={() => {
+                setItForm(true);
+                setItForm2(false);
+              }}
+              style={
+                itForm
+                  ? { boxShadow: "5px 0 10px rgba(0, 0, 0, 0.08)" }
+                  : {}
+              }
+            >
+              <input
+                type="text"
+                placeholder="Entrez votre texte ici..."
+                className={`${robotosmall.className} w-full h-full bg-transparent p-5 border-none outline-none text-black`}
+              />
+            </div>
+            <div
+              className={`w-1/2 ${
+                itForm2 || itForm ? "hidden" : "block"
+              } transition-all duration-150 w-[1px] bg-gray-400 h-[70%]`}
+            ></div>
+            <div
+              className={`w-1/2 ${
+                itForm2 ? "bg-white" : ""
+              } transition-all duration-300 h-full rounded-full`}
+              onClick={() => {
+                setItForm2(true);
+                setItForm(false);
+              }}
+              style={
+                itForm2
+                  ? { boxShadow: "-5px 0 10px rgba(0, 0, 0, 0.08)" }
+                  : {}
+              }
+            >
+              <input
+                type="text"
+                placeholder="Entrez votre texte ici..."
+                className={`${robotosmall.className} w-full h-full bg-transparent p-5 border-none outline-none text-black`}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
