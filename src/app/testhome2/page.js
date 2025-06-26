@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
-import Services from "@/components/Services";
+import Services from "@/components/HomeComponents/Services";
 import Back3 from "@/img/back3.svg";
 import HomeImage from "@/img/home.jpg";
 import BlobImage from "@/img/Vector2.png";
@@ -16,9 +16,9 @@ import BlobIcon from "@/img/blob-for-icon.svg";
 import BlobIcon2 from "@/img/blob-for-icon2.svg";
 import BlobIcon3 from "@/img/blob-for-icon3.svg";
 import BlobHome from "@/img/blob-home.svg";
-import ExpertHome from "@/components/ExpertHome";
-import DevenirPracticien from "@/components/DevenirPracticienHome";
-import AllServices from "@/components/AllServices";
+import ExpertHome from "@/components/HomeComponents/ExpertHome";
+import DevenirPracticien from "@/components/HomeComponents/DevenirPracticienHome";
+import AllServices from "@/components/HomeComponents/AllServices";
 import { gsap } from "gsap";
 import {
   Freehand,
@@ -204,7 +204,7 @@ function Page() {
     <div className="relative min-h-screen overflow-hidden">
       {/* <div className="bg-maincolor h-[70vh] w-screen absolute rounded-b-3xl"></div> */}
       {/* Image de fond en haut à gauche */}
-      <div className="absolute -top-[0vh] -right-[18vw] w-[90vw]  h-[80vh] -z-10">
+      {/* <div className="absolute -top-[0vh] -right-[18vw] w-[90vw]  h-[80vh] -z-10">
         <Image
           src={BackTopLeft.src}
           alt="Background Top Left"
@@ -212,8 +212,8 @@ function Page() {
           style={{ objectFit: 'cover' }}
           priority
         />
-      </div>
-      {/* <div className="absolute top-[0vh] right-0  w-[100vw]  h-[90vh] -z-10">
+      </div> */}
+      <div className="absolute top-[0vh] right-0  w-[100vw]  h-[90vh] -z-10">
         <Image
           src={BackTopRight.src}
           alt="Background Top Left"
@@ -221,7 +221,7 @@ function Page() {
           style={{ objectFit: "cover" }}
           priority
         />
-      </div> */}
+      </div>
       {/* Contenu principal */}
       <div className="relative z-10 flex flex-col items-center">
         <div className="w-screen flex justify-center pt-[12vh]">

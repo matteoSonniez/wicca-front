@@ -1,124 +1,234 @@
-"use client";
+"use client" 
+
 import Image from "next/image";
-import gifHome from "@/img/giffinal.gif";
-import { Ubuntu, Roboto_Condensed } from "next/font/google";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
+import Services from "@/components/HomeComponents/Services";
+import ExpertHome from "@/components/HomeComponents/ExpertHome";
+import DevenirPracticien from "@/components/HomeComponents/DevenirPracticienHome";
+import AllServices from "@/components/HomeComponents/AllServices";
+import AboutUs from "@/components/HomeComponents/AboutUsSection";
+import Search from "@/img/chercher.png";
+import Icon1 from "@/img/icon-group.png";
+import Icon2 from "@/img/icon-calendar.png";
+import Icon3 from "@/img/icon-creditcard.png";
+import BlobIcon from "@/img/blob-for-icon.svg";
+import BlobIcon2 from "@/img/blob-for-icon2.svg";
+import BlobIcon3 from "@/img/blob-for-icon3.svg";
 
-const roboto = Ubuntu({
-  subsets: ["latin"],
-  weight: ["500"],
-  display: "swap",
-});
-const robotosmall = Roboto_Condensed({
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-});
+import { Inter, Quicksand, Montserrat, Lato } from "next/font/google";
+const inter = Inter({ subsets: ["latin"], weight: ["400"], display: "swap" });
+const quicksand = Quicksand({ subsets: ["latin"], weight: ["400"], display: "swap" });
+const montserrat_bold = Montserrat({ subsets: ["latin"], weight: ["600"], display: "swap" });
+const lato = Lato({ subsets: ["latin"], weight: ["400"], display: "swap" });
+const lato_bold = Lato({ subsets: ["latin"], weight: ["700"], display: "swap" });
 
-export default function Home() {
-  const [itForm, setItForm] = useState(false);
-  const [itForm2, setItForm2] = useState(false);
+export default function Page() {
+  const [inputValue, setInputValue] = useState("");
+  const [isFixed, setIsFixed] = useState(false);
+  const barRef = useRef(null);
+  const pointRef = useRef(null);
+  const initialOffsetRef = useRef({ top: 0, left: 0, width: 0 });
+
+  useEffect(() => {
+    const barEl = barRef.current;
+    const rect = barEl.getBoundingClientRect();
+    initialOffsetRef.current = {
+      top: rect.top + window.scrollY -20,
+      left: rect.left,
+      width: rect.width,
+    };
+    gsap.set(barEl, {
+      position: "absolute",
+      top: initialOffsetRef.current.top,
+      left: initialOffsetRef.current.left,
+      width: initialOffsetRef.current.width,
+      scale: 1,
+    });
+  }, []);
+
+  // 2) On gère le scroll pour sticky / desticky
+  useEffect(() => {
+    const barEl = barRef.current;
+    const handleScroll = () => {
+      const pointTop = pointRef.current.getBoundingClientRect().top;
+      const { top, left: initLeft, width: initWidth } = initialOffsetRef.current;
+      const initTop = top + 20;
+
+      // Sticky
+      if (pointTop < 100 && !isFixed) {
+        setIsFixed(true);
+        const curTop = barEl.getBoundingClientRect().top;
+        gsap.set(barEl, { position: "fixed", top: curTop, scale: 1 });
+        gsap.to(barEl, {
+          duration: 0.3,
+          top: 10,
+          scale: 0.7,
+          ease: "none",
+        });
+      }
+      // Desticky
+      else if (pointTop >= 100 && isFixed) {
+        setIsFixed(false);
+        const targetTop = initTop - window.scrollY;
+        gsap.set(barEl, { position: "fixed", top: 10, scale: 0.7 });
+        gsap.to(barEl, {
+          duration: 0.2,
+          top: targetTop,
+          scale: 1,
+          ease: "none",
+          onComplete: () => {
+            gsap.set(barEl, {
+              position: "absolute",
+              top: initTop -20,
+              left: initLeft,
+              width: initWidth,
+              scale: 1,
+            });
+          },
+        });
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isFixed]);
 
   return (
-    // Lorsque l'utilisateur clique sur cet élément (hors aubergine), itForm passe à false
-    <div
-      className="relative w-full min-h-screen overflow-x-hidden"
-      onClick={() => (setItForm(false), setItForm2(false))}
-    >
-      {/* SVG en position absolue, ancré en haut à gauche, derrière le contenu (-z-10) */}
-      {/* <div className="absolute top-0 left-0 -z-10 w-full h-auto opacity-60">
-        <svg
-          viewBox="0 0 900 600"
-          preserveAspectRatio="xMinYMin meet"
-          className="w-full h-auto"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g transform="translate(0, 0)">
-            <path
-              d="M405.6 0C364.4 52.8 323.1 105.7 294.4 170C265.8 234.3 249.8 310.1 202.8 351.3C155.8 392.5 77.9 399 0 405.6L0 0Z"
-              fill="#A0006D"
-            />
-          </g>
-        </svg>
-      </div> */}
-
-      {/* Contenu principal */}
-      <div className="flex flex-col px-[7vw] mt-[140px]">
-        <div className="flex justify-between items-center px-2">
-          <div className="w-[40vw] flex flex-col space-y-12">
-            <span
-              className={`${roboto.className} text-blacktext text-[43px] leading-[3.5rem] scale-y-110 tracking-tighter`}
-            >
-              Explorez votre chemin
-              <span className="text-aubergine opacity-80"> spirituel</span> avec
-              des <span className="text-aubergine opacity-80">praticiens</span>{" "}
-              & experts certifiés
-            </span>
-            <span
-              className={`${robotosmall.className} text-[19px] text-gray-500`}
-            >
-              Trouvez votre chemin spirituel avec des praticiens certifiés
-            </span>
-          </div>
-
-          <div className="w-[35vw] flex justify-center items-center">
-            <img src={gifHome.src} className="w-full" alt="Gif Home" />
-          </div>
-        </div>
-
-        <div className="w-[86vw] h-[15vh] rounded-2xl shadow-[0_0_10px_rgba(0,0,0,0.1)] bg-white flex justify-center items-center border-gray-300 border-[1px]">
-          {/* Div avec bg-aubergine : on arrête la propagation pour éviter de déclencher le clic sur le container principal */}
+    <div className="relative min-h-screen bg-diagonal-fade">
+      <div className="relative flex flex-col items-center">
+        {/* Section vidéo + titre */}
+        <div className="w-screen flex mb-[3vh]">
           <div
-            className="w-[95%] h-[50%] bg-opacity-[0.05] rounded-full border-gray-200 border-2 flex items-center"
-            onClick={(e) => e.stopPropagation()}
+            className="relative w-[100vw] h-[75vh] flex flex-col pl-20 justify-center"
+            style={{
+              background:
+                "linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.8) 95%)",
+            }}
           >
             <div
-              className={`w-1/2 ${
-                itForm ? "bg-white" : ""
-              } transition-all duration-300 h-full rounded-full`}
-              onClick={() => {
-                setItForm(true);
-                setItForm2(false);
-              }}
-              style={
-                itForm
-                  ? { boxShadow: "5px 0 10px rgba(0, 0, 0, 0.08)" }
-                  : {}
-              }
-            >
-              <input
-                type="text"
-                placeholder="Entrez votre texte ici..."
-                className={`${robotosmall.className} w-full h-full bg-transparent p-5 border-none outline-none text-black`}
-              />
+            className="absolute z-20 top-0 left-0 w-full h-full object-cover"
+            style={{
+              background:
+                "linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.8) 95%)",
+            }}>
+
             </div>
+            <video
+              className="absolute z-10 top-0 left-0 w-full h-full object-cover brightness-75"
+              src="/video/video-home3.mp4"
+              autoPlay
+              loop
+              muted
+            />
+            <div className={`${quicksand.className} z-30 font-bold text-[70px] w-full -mt-16`}>
+              <span className="inline-block leading-tight text-white">
+                Explorez votre chemin
+                <br /> spirituel avec des praticiens
+              </span>
+            </div>
+
+            {/* point de déclenchement (invisible) */}
+            <div ref={pointRef} className="bg-red-100"></div>
+
+            {/* barre de recherche */}
             <div
-              className={`w-1/2 ${
-                itForm2 || itForm ? "hidden" : "block"
-              } transition-all duration-150 w-[1px] bg-gray-400 h-[70%]`}
-            ></div>
-            <div
-              className={`w-1/2 ${
-                itForm2 ? "bg-white" : ""
-              } transition-all duration-300 h-full rounded-full`}
-              onClick={() => {
-                setItForm2(true);
-                setItForm(false);
-              }}
-              style={
-                itForm2
-                  ? { boxShadow: "-5px 0 10px rgba(0, 0, 0, 0.08)" }
-                  : {}
-              }
+              ref={barRef}
+              className={`
+                z-50 bg-white w-[800px] text-[17px] rounded-xl border-2 border-gray-400
+                flex h-16 items-center pl-6 pr-2
+                shadow-lg
+              `}
             >
               <input
                 type="text"
-                placeholder="Entrez votre texte ici..."
-                className={`${robotosmall.className} w-full h-full bg-transparent p-5 border-none outline-none text-black`}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder="Chercher un expert..."
+                className="w-full focus:outline-none focus:ring-2 focus:ring-maincolor"
               />
+              <button className="h-12 w-12 bg-gray-800 rounded-lg flex items-center justify-center">
+                <Image src={Search} alt="Rechercher" className="w-5" />
+              </button>
             </div>
           </div>
         </div>
+
+                
+        {/* Les autres sections */}
+        <Services />
+        <div className="mt-[10vh] flex flex-col items-center space-y-16">
+          <span
+            className={`${montserrat_bold.className} text-[25px] text-gray-800`}
+          >
+            Votre partenaire spirituel au quotidien
+          </span>
+          <div className="flex space-x-14">
+            <div className="w-[350px] flex flex-col items-center">
+              <div className="w-[80px] h-[80px] relative flex justify-center items-center mb-8">
+                <img
+                  className="absolute w-full z-[-1] opacity-0"
+                  src={BlobIcon.src}
+                />
+                <img className=" w-[95%]" src={Icon2.src} />
+              </div>
+              <span
+                className={`${lato_bold.className} text-center text-black text-[15px]`}
+              >
+                Consultations 24h sur 24 et 7j sur 7
+              </span>
+              <span
+                className={`${lato.className} text-center text-black text-[14px] leading-relaxed`}
+              >
+                Réservez et gérez vos rendez-vous, selon vos envies, en un clic, avec service de notification personnalisés.
+              </span>
+            </div>
+            <div className="w-[320px] flex flex-col items-center">
+              <div className="w-[80px] h-[80px] relative flex justify-center items-center mb-8">
+                <img
+                  className="absolute w-full z-[-1] opacity-0"
+                  src={BlobIcon3.src}
+                />
+                <img className=" w-[95%]" src={Icon1.src} />
+              </div>
+              <span
+                className={`${lato_bold.className} text-center text-black text-[16px]`}
+              >
+                Diversité des Prestations
+              </span>
+              <span
+                className={`${lato.className} text-center text-black text-[14px] leading-relaxed`}
+              >
+                Explorez une gamme variée de services spirituels, pour répondre
+                à toutes vos attentes, avec clarté et sérénité.
+              </span>
+            </div>
+            <div className="w-[350px] flex flex-col items-center">
+              <div className="w-[80px] h-[80px] relative flex justify-center items-center mb-8">
+                <img
+                  className="absolute w-full z-[-1] opacity-0"
+                  src={BlobIcon2.src}
+                />
+                <img className=" w-[95%]" src={Icon3.src} />
+              </div>
+              <span
+                className={`${lato_bold.className} text-center text-black text-[16px]`}
+              >
+                Transparence et sécurité
+              </span>
+              <span
+                className={`${lato.className} text-center text-black text-[14px] leading-relaxed`}
+              >
+                Vous savez ce que vous payez, sans frais cachés, avec un
+                paiement sécurisé et une confidentialité totale.
+              </span>
+            </div>
+          </div>
+        </div>
+        <AboutUs />
+        <ExpertHome />
+        <DevenirPracticien />
+        <AllServices />
       </div>
     </div>
   );

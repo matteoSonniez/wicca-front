@@ -24,9 +24,9 @@ const calSans = localFont({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={calSans.className}
+      <body className={`${calSans.className}`}
       >
-        <Header className={calSans.className}></Header>
+        {/* <Header className={calSans.className}></Header> */}
         {children}
       </body>
     </html>

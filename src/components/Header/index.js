@@ -33,30 +33,23 @@ const Header = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   return (
-    <>
-      {/* Header principal */}
-      <div className="absolute z-50 w-full px-[3vw] py-[2vh] flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <img src={Logo.src} className="w-24 cursor-pointer" alt="Logo" />
-        </div>
-        <div className={`flex space-x-8 items-center text-[15px] ${lato.className}`}>
-          <span className="text-white cursor-pointer">Me connecter</span>
-          <div
-            className="px-4 py-1 bg-white rounded-md text-black cursor-pointer"
-            onClick={() => setIsPopupOpen(true)}
-          >
-            <span>Inscription</span>
-          </div>
-        </div>
+    <div className="sticky top-0 z-40 w-full px-20 py-6 flex justify-between items-center bg-white border-b-[1px] border-gray-200">
+    <div className="flex items-center space-x-2">
+      <img src={Logo.src} className="w-24 cursor-pointer" alt="Logo" />
+    </div>
+    <div className={`flex space-x-8 items-center text-[15px] ${lato.className}`}>
+      {/* <span className="text-gray-700 cursor-pointer">Centre d'aide</span>
+      <span className="text-gray-700 cursor-pointer">Qui nous sommes</span>
+      <span className="text-gray-700 cursor-pointer">Nous contacter</span> */}
+      <span className="text-gray-700 cursor-pointer">Me connecter</span>
+      <div
+        className="px-4 py-1 bg-maincolor rounded-md text-white cursor-pointer"
+        onClick={() => setIsPopupOpen(true)}
+      >
+        <span>Inscription</span>
       </div>
-
-      {/* On affiche la popup seulement si isPopupOpen === true */}
-      {isPopupOpen && (
-        <Popup
-          onClose={() => setIsPopupOpen(false)}
-        />
-      )}
-    </>
+    </div>
+  </div>
   );
 };
 
