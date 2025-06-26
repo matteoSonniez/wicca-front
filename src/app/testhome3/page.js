@@ -182,7 +182,7 @@ export default function HomePageParallax() {
             </div>
             <div className={`${mont_low.className} text-blanc/80 space-x-5 flex items-center text-[16px] ml-auto`}>
               <span className="cursor-pointer">Devenir practitien</span>
-              <button className="border-[1px] border-blanc rounded-full px-3 py-2">Me connecter</button>
+              <button className="border-[1px] border-blanc rounded-full px-3 py-2">Me co</button>
             </div>
           </div>
           {/* Vidéo de fond optimisée */}
