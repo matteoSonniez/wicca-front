@@ -89,7 +89,7 @@ export default function Home() {
               <div
                 className={`${mont_low.className} flex-1 flex justify-center space-x-7 text-noir/60 text-[14px]`}
               >
-                <span className="cursor-pointer">Centre d'aide</span>
+                <span className="cursor-pointer">Centre d'aides</span>
                 <span className="cursor-pointer">Qui nous sommes</span>
                 <span className="cursor-pointer">Nous contacter</span>
               </div>
