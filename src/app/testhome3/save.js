@@ -56,7 +56,102 @@ export default function HomePageParallax() {
   const pointRef = useRef(null); // point de déclenchement sticky
   const headerRef = useRef(null); // ref pour le header animé
 
- 
+  /* ------------------------------------------------------------------
+   * LENIS SMOOTH‑SCROLL, PIN & PARALLAX
+   * ---------------------------------------------------------------- */
+  // useEffect(() => {
+  //   const lenis = new Lenis({
+  //     duration: 1.2,
+  //     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  //     smooth: true,
+  //   });
+
+  //   // Synchronisation Lenis <-> ScrollTrigger
+  //   function raf(time) {
+  //     lenis.raf(time);
+  //     requestAnimationFrame(raf);
+  //   }
+  //   requestAnimationFrame(raf);
+
+  //   // ScrollerProxy pour ScrollTrigger
+  //   ScrollTrigger.scrollerProxy(document.body, {
+  //     scrollTop(value) {
+  //       if (value !== undefined) {
+  //         lenis.scrollTo(value);
+  //       }
+  //       return lenis.scroll;
+  //     },
+  //     getBoundingClientRect() {
+  //       return {
+  //         top: 0,
+  //         left: 0,
+  //         width: window.innerWidth,
+  //         height: window.innerHeight,
+  //       };
+  //     },
+  //     // Optionnel : pour le support mobile
+  //     pinType: document.body.style.transform ? "transform" : "fixed",
+  //   });
+
+  //   lenis.on("scroll", ScrollTrigger.update);
+
+  //   /* 2. Pin + Parallax via GSAP */
+  //   const ctx = gsap.context(() => {
+  //     // startRef reste FIXE (pin) — on ne retire plus l'espace (
+  //     // pinSpacing TRUE par défaut) pour garder de la hauteur.
+  //     ScrollTrigger.create({
+  //       trigger: startRef.current,
+  //       start: "top top",
+  //       end: "bottom top", // section vidéo fixée pendant toute sa hauteur
+  //       anticipatePin: 1, // réduit le saut visuel
+  //     });
+
+  //     // mainRef défile plus vite (parallax inversé)
+  //     gsap.to(startRef.current, {
+  //       yPercent: -80,
+  //       ease: "none",
+  //       scrollTrigger: {
+  //         trigger: mainRef.current,
+  //         start: "top bottom",
+  //         end: "bottom top",
+  //         scrub: true,
+  //       },
+  //     });
+  //   });
+
+  //   // Animation d'apparition du header
+  //   let headerAnim;
+  //   if (headerRef.current && mainRef.current) {
+  //     gsap.set(headerRef.current, { y: "-100%" }); // position initiale hors écran
+  //     headerAnim = gsap.to(headerRef.current, {
+  //       y: 0,
+  //       duration: 0.7,
+  //       ease: "power3.out",
+  //       paused: true,
+  //     });
+  //     ScrollTrigger.create({
+  //       trigger: mainRef.current,
+  //       start: "top top",
+  //       onEnter: () => {
+  //         headerAnim.vars.ease = "power3.out";
+  //         headerAnim.timeScale(1);
+  //         headerAnim.play();
+  //       },
+  //       onLeaveBack: () => {
+  //         headerAnim.vars.ease = "power2.in";
+  //         headerAnim.timeScale(2); // plus rapide
+  //         headerAnim.reverse();
+  //       },
+  //     });
+  //   }
+
+  //   return () => {
+  //     ctx.revert();
+  //     ScrollTrigger.scrollerProxy(document.body, null); // Nettoie le proxy
+  //     lenis.destroy();
+  //     if (headerAnim) headerAnim.kill();
+  //   };
+  // }, []);
 
   return (
     <div className="relative overflow-x-hidden">
@@ -98,6 +193,8 @@ export default function HomePageParallax() {
             disableRemotePlayback // évite AirPlay inutile
           >
             <source src="/video/video-home3.mp4" type="video/mp4" />
+            {/* Optionnel : poster statique pour le LCP */}
+            {/* <track kind="captions" />  <-- si besoin d'accessibilité */}
           </video>
 
           {/* Overlay d'assombrissement (remplace le brightness-75) */}

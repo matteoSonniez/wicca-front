@@ -35,13 +35,13 @@ const mont = Montserrat({
 const Index = () => {
   return (
     <div className="flex flex-col items-center mb-28">
-      <span className={`${mont_semi.className} text-[65px] text-blanc text-center mb-24`}>
+      <span className={`${mont_semi.className} text-[35px] text-blanc text-center mb-24`}>
         Votre partenaire spirituel <br></br> au quotidien
       </span>
       <div className="flex space-x-16">
         <div className="w-[380px] flex flex-col items-center">
           <div className="w-[150px] h-[150px] relative flex justify-center bg-test rounded-full items-center mb-8">
-            <img src={CardsGif.src} alt="GIF réservation" className="w-28 h-28" />
+            {/* <img src={CardsGif.src} alt="GIF réservation" className="w-28 h-28" /> */}
           </div>
           <span
             className={`${mont_bold.className} text-center text-blanc text-[25px]`}
@@ -57,7 +57,7 @@ const Index = () => {
         </div>
         <div className="w-[380px] flex flex-col items-center">
           <div className="w-[150px] h-[150px] relative flex justify-center bg-test rounded-full items-center mb-8">
-            <img src={PoepleGif.src} alt="GIF réservation" className="w-28 h-28" />
+            {/* <img src={PoepleGif.src} alt="GIF réservation" className="w-28 h-28" /> */}
           </div>
           <span
             className={`${mont_bold.className} text-center text-blanc text-[25px]`}
@@ -73,7 +73,7 @@ const Index = () => {
         </div>
         <div className="w-[380px] flex flex-col items-center">
           <div className="w-[150px] h-[150px] relative flex justify-center bg-test rounded-full items-center mb-8">
-            <img src={CalendarGif.src} alt="GIF réservation" className="w-28 h-28" />
+            {/* <img src={CalendarGif.src} alt="GIF réservation" className="w-28 h-28" /> */}
           </div>
           <span
             className={`${mont_bold.className} text-center text-blanc text-[25px]`}
