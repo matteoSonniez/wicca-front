@@ -14,7 +14,7 @@ const lato = Lato({
 });
 
 const Card = ({ imgSrc, title }) => (
-  <div className="cursor-pointer bg-white relative group w-[20%] aspect-[1/0.3] rounded-2xl  overflow-hidden shadow-[3px_0_8px_0px_rgba(0,0,0,0.04),-3px_0_8px_0px_rgba(0,0,0,0.04)]">
+  <div className="cursor-pointer bg-white relative group w-[20%] aspect-[1/0.3] rounded-2xl  overflow-hidden shadow-sm">
     <div className="relative w-full h-full flex px-4 py-4 space-x-4 items-center">
       <img className="w-8 h-8 text-gray-700" src={imgSrc} alt={title} />
       <span className={`${lato.className} text-gray-800 text-[15px]`}>{title}</span>
@@ -24,7 +24,7 @@ const Card = ({ imgSrc, title }) => (
 
 const Index = () => {
   return (
-    <div className="flex w-[100vw] px-[10vw] justify-center space-x-6">
+    <div className="flex w-[100vw] px-[14vw] justify-center space-x-6">
       <Card imgSrc={Logo.src} title="Astrologie" />
       <Card imgSrc={Logo2.src} title="Cartomancie" />
       <Card imgSrc={Logo3.src} title="Guidance & Spiritualité" />

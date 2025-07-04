@@ -33,9 +33,9 @@ const playfair2 = Playfair_Display({
 const Index = () => {
     const [inputValue, setInputValue] = useState("");
     return (
-        <div className="bg-red-800/40 rounded-full w-full flex justify-between items-center backdrop-blur-2xl py-5 px-10">
+        <div className="bg-red-800/50 rounded-full w-full flex justify-between items-center backdrop-blur-md py-3 px-10">
             <div className="flex items-center">
-                <span className="text-maincolor text-[26px]">wicca</span>
+                <span className="text-blanc text-[26px]">wicca</span>
             </div>
             {/* <div
                 className={`${lato.className} z-50 bg-white/50 text-white text-[14px] relative w-[min(800px,90%)] h-12 rounded-full border-[1px] border-gray-400 flex items-center pl-6 pr-2 shadow-lg`}

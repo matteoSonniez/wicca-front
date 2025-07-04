@@ -34,6 +34,7 @@ export default {
         test: "#DBD7FC",
         bgtest: "#3A1515",
         bgtest2: "#5D1722",
+        green:"#08a88a"
       },
     },
   },
