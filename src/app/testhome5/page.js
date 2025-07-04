@@ -22,8 +22,15 @@ import TopLeft from "@/img/backtopleft.png";
 import Fleche from "@/img/icons/fleche.png";
 
 // FONTS
-import { Inter, Quicksand, Montserrat } from "next/font/google";
+import { Inter, Quicksand, Montserrat, Space_Grotesk, Source_Code_Pro, Sora, Cinzel } from "next/font/google";
 const inter = Inter({ subsets: ["latin"], weight: ["400"], display: "swap" });
+
+const text_wicca = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500"],
+  display: "swap",
+});
+
 const quicksand = Inter({
   subsets: ["latin"],
   weight: ["600"],
@@ -255,7 +262,7 @@ export default function Home() {
             className="flex w-full items-center z-50 px-[15vw] -translate-y-[10vh]"
           >
             <div className="relative w-full flex items-center py-5">
-              <span className={`${mont.className} text-maincolor text-[26px]`}>
+              <span className={`${text_wicca.className} text-maincolor text-[26px]`}>
                 wicca
               </span>
               <div
@@ -361,8 +368,8 @@ export default function Home() {
         </section>
         <section className="mt-20 z-30">
           <TripleIcons />
-          <WiccaChiffre />
           <SlideExpert/>
+          <WiccaChiffre />
           <DevenirPractitien />
           {/* <Steps /> */}
         </section>

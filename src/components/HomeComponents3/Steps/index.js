@@ -185,7 +185,7 @@ const Index = () => {
             className="absolute inset-0 w-full h-full -z-10"
           /> */}
 
-      <div className="flex justify-between w-full bg-white py-16 px-8 rounded-2xl items-center shadow-md">
+      <div className="flex justify-between w-full py-16 px-0 rounded-2xl items-center">
         <div className="w-[32%] flex flex-col space-y-4 ">
           <span className={`${lato.className} text-[40px] text-noir/90`}>
             Réserver en toute simplicité
@@ -223,7 +223,7 @@ const Index = () => {
         <div className="relative w-[58%] h-full mr-5">
           <div
             ref={divRef}
-            className="absolute flex items-center space-x-8 z-20 -top-6 left-0 w-[60%] bg-white rounded-lg p-6 shadow-2xl border-[1px] border-gray-300 filter brightness-[65%]"
+            className="absolute flex items-center space-x-8 z-20 -top-6 left-0 w-[60%] bg-test rounded-lg p-6 shadow-2xl border-[1px] border-gray-300 filter brightness-[65%]"
           >
             <div className="w-24 h-24 border-[16px] border-maincolor/90 rounded-full bg-transparent" />
             <div className="flex-1 flex-col">

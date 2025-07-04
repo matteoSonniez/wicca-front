@@ -49,7 +49,7 @@ const lato_bold = Lato({
 
 const Index = () => {
   return (
-    <div className="flex w-screen justify-center mt-20 mb-36">
+    <div className="flex w-screen justify-center mt-32 mb-36">
       <div className="w-[80vw]  bg-grisbeige/60 rounded-xl flex px-12 py-16 justify-between shadow-sm">
         <div className="w-[40%] relative flex justify-center items-center">
           <img src={Blob1.src} className="absolute  z-0 w-[35%] left-[12%] rotate-90 top-[5%]"></img>
