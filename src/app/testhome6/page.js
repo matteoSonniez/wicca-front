@@ -6,13 +6,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 // COMPONENTS
-import HeaderDown from "@/components/HeaderDown";
-import Services from "@/components/HomeComp4/Services";
-import TripleIcons from "@/components/HomeComp4/TripleIcon";
-import WiccaChiffre from "@/components/HomeComp4/Chiffres";
-import DevenirPractitien from "@/components/HomeComp4/DevenirPracticienHome";
-import SlideExpert from "@/components/HomeComp4/ExpertSlide";
-import Steps from "@/components/HomeComp4/Steps";
+import HeaderTest from "@/components/HeaderTest";
+import Services from "@/components/HomeComponents3/Services";
+import TripleIcons from "@/components/HomeComponents3/TripleIcon";
+import WiccaChiffre from "@/components/HomeComponents3/Chiffres";
+import DevenirPractitien from "@/components/HomeComponents3/DevenirPracticienHome";
+import Steps from "@/components/HomeComponents3/Steps";
+import SlideExpert from "@/components/HomeComponents3/ExpertSlide";
 
 // ASSETS
 import Search from "@/img/chercher.png";
@@ -173,23 +173,9 @@ export default function Home() {
   return (
     <div className="relative overflow-x-hidden">
       {renderHeader && (
-        // <div
-        //   className={`
-        //     fixed z-50 w-full px-[5vw] py-[2vh] justify-between flex items-center
-        //     transition-all duration-500
-        //     ${
-        //       visible
-        //         ? "opacity-100 translate-y-0"
-        //         : "opacity-0 -translate-y-full"
-        //     }
-        //   `}
-        //   style={{ top: 0 }}
-        // >
-        //   <HeaderDown />
-        // </div>
         <div
           className={`
-            fixed z-50 w-full flex items-center
+            fixed z-50 w-full px-[5vw] py-[2vh] justify-between flex items-center
             transition-all duration-500
             ${
               visible
@@ -199,7 +185,7 @@ export default function Home() {
           `}
           style={{ top: 0 }}
         >
-          {/* <HeaderDown /> */}
+          {/* <HeaderTest /> */}
         </div>
       )}
       <div>
@@ -311,7 +297,7 @@ export default function Home() {
                 className="w-[45%] flex flex-col space-y-10 -translate-x-[50vw]"
               >
                 <span
-                  className={`${mont.className} text-[45px] text-noir/90 leading-snug`}
+                  className={`${mont.className} text-[50px] text-noir/90 leading-snug`}
                 >
                   Trouvez <span className="text-maincolor">un</span> <br />
                   <span className="text-maincolor">rendez-vous</span>
@@ -344,10 +330,10 @@ export default function Home() {
               >
                 <img
                   src={Path.src}
-                  className="absolute w-full scale-[1.1] ml-16"
+                  className="absolute w-full scale-[1.2] ml-16"
                 />
                 <div className="flex flex-col h-full justify-center space-y-6">
-                  <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
+                  <div className="h-[42%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
                     <Image
                       src="/experts/portrait2.webp"
                       alt="Portrait de l'expert"
@@ -355,7 +341,7 @@ export default function Home() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
+                  <div className="h-[42%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
                     <Image
                       src="/experts/portrait7.webp"
                       alt="Portrait de l'expert"
@@ -365,7 +351,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="h-[53%] relative rounded-3xl overflow-hidden aspect-[0.65/1]">
+                <div className="h-[60%] relative rounded-3xl overflow-hidden aspect-[0.65/1]">
                   <Image
                     src="/experts/portrait5.webp"
                     alt="Portrait de l'expert"
@@ -382,10 +368,10 @@ export default function Home() {
         </section>
         <section className="mt-20 z-30">
           <TripleIcons />
-          <Steps />
-          <WiccaChiffre />
           <SlideExpert/>
+          <WiccaChiffre />
           <DevenirPractitien />
+          {/* <Steps /> */}
         </section>
       </div>
     </div>

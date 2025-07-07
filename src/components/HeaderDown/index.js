@@ -39,28 +39,28 @@ const playfair2 = Playfair_Display({
 const Index = () => {
     const [inputValue, setInputValue] = useState("");
     return (
-        <div className="bg-red-800/50 rounded-full w-full flex justify-between items-center backdrop-blur-md py-3 px-10">
+        <div className="bg-white w-full flex justify-between items-center backdrop-blur-md py-4 px-10 border-b border-gray-300">
             <div className="flex items-center">
-                <span className={`${text_wicca.className} text-blanc text-[26px]`}>wicca</span>
+                <span className={`${text_wicca.className} text-maincolor/90 text-[26px]`}>wicca</span>
             </div>
             <div
-                className={`${lato.className} z-50 bg-white/80 text-white text-[14px] relative w-[min(800px,90%)] h-12 rounded-full border-[1px] border-gray-400 flex items-center pl-6 pr-2 shadow-lg`}
+                className={`${lato.className} z-50 bg-white/80 text-noir text-[14px] relative w-[50%] h-11 rounded-full border-[1px] border-gray-400 flex items-center pl-6 pr-2 shadow-sm`}
             >
                 <input
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Chercher un expert..."
-                    className="w-full flex-1 focus:outline-none bg-transparent text-noir placeholder-white"
+                    className="w-full flex-1 focus:outline-none bg-transparent text-noir placeholder-noir/60"
                 />
-                <button className="h-10 w-10 bg-gray-800 rounded-full grid place-items-center">
+                <button className="h-9 w-9 bg-gray-800 rounded-full grid place-items-center">
                     <img src={Search.src} alt="Rechercher" className="w-5" />
                 </button>
             </div>
-            <div className={`flex space-x-8 text-white items-center text-[15px] ${lato.className}`}>
+            <div className={`flex space-x-8 text-noir/60 items-center text-[15px] ${lato.className}`}>
                 <span className="cursor-pointer">Me connecter</span>
-                <div className="border-[1px] border-white rounded-full px-4 py-2">
-                    <span className="text-white">Inscription</span>
+                <div className="border-[1px] border-noir/60 rounded-full px-4 py-2">
+                    <span className="text-noir/60">Inscription</span>
                 </div>
             </div>
         </div>
