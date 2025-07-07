@@ -245,7 +245,7 @@ const Index = () => {
   };
 
   return (
-    <div ref={containerRef} className="flex relative px-[10vw] mt-20">
+    <div ref={containerRef} className="flex relative px-[10vw] mt-32">
       {/* <div className="flex flex-col relative space-y-[12vh] mb-[10vh] bg-diagonal-fade bg-blend-lighten "> */}
       {/* <img
             src={Bgtest.src}
@@ -253,9 +253,9 @@ const Index = () => {
             className="absolute inset-0 w-full h-full -z-10"
           /> */}
 
-      <div className="flex justify-between w-full py-16 px-0 rounded-2xl items-center">
+      <div className="flex justify-between w-full rounded-2xl items-center">
 
-        <div className="relative w-[47%] h-[40vh] mr-5">
+        <div className="relative w-[47%] h-[40vh]">
           <div
             ref={div2Ref}
             className="absolute flex items-center z-20 -top-6 left-0 w-[20vw] h-[20vh] bg-white rounded-lg  shadow-2xl filter brightness-[65%]"
@@ -278,7 +278,7 @@ const Index = () => {
 
           </div>
         </div>
-        <div className="w-[46%] flex flex-col space-y-8 ">
+        <div className="w-[44%] flex flex-col space-y-8 ">
           <div onClick={changeDivOne} className="flex flex-row items-stretch space-x-4 cursor-pointer">
             {/* Barre verticale animée */}
             <div className="flex flex-col justify-center">
@@ -287,7 +287,7 @@ const Index = () => {
               </div>
             </div>
             <div className="flex flex-col space-y-4 flex-1">
-              <span className={`${mont_bold.className} text-[25px] text-noir/80 leading-none`}>
+              <span className={`${mont_bold.className} text-[22px] text-noir/80 leading-none`}>
                 Réservez en toute simplicité
               </span>
               <span className={`${mont_bold.className} text-[15px] text-noir/60`}>
@@ -305,7 +305,7 @@ const Index = () => {
               </div>
             </div>
             <div className="flex flex-col space-y-4 flex-1">
-              <span className={`${mont_bold.className} text-[25px] text-noir/80 leading-none`}>
+              <span className={`${mont_bold.className} text-[22px] text-noir/80 leading-none`}>
                 Choisissez le bon moment
               </span>
               <span className={`${mont_bold.className} text-[15px] text-noir/60`}>
@@ -322,7 +322,7 @@ const Index = () => {
               </div>
             </div>
             <div className="flex flex-col space-y-4 flex-1">
-              <span className={`${mont_bold.className} text-[25px] text-noir/80 leading-none`}>
+              <span className={`${mont_bold.className} text-[22px] text-noir/80 leading-none`}>
                 Recevez votre guidance
               </span>
               <span className={`${mont_bold.className} text-[15px] text-noir/60`}>

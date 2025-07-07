@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RoundBg from "@/img/roundbg7.png";
 import Man from "@/img/manhold.png";
+import Man3 from "@/img/manhold3.png";
 import Man2 from "@/img/manhold2.png";
 
 const lato = Lato({
@@ -80,7 +81,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="flex relative h-auto pl-[10vw] mt-36 mb-20 items-center">
+    <div className="flex relative h-auto pl-[10vw] mt-48 mb-20 items-center">
       <div className="flex flex-col w-[37%] space-y-6">
         <div className="flex flex-col">
           <span className=" uppercase text-maincolor/80 tracking-[0.2em] text-[16px] mb-5">
@@ -130,12 +131,12 @@ const Index = () => {
         <div className="flex w-full justify-end" ref={roundBgRef}>
           <img src={RoundBg.src} className="w-[90%] object-cover opacity-90" />
         </div>
-        <div className="absolute w-[63%] right-[18%] bottom-0 self-center" ref={manRef}>
+        {/* <div className="absolute w-[63%] right-[18%] bottom-0 self-center" ref={manRef}>
           <img src={Man.src} className="w-full object-cover" />
-        </div>
-        {/* <div className="absolute w-[33%] right-[23%] bottom-0 self-center" ref={manRef}>
-          <img src={Man2.src} className="w-full object-cover" />
         </div> */}
+        <div className="absolute w-[76%] right-[12%] bottom-0 self-center" ref={manRef}>
+          <img src={Man3.src} className="w-full object-cover" />
+        </div>
       </div>
     </div>
   );

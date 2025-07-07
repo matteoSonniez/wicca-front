@@ -16,7 +16,8 @@ import Steps from "@/components/HomeComp4/Steps";
 
 // ASSETS
 import Search from "@/img/chercher.png";
-import Path from "@/img/image2.png";
+import Path from "@/img/image3.png";
+import Path2 from "@/img/image2.png";
 import TopRight from "@/img/backtopright.png";
 import TopLeft from "@/img/backtopleft.png";
 import Fleche from "@/img/icons/fleche.png";
@@ -311,7 +312,7 @@ export default function Home() {
                 className="w-[45%] flex flex-col space-y-10 -translate-x-[50vw]"
               >
                 <span
-                  className={`${mont.className} text-[45px] text-noir/90 leading-snug`}
+                  className={`${mont.className} text-[43px] text-noir/90 leading-snug`}
                 >
                   Trouvez <span className="text-maincolor">un</span> <br />
                   <span className="text-maincolor">rendez-vous</span>
@@ -344,20 +345,24 @@ export default function Home() {
               >
                 <img
                   src={Path.src}
-                  className="absolute w-full scale-[1.1] ml-16"
+                  className="absolute w-full scale-[1]"
                 />
+                {/* <img
+                  src={Path2.src}
+                  className="absolute w-full scale-[1.1] ml-16"
+                /> */}
                 <div className="flex flex-col h-full justify-center space-y-10">
-                  <div className="h-[36%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
+                  <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
                     <Image
-                      src="/experts/portrait2.webp"
+                      src="/experts/portrait-home9.jpg"
                       alt="Portrait de l'expert"
                       fill
                       className="object-cover"
                     />
                   </div>
-                  <div className="h-[36%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
+                  <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
                     <Image
-                      src="/experts/portrait7.webp"
+                      src="/experts/portrait-home5.jpg"
                       alt="Portrait de l'expert"
                       fill
                       className="object-cover"
@@ -367,7 +372,7 @@ export default function Home() {
 
                 <div className="h-[50%] relative rounded-3xl overflow-hidden aspect-[0.65/1]">
                   <Image
-                    src="/experts/portrait5.webp"
+                    src="/experts/portrait-home7.jpg"
                     alt="Portrait de l'expert"
                     fill
                     className="object-cover"
