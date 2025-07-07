@@ -305,7 +305,7 @@ export default function Home() {
             </div>
           </div>
           <div className=" px-[13vw] py-[2vh] h-full flex w-full items-center z-10">
-            <div className="flex w-full h-full items-center justify-center space-x-10">
+            <div className="flex w-full h-full items-center justify-center space-x-14">
               <div
                 ref={leftBlockRef}
                 className="w-[45%] flex flex-col space-y-10 -translate-x-[50vw]"
@@ -340,14 +340,14 @@ export default function Home() {
               </div>
               <div
                 ref={portraitsRef}
-                className="flex w-[55%] translate-x-[60vw] relative justify-center items-center h-full space-x-6"
+                className="flex w-[52%] translate-x-[60vw] relative justify-center items-center h-full space-x-12"
               >
                 <img
                   src={Path.src}
                   className="absolute w-full scale-[1.1] ml-16"
                 />
-                <div className="flex flex-col h-full justify-center space-y-6">
-                  <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
+                <div className="flex flex-col h-full justify-center space-y-10">
+                  <div className="h-[36%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
                     <Image
                       src="/experts/portrait2.webp"
                       alt="Portrait de l'expert"
@@ -355,7 +355,7 @@ export default function Home() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
+                  <div className="h-[36%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
                     <Image
                       src="/experts/portrait7.webp"
                       alt="Portrait de l'expert"
@@ -365,7 +365,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="h-[53%] relative rounded-3xl overflow-hidden aspect-[0.65/1]">
+                <div className="h-[50%] relative rounded-3xl overflow-hidden aspect-[0.65/1]">
                   <Image
                     src="/experts/portrait5.webp"
                     alt="Portrait de l'expert"

@@ -50,21 +50,21 @@ export default function Index() {
   const Card = ({ imgSrc, alt, title, description, fontBold, fontNormal }) => (
     <div
       ref={cardRef}
-      className="w-[45vw] aspect-[1/0.6] flex p-6 cursor-pointer rounded-2xl flex-shrink-0 bg-white space-x-10"
+      className="w-[35vw] aspect-[1/0.6] flex p-6 cursor-pointer rounded-2xl flex-shrink-0 bg-white space-x-10"
       style={{
         boxShadow: "0 0 8px 0 rgba(0,0,0,0.10)"
       }}
     >
       <img src={imgSrc} className="w-[42%] h-full object-cover rounded-xl" />
       <div className="flex flex-col justify-between">
-        <span className={`${mont_semi.className} text-[14px] text-noir/60 text-start leading-relaxed`}>
-          Je suis Léa, praticienne en ésotérisme passionnée par les mystères de l'univers et les voies spirituelles qui nous connectent à notre essence profonde. Depuis mon plus jeune âge, j'ai exploré les enseignements anciens et les pratiques traditionnelles pour comprendre le pouvoir des énergies et des vibrations qui nous entourent.
+        <span className={`${mont_semi.className} text-[12px] text-noir/60 text-start leading-relaxed`}>
+          Je suis Léa, praticienne en ésotérisme passionnée par les mystères de l'univers et les voies spirituelles qui nous connectent à notre essence profonde. Depuis mon plus jeune âge, j'ai exploré les enseignements anciens et les pratiques traditionnelles
         </span>
         <div className="flex flex-col">
-          <span className={`${mont.className} text-[16px] text-noir/80 text-start leading-relaxed uppercase`}>camille vigaud</span>
-          <span className={`${mont_semi.className} text-[15px] text-noir/60 text-start leading-relaxed mb-5`}>praticienne en ésotérisme</span>
+          <span className={`${mont.className} text-[15px] text-noir/80 text-start leading-relaxed uppercase`}>camille vigaud</span>
+          <span className={`${mont_semi.className} text-[14px] text-noir/60 text-start leading-relaxed mb-5`}>praticienne en ésotérisme</span>
           <div className="border-b-2 border-maincolor/80 w-fit text-maincolor/80">
-            <span className={`${mont_semi.className} text-[15px] leading-relaxed`}>En découvrir plus</span>
+            <span className={`${mont_semi.className} text-[14px] leading-relaxed`}>En découvrir plus</span>
           </div>
         </div>
       </div>

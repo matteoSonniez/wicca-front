@@ -80,7 +80,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="flex relative h-auto pl-[10vw] mt-44 mb-20 items-center">
+    <div className="flex relative h-auto pl-[10vw] mt-36 mb-20 items-center">
       <div className="flex flex-col w-[37%] space-y-6">
         <div className="flex flex-col">
           <span className=" uppercase text-maincolor/80 tracking-[0.2em] text-[16px] mb-5">

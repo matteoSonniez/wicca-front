@@ -30,6 +30,8 @@ const lato_bold = Lato({
 
 const Index = () => {
   const [isStep, setIsSpet] = useState(1);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef(null);
   const divRef = useRef(null);
   const div2Ref = useRef(null);
   const div3Ref = useRef(null);
@@ -38,8 +40,29 @@ const Index = () => {
   const bar3Ref = useRef(null);
   const timeoutRef = useRef(null);
 
-  // Animation de la barre et passage automatique
+  // Observer d'intersection pour détecter la visibilité du composant
   useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
+
+  // Animation de la barre et passage automatique, seulement si visible
+  useEffect(() => {
+    if (!isVisible) return;
     let barRef, nextStepFn;
     if (isStep === 1) {
       barRef = bar1Ref;
@@ -72,7 +95,7 @@ const Index = () => {
     return () => {
       gsap.killTweensOf([bar1Ref.current, bar2Ref.current, bar3Ref.current]);
     };
-  }, [isStep]);
+  }, [isStep, isVisible]);
 
   const changeDivOne = () => {
     setIsSpet(1);
@@ -222,7 +245,7 @@ const Index = () => {
   };
 
   return (
-    <div className="flex relative px-[10vw] mt-20">
+    <div ref={containerRef} className="flex relative px-[10vw] mt-20">
       {/* <div className="flex flex-col relative space-y-[12vh] mb-[10vh] bg-diagonal-fade bg-blend-lighten "> */}
       {/* <img
             src={Bgtest.src}
