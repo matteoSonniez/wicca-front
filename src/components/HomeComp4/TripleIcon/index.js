@@ -93,7 +93,7 @@ const Index = () => {
         ref={cardsContainerRef}
       >
         <TripleIconCard
-          imgSrc={Calendar.src}
+          imgSrc={Icon2.src}
           alt="GIF réservation"
           title="Consultations 24h sur 24"
           description="Réservez et gérez vos rendez-vous, selon vos envies, en un clic"
@@ -101,7 +101,7 @@ const Index = () => {
           fontNormal={mont.className}
         />
         <TripleIconCard
-          imgSrc={People.src}
+          imgSrc={Icon3.src}
           alt="GIF réservation"
           title="Diversité des Prestations"
           description="Explorez une gamme variée de services spirituels"
@@ -109,7 +109,7 @@ const Index = () => {
           fontNormal={mont.className}
         />
         <TripleIconCard
-          imgSrc={Secur.src}
+          imgSrc={Icon1.src}
           alt="GIF réservation"
           title="Transparence et sécurité"
           description="Vous savez ce que vous payez, sans frais cachés, avec un paiement sécurisé"

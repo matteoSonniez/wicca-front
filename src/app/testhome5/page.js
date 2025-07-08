@@ -13,6 +13,7 @@ import WiccaChiffre from "@/components/HomeComp4/Chiffres";
 import DevenirPractitien from "@/components/HomeComp4/DevenirPracticienHome";
 import SlideExpert from "@/components/HomeComp4/ExpertSlide";
 import Steps from "@/components/HomeComp4/Steps";
+import AllServices from "@/components/HomeComp4/AllServices";
 
 // ASSETS
 import Search from "@/img/chercher.png";
@@ -391,6 +392,7 @@ export default function Home() {
           <WiccaChiffre />
           <SlideExpert/>
           <DevenirPractitien />
+          <AllServices />
         </section>
       </div>
     </div>
