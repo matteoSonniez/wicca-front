@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Freehand, Poiret_One, Playfair_Display, Inter, Lato, Space_Grotesk } from 'next/font/google'
 import Menu from "@/img/menu.png";
-import Logo from "@/img/wiccalogo2.png";
+import Flechebas from "@/img/icons/flechebas.png";
 import Search from "@/img/chercher.png";
 
 const lato = Lato({
@@ -39,28 +39,49 @@ const playfair2 = Playfair_Display({
 const Index = () => {
     const [inputValue, setInputValue] = useState("");
     return (
-        <div className="bg-white w-full flex justify-between items-center backdrop-blur-md py-4 px-10 border-b border-gray-300">
-            <div className="flex items-center">
+        <div className="bg-blanc w-full flex justify-between items-center backdrop-blur-md py-4 px-10">
+            <div className="flex items-center gap-x-10">
                 <span className={`${text_wicca.className} text-maincolor/90 text-[26px]`}>wicca</span>
+                <div
+                    className={`${lato.className} z-50 bg-gris text-noir text-[14px] relative w-[430px] h-12 rounded-full flex items-center pl-6 pr-2`}
+                >
+                    <input
+                        type="text"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        placeholder="Chercher un expert..."
+                        className="w-full flex-1 focus:outline-none bg-transparent text-noir placeholder-noir/60"
+                    />
+                    <button className="h-9 w-9 bg-maincolor/80 rounded-full grid place-items-center">
+                        <img src={Search.src} alt="Rechercher" className="w-5" />
+                    </button>
+                </div>
             </div>
-            <div
-                className={`${lato.className} z-50 bg-white/80 text-noir text-[14px] relative w-[50%] h-11 rounded-full border-[1px] border-gray-400 flex items-center pl-6 pr-2 shadow-sm`}
-            >
-                <input
-                    type="text"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Chercher un expert..."
-                    className="w-full flex-1 focus:outline-none bg-transparent text-noir placeholder-noir/60"
-                />
-                <button className="h-9 w-9 bg-gray-800 rounded-full grid place-items-center">
-                    <img src={Search.src} alt="Rechercher" className="w-5" />
-                </button>
+            <div className="flex items-center gap-x-10 text-noir/90">
+                <div className="flex items-center gap-x-10">
+                    <div className="flex items-center gap-x-2 cursor-pointer">
+                        <span className={`${lato.className} text-[14px]`}>Cartomancie</span>
+                        <img src={Flechebas.src} alt="Flechebas" className="w-2" />
+                    </div>
+                    <div className="flex items-center gap-x-2 cursor-pointer">
+                        <span className={`${lato.className} text-[14px]`}>Tarologie</span>
+                        <img src={Flechebas.src} alt="Flechebas" className="w-2" />
+                    </div>
+                    <div className="flex items-center gap-x-2 cursor-pointer">
+                        <span className={`${lato.className} text-[14px]`}>Astrologie</span>
+                        <img src={Flechebas.src} alt="Flechebas" className="w-2" />
+                    </div>
+                    <div className="flex items-center gap-x-2 cursor-pointer">
+                        <span className={`${lato.className} text-[14px]`}>Autre spécialités</span>
+                        <img src={Flechebas.src} alt="Flechebas" className="w-2" />
+                    </div>
+                </div>
             </div>
-            <div className={`flex space-x-8 text-noir/60 items-center text-[15px] ${lato.className}`}>
-                <span className="cursor-pointer">Me connecter</span>
-                <div className="border-[1px] border-noir/60 rounded-full px-4 py-2">
-                    <span className="text-noir/60">Inscription</span>
+
+            <div className={`flex space-x-8 text-noir/90 items-center text-[15px] ${lato.className}`}>
+                <span className="cursor-pointer">Inscription</span>
+                <div className="border-[1px] text-noir/90 border-noir/60 hover:bg-maincolor hover:text-blanc hover:border-maincolor/80 transition-all duration-100 cursor-pointer rounded-full px-4 py-2">
+                    <span className="">Me connecter</span>
                 </div>
             </div>
         </div>

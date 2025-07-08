@@ -69,7 +69,7 @@ export default function Home() {
   const [renderHeader, setRenderHeader] = useState(false);
   const animatedBlockRef = useRef(null);
   const servicesRef = useRef(null);
-
+  const headerDownRef = useRef(null);
   // useLayoutEffect(() => {
   //   if (portraitsRef.current) {
   //     gsap.set(portraitsRef.current, { x: "50vw" });
@@ -108,44 +108,7 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        setShowFloatingHeader(!entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-    if (serchRef.current) {
-      observer.observe(serchRef.current);
-    }
-    return () => {
-      if (serchRef.current) observer.unobserve(serchRef.current);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (showFloatingHeader) {
-      setRenderHeader(true);
-      setTimeout(() => setVisible(true), 10); // Laisse le temps au DOM d'ajouter l'élément
-    } else {
-      setVisible(false);
-      setTimeout(() => setRenderHeader(false), 500); // Durée de la transition
-    }
-  }, [showFloatingHeader]);
-
-  // useEffect(() => {
-  //   if (!animatedBlockRef.current) return;
-  //   gsap.to(animatedBlockRef.current, {
-  //     y: -100,
-  //     ease: "none",
-  //     scrollTrigger: {
-  //       trigger: animatedBlockRef.current,
-  //       start: "bottom bottom",
-  //       end: "bottom top",
-  //       scrub: true,
-  //     },
-  //   });
-  // }, []);
+  
 
   useEffect(() => {
     //if (!animatedBlockRef.current) return;
@@ -172,38 +135,46 @@ export default function Home() {
     });
   }, []);
 
+  useEffect(() => {
+    if (!headerDownRef.current || !serchRef.current) return;
+
+    // Positionne la div hors écran au départ
+    gsap.set(headerDownRef.current, { y: "-100%" });
+
+    ScrollTrigger.create({
+      trigger: serchRef.current,
+      start: "bottom top", // quand le bas de la barre de recherche touche le haut du viewport
+      end: "+=1", // juste après
+      onEnter: () => {
+        gsap.to(headerDownRef.current, {
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        });
+      },
+      onLeaveBack: () => {
+        gsap.to(headerDownRef.current, {
+          y: "-100%",
+          duration: 0.3,
+          ease: "power3.in",
+        });
+      },
+      toggleActions: "play none none reverse",
+    });
+  }, []);
+
   return (
     <div className="relative overflow-x-hidden">
-      {renderHeader && (
-        // <div
-        //   className={`
-        //     fixed z-50 w-full px-[5vw] py-[2vh] justify-between flex items-center
-        //     transition-all duration-500
-        //     ${
-        //       visible
-        //         ? "opacity-100 translate-y-0"
-        //         : "opacity-0 -translate-y-full"
-        //     }
-        //   `}
-        //   style={{ top: 0 }}
-        // >
-        //   <HeaderDown />
-        // </div>
-        <div
-          className={`
-            fixed z-50 w-full flex items-center
-            transition-all duration-500
-            ${
-              visible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 -translate-y-full"
-            }
-          `}
-          style={{ top: 0 }}
-        >
-          {/* <HeaderDown /> */}
-        </div>
-      )}
+      
+      <div
+        ref={headerDownRef}
+        style={{ transform: "translateY(-100%)" }}
+        className={`
+          fixed z-50 w-full flex items-center
+        `}
+      >
+        <HeaderDown />
+      </div>
       <div>
         <section
           ref={animatedBlockRef}
@@ -344,14 +315,14 @@ export default function Home() {
                 ref={portraitsRef}
                 className="flex w-[52%] translate-x-[60vw] relative justify-center items-center h-full space-x-12"
               >
-                <img
+                {/* <img
                   src={Path.src}
                   className="absolute w-full scale-[1]"
-                />
-                {/* <img
+                /> */}
+                <img
                   src={Path2.src}
                   className="absolute w-full scale-[1.1] ml-16"
-                /> */}
+                />
                 <div className="flex flex-col h-full justify-center space-y-10">
                   <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
                     <Image

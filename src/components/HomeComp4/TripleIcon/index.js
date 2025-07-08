@@ -38,9 +38,9 @@ const mont = Montserrat({
 });
 
 const TripleIconCard = ({ imgSrc, alt, title, description, fontBold, fontNormal }) => (
-  <div className="flex flex-col z-30 w-[32%] aspect-[1/1] bg-white rounded-3xl shadow-sm items-center px-12 py-8 space-y-8">
+  <div className="flex flex-col z-30 w-[24%] aspect-[1/1] bg-white rounded-3xl shadow-sm items-center px-8 py-8 space-y-5">
     <div className="relative flex justify-center rounded-full items-center">
-      <img src={imgSrc} alt={alt} className="w-16 h-16" />
+      <img src={imgSrc} alt={alt} className="w-14 h-14" />
     </div>
     <span className={`${fontBold} text-center text-noir/80 text-[16px]`}>
       {title}
@@ -74,11 +74,11 @@ const Index = () => {
 
   return (
     <div className="flex pl-[10vw] pr-[7vw] justify-between items-center">
-      <div className="flex flex-col space-y-4 w-[30%]">
-        <span className={`${mont_semi.className} text-[16px] text-maincolor/80 text-start uppercase tracking-[0.2em]`}>
+      <div className="flex flex-col space-y-4 w-[26%]">
+        <span className={`${mont_semi.className} text-[15px] text-maincolor/80 text-start uppercase tracking-[0.2em]`}>
           Services
         </span>
-        <span className={`${mont_semi.className} text-noir/80 text-[30px]`}>
+        <span className={`${mont_semi.className} text-noir/80 text-[26px]`}>
           Votre partenaire  <br></br>spirituel au quotidien
         </span>
         <span
@@ -89,7 +89,7 @@ const Index = () => {
       </div>
 
       <div
-        className="flex w-[60%] justify-between"
+        className="flex w-[70%] justify-between"
         ref={cardsContainerRef}
       >
         <TripleIconCard
@@ -101,7 +101,7 @@ const Index = () => {
           fontNormal={mont.className}
         />
         <TripleIconCard
-          imgSrc={Icon3.src}
+          imgSrc={Icon1.src}
           alt="GIF réservation"
           title="Diversité des Prestations"
           description="Explorez une gamme variée de services spirituels"
@@ -109,15 +109,22 @@ const Index = () => {
           fontNormal={mont.className}
         />
         <TripleIconCard
-          imgSrc={Icon1.src}
+          imgSrc={Icon3.src}
           alt="GIF réservation"
           title="Transparence et sécurité"
           description="Vous savez ce que vous payez, sans frais cachés, avec un paiement sécurisé"
           fontBold={mont_bold.className}
           fontNormal={mont.className}
         />
+        <TripleIconCard
+          imgSrc={Icon2.src}
+          alt="GIF réservation"
+          title="Praticiens sélectionnés avec soin"
+          description="Pour une expérience authentique et personnalisée "
+          fontBold={mont_bold.className}
+          fontNormal={mont.className}
+        />
       </div>
-
     </div>
   );
 };

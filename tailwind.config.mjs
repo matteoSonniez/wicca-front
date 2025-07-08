@@ -21,6 +21,7 @@ export default {
       },
       colors: {
         blanc: "#F8F9FA",
+        gris: "#F3F3F6",
         maincolor: "#E93453",
         framboise2: "#BB2649",
         bleusoft: "#EFFAFD",
