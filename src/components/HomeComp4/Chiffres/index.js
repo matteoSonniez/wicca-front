@@ -85,42 +85,46 @@ const Index = () => {
       <div className="flex flex-col w-[37%] space-y-6">
         <div className="flex flex-col">
           <span className=" uppercase text-maincolor/80 tracking-[0.2em] text-[16px] mb-5">
-            wicca en chiffres
+            Qui sommes-nous ?
           </span>
           <span
             className={`${montserrat_bold.className} text-noir/80 text-[30px] mb-4`}
           >
-            Ceci est un texte de test pour le titre de cette section
+            Deux fondateurs, une conviction
           </span>
+          {/* <span className={`${montserrat.className} text-noir/50 text-[14px]`}>
+          Wicca est née de notre envie commune d’offrir un espace nouveau, accessible et sincère, pour tous ceux qui cherchent des réponses comme pour ceux qui les transmettent.
+          Nous avons construit Wicca pour qu’elle soit bien plus qu’un simple outil : un lieu de confiance, de clarté, et de mise en valeur des pratiques ésotériques.
+          Une plateforme à la fois humaine et exigeante, pensée pour faciliter les rencontres, fluidifier les échanges, et offrir enfin une expérience à la hauteur de ce que chacun mérite.
+          </span> */}
           <span className={`${montserrat.className} text-noir/50 text-[14px]`}>
-            Vous savez ce que vous payez, sans frais cachés, avec un paiement
-            sécurisé vous savez ce que vous payez, sans frais cachés, avec un
-            paiement sécurisé
+          Wicca est née de notre envie commune d’offrir un espace nouveau, accessible et sincère, pour tous ceux qui cherchent des réponses comme pour ceux qui les transmettent.
+          Nous avons construit Wicca pour qu’elle soit bien plus qu’un simple outil : un lieu de confiance, de clarté, et de mise en valeur des pratiques ésotériques.
           </span>
         </div>
 
         <div className={`${montserrat.className} flex items-center space-x-4`}>
           <div className="flex flex-col items-center space-y-4">
             <div className="flex flex-col items-center  bg-maincolor/90 rounded-2xl px-6 py-3 shadow-sm w-[200px]">
-              <span className="text-blanc text-[26px]">500+</span>
+              <span className="text-blanc text-[26px]">100%</span>
               <span className="text-blanc text-[13px]">
-                Experts certifiés
+                Francais
               </span>
             </div>
             <div className="flex flex-col items-center bg-white rounded-2xl px-6 py-3 shadow-sm w-[200px]">
-              <span className="text-maincolor text-[26px]">120</span>
-              <span className="text-noir/70 text-[13px]">Test de chiffre</span>
+              <span className="text-maincolor text-[26px]">+6</span>
+              <span className="text-noir/70 text-[13px]">Spécialités</span>
             </div>
           </div>
           <div className="flex flex-col items-center space-y-4">
             
             <div className="flex flex-col items-center bg-white rounded-2xl px-6 py-3 shadow-sm w-[200px]">
-              <span className="text-maincolor text-[26px]">12</span>
-              <span className="text-noir/70 text-[13px]">Services</span>
+              <span className="text-maincolor text-[26px]">100+</span>
+              <span className="text-noir/70 text-[13px]">RDV test</span>
             </div>
             <div className="flex flex-col items-center bg-white rounded-2xl px-6 py-3 shadow-sm w-[200px]">
-              <span className="text-maincolor text-[26px]">3k+</span>
-              <span className="text-noir/70 text-[13px]">Services test</span>
+              <span className="text-maincolor text-[26px]">50+</span>
+              <span className="text-noir/70 text-[13px]">Experts onboard</span>
             </div>
 
           </div>

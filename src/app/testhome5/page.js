@@ -13,18 +13,23 @@ import WiccaChiffre from "@/components/HomeComp4/Chiffres";
 import DevenirPractitien from "@/components/HomeComp4/DevenirPracticienHome";
 import SlideExpert from "@/components/HomeComp4/ExpertSlide";
 import Steps from "@/components/HomeComp4/Steps";
-import AllServices from "@/components/HomeComp4/AllServices";
+import AllServices from "@/components/HomeComp4/AllServices2";
+import SearchBar from "@/components/SearchBar";
+import FAQ from "@/components/HomeComp4/FAQ";
+import Avis from "@/components/HomeComp4/Avis";
 
 // ASSETS
 import Search from "@/img/chercher.png";
 import Path from "@/img/image3.png";
 import Path2 from "@/img/image2.png";
+import Path3 from "@/img/image6.png";
 import TopRight from "@/img/backtopright.png";
 import TopLeft from "@/img/backtopleft.png";
 import Fleche from "@/img/icons/fleche.png";
+import Footer from "@/img/footer.png";
 
 // FONTS
-import { Inter, Quicksand, Montserrat, Space_Grotesk, Source_Code_Pro, Sora, Cinzel } from "next/font/google";
+import { Inter, Quicksand, Montserrat, Space_Grotesk, Source_Code_Pro, Sora, Cinzel, Poppins } from "next/font/google";
 const inter = Inter({ subsets: ["latin"], weight: ["400"], display: "swap" });
 
 const text_wicca = Space_Grotesk({
@@ -56,6 +61,13 @@ const mont_petit = Montserrat({
   weight: ["400"],
   display: "swap",
 });
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["600"],
+  display: "swap",
+});
+
 
 export default function Home() {
   //const [inputValue, setInputValue] = useState("");
@@ -108,7 +120,7 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  
+
 
   useEffect(() => {
     //if (!animatedBlockRef.current) return;
@@ -165,7 +177,7 @@ export default function Home() {
 
   return (
     <div className="relative overflow-x-hidden">
-      
+
       <div
         ref={headerDownRef}
         style={{ transform: "translateY(-100%)" }}
@@ -269,10 +281,10 @@ export default function Home() {
                 className={`${mont_low.className} text-noir/50 space-x-5 flex items-center text-[14px] ml-auto`}
               >
                 <span className="cursor-pointer hover:text-noir/80">
-                  Devenir practitien
+                  Vous êtes praticien ?
                 </span>
                 <button className="border-[1px] text-blanc border-blanc rounded-full px-4 py-2 bg-maincolor">
-                  Connection
+                  Me connecter
                 </button>
               </div>
             </div>
@@ -284,10 +296,10 @@ export default function Home() {
                 className="w-[45%] flex flex-col space-y-10 -translate-x-[50vw]"
               >
                 <span
-                  className={`${mont.className} text-[43px] text-noir/90 leading-snug`}
+                  className={`${poppins.className} text-[46px] text-noir/80 leading-snug`}
                 >
-                  Trouvez <span className="text-maincolor">un</span> <br />
-                  <span className="text-maincolor">rendez-vous</span>
+                  Trouvez <span className="text-maincolor/90">un</span> <br />
+                  <span className="text-maincolor/90">rendez-vous</span>
                   <br />
                   avec un médium
                 </span>
@@ -297,18 +309,8 @@ export default function Home() {
                   Explorez votre chemin spirituel avec des experts et praticiens
                   certifiés
                 </span>
-                <div
-                  ref={serchRef}
-                  className={`${mont_low.className} z-50 bg-blanc relative w-full h-16 rounded-full border-[1px] border-gray-400/70 flex items-center pl-6 pr-2`}
-                >
-                  <input
-                    type="text"
-                    placeholder="Chercher un expert..."
-                    className="w-full flex-1 bg-blanc focus:outline-none focus:ring-2 focus:ring-maincolor"
-                  />
-                  <button className="h-12 w-12 bg-maincolor/90 rounded-full flex justify-center items-center">
-                    <Image src={Search} alt="Rechercher" className="w-5" />
-                  </button>
+                <div ref={serchRef}>
+                  <SearchBar></SearchBar>
                 </div>
               </div>
               <div
@@ -319,9 +321,13 @@ export default function Home() {
                   src={Path.src}
                   className="absolute w-full scale-[1]"
                 /> */}
-                <img
+                {/* <img
                   src={Path2.src}
                   className="absolute w-full scale-[1.1] ml-16"
+                /> */}
+                <img
+                  src={Path3.src}
+                  className="absolute w-full"
                 />
                 <div className="flex flex-col h-full justify-center space-y-10">
                   <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
@@ -361,9 +367,14 @@ export default function Home() {
           <TripleIcons />
           <Steps />
           <WiccaChiffre />
-          <SlideExpert/>
+          <SlideExpert />
           <DevenirPractitien />
           <AllServices />
+          <Avis />
+          <FAQ />
+          <div className="relative w-full">
+            <Image src={Footer.src} alt="Footer" width={1200} height={300} className="object-cover w-full h-auto" />
+          </div>
         </section>
       </div>
     </div>

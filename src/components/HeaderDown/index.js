@@ -60,26 +60,26 @@ const Index = () => {
             <div className="flex items-center gap-x-10 text-noir/90">
                 <div className="flex items-center gap-x-10">
                     <div className="flex items-center gap-x-2 cursor-pointer">
-                        <span className={`${lato.className} text-[14px]`}>Cartomancie</span>
+                        <span className={`${lato.className} text-[14px] hover:text-maincolor/90 transition-all duration-100`}>Cartomancie</span>
                         <img src={Flechebas.src} alt="Flechebas" className="w-2" />
                     </div>
                     <div className="flex items-center gap-x-2 cursor-pointer">
-                        <span className={`${lato.className} text-[14px]`}>Tarologie</span>
+                        <span className={`${lato.className} text-[14px] hover:text-maincolor/90 transition-all duration-100`}>Tarologie</span>
                         <img src={Flechebas.src} alt="Flechebas" className="w-2" />
                     </div>
                     <div className="flex items-center gap-x-2 cursor-pointer">
-                        <span className={`${lato.className} text-[14px]`}>Astrologie</span>
+                        <span className={`${lato.className} text-[14px] hover:text-maincolor/90 transition-all duration-100`}>Astrologie</span>
                         <img src={Flechebas.src} alt="Flechebas" className="w-2" />
                     </div>
                     <div className="flex items-center gap-x-2 cursor-pointer">
-                        <span className={`${lato.className} text-[14px]`}>Autre spécialités</span>
+                        <span className={`${lato.className} text-[14px] hover:text-maincolor/90 transition-all duration-100`}>Autre spécialités</span>
                         <img src={Flechebas.src} alt="Flechebas" className="w-2" />
                     </div>
                 </div>
             </div>
 
             <div className={`flex space-x-8 text-noir/90 items-center text-[15px] ${lato.className}`}>
-                <span className="cursor-pointer">Inscription</span>
+                <span className="cursor-pointer hover:text-maincolor/90 transition-all duration-100">Vous êtes praticien ?</span>
                 <div className="border-[1px] text-noir/90 border-noir/60 hover:bg-maincolor hover:text-blanc hover:border-maincolor/80 transition-all duration-100 cursor-pointer rounded-full px-4 py-2">
                     <span className="">Me connecter</span>
                 </div>

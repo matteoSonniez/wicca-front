@@ -4,6 +4,7 @@ import { Lato, Inter, Montserrat } from "next/font/google";
 import Bgtest from "@/img/traitbg.png";
 import BlobImage from "@/img/Vector2.png";
 import { gsap } from "gsap";
+import Image from "next/image";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -245,7 +246,7 @@ const Index = () => {
   };
 
   return (
-    <div ref={containerRef} className="flex relative px-[10vw] mt-32">
+    <div ref={containerRef} className="flex relative pl-[10vw] pr-[8vw] mt-32">
       {/* <div className="flex flex-col relative space-y-[12vh] mb-[10vh] bg-diagonal-fade bg-blend-lighten "> */}
       {/* <img
             src={Bgtest.src}
@@ -258,24 +259,39 @@ const Index = () => {
         <div className="relative w-[47%] h-[40vh]">
           <div
             ref={div2Ref}
-            className="absolute flex items-center z-20 -top-6 left-0 w-[20vw] h-[20vh] bg-white rounded-lg  shadow-2xl filter brightness-[65%]"
+            className="absolute flex items-center z-20 -top-6 left-0 w-[20vw] h-[20vh] bg-white rounded-lg  shadow-2xl filter brightness-[65%] overflow-hidden"
           >
-
-
+            <Image
+              src="/steps/image2.png"
+              alt="Portrait de l'expert"
+              fill
+              className="object-cover"
+            />
           </div>
 
           <div
             ref={divRef}
-            className="absolute flex items-center z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20vw] h-[20vh] bg-white rounded-lg  shadow-2xl filter brightness-100 scale-[1.3]"
+            className="absolute flex items-center z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20vw] h-[20vh] bg-white rounded-lg  shadow-2xl filter brightness-100 scale-[1.3] overflow-hidden"
           >
+            <Image
+              src="/steps/image.png"
+              alt="Portrait de l'expert"
+              fill
+              className="object-cover"
+            />
 
           </div>
 
           <div
             ref={div3Ref}
-            className="absolute flex items-center z-20 -bottom-5 -right-5 w-[20vw] h-[20vh] bg-white rounded-lg  shadow-2xl filter brightness-[65%]"
+            className="absolute flex items-center z-20 -bottom-5 -right-5 w-[20vw] h-[20vh] bg-white rounded-lg  shadow-2xl filter brightness-[65%] overflow-hidden"
           >
-
+            <Image
+              src="/steps/image3.png"
+              alt="Portrait de l'expert"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
         <div className="w-[44%] flex flex-col space-y-8 ">

@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Icon1 from "@/img/icon-group.png";
 import Icon2 from "@/img/icon-calendar.png";
 import Icon3 from "@/img/icon-creditcard.png";
+import Icon4 from "@/img/icons/diversity.svg";
 import BlobIcon from "@/img/blob-for-icon.svg";
 import BlobIcon2 from "@/img/blob-for-icon2.svg";
 import Secur from "@/img/icons/secur-purple.svg";
@@ -101,7 +102,7 @@ const Index = () => {
           fontNormal={mont.className}
         />
         <TripleIconCard
-          imgSrc={Icon1.src}
+          imgSrc={Icon4.src}
           alt="GIF réservation"
           title="Diversité des Prestations"
           description="Explorez une gamme variée de services spirituels"
@@ -117,7 +118,7 @@ const Index = () => {
           fontNormal={mont.className}
         />
         <TripleIconCard
-          imgSrc={Icon2.src}
+          imgSrc={Icon1.src}
           alt="GIF réservation"
           title="Praticiens sélectionnés avec soin"
           description="Pour une expérience authentique et personnalisée "
