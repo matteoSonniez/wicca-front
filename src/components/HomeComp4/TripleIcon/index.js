@@ -85,7 +85,7 @@ const Index = () => {
         <span
           className={`${mont.className} text-noir/60 text-[15px]`}
         >
-          Vous savez ce que vous payez, sans frais cachés, avec un paiement sécurisé
+          Vous payez en toute transparence, sans frais cachés, grâce à un système sécurisé
         </span>
       </div>
 

@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 import { Lato, Montserrat, Inter } from "next/font/google";
 import Image from "next/image";
 import Stars from "@/img/icons/stars.png";
@@ -65,6 +64,14 @@ const Card = ({ imgSrc, title, description, name, date, logo }) => (
 );
 
 const Index = () => {
+    const cardsData = [
+        { imgSrc: "/experts/portrait-home5.jpg", title: "astrologue", description: "Haris came in and helped us transfer ur true knowledge from our departing developer, meeting a serious deadline, without fail. His knowledge and experience are exceptional.", name: "John Doe", date: "21 Mars 2025", logo: Logo.src },
+        { imgSrc: "/experts/portrait-home4.jpg", title: "cartomancien", description: "Haris came in and helped us transfer ur true knowledge from our departing developer, meeting a serious deadline, without fail. His knowledge and experience are exceptional.", name: "John Doe", date: "21 Mars 2025", logo: Logo2.src },
+        { imgSrc: "/experts/portrait-home3.jpg", title: "numérologue", description: "Haris came in and helped us transfer ur true knowledge from our departing developer, meeting a serious deadline, without fail. His knowledge and experience are exceptional.", name: "John Doe", date: "21 Mars 2025", logo: Logo3.src },
+        { imgSrc: "/experts/portrait-home2.jpg", title: "tarologue", description: "Haris came in and helped us transfer ur true knowledge from our departing developer, meeting a serious deadline, without fail. His knowledge and experience are exceptional.", name: "John Doe", date: "21 Mars 2025", logo: Logo4.src },
+        { imgSrc: "/experts/portrait-home6.jpg", title: "medium", description: "Haris came in and helped us transfer ur true knowledge from our departing developer, meeting a serious deadline, without fail. His knowledge and experience are exceptional.", name: "John Doe", date: "21 Mars 2025", logo: Logo5.src },
+        { imgSrc: "/experts/portrait-home5.jpg", title: "astrologue", description: "Haris came in and helped us transfer ur true knowledge from our departing developer, meeting a serious deadline, without fail. His knowledge and experience are exceptional.", name: "John Doe", date: "21 Mars 2025", logo: Logo.src },
+    ];
 
     return (
         <div className="flex flex-col relative w-screen px-[10vw] mt-20">
@@ -73,12 +80,9 @@ const Index = () => {
             </div>
             <span className={`${mont_semi.className} text-[16px] text-maincolor/80 text-start uppercase tracking-[0.2em] mb-7`}>Avis de nos clients</span>
             <div className="flex flex-wrap gap-6 w-full">
-                <Card imgSrc="/experts/portrait-home5.jpg" title="astrologue" description="Haris came in and helped us transfer ur true knowledge from our departing developer, meeting a serious deadline, without fail. His knowledge and experience are exceptional." name="John Doe" date="21 Mars 2025" logo={Logo.src} />
-                <Card imgSrc="/experts/portrait-home4.jpg" title="cartomancien" description="Haris came in and helped us transfer ur true knowledge from our departing developer, meeting a serious deadline, without fail. His knowledge and experience are exceptional." name="John Doe" date="21 Mars 2025" logo={Logo2.src} />
-                <Card imgSrc="/experts/portrait-home3.jpg" title="numérologue" description="Haris came in and helped us transfer ur true knowledge from our departing developer, meeting a serious deadline, without fail. His knowledge and experience are exceptional." name="John Doe" date="21 Mars 2025" logo={Logo3.src} /> 
-                <Card imgSrc="/experts/portrait-home2.jpg" title="tarologue" description="Haris came in and helped us transfer ur true knowledge from our departing developer, meeting a serious deadline, without fail. His knowledge and experience are exceptional." name="John Doe" date="21 Mars 2025" logo={Logo4.src} />
-                <Card imgSrc="/experts/portrait-home6.jpg" title="medium" description="Haris came in and helped us transfer ur true knowledge from our departing developer, meeting a serious deadline, without fail. His knowledge and experience are exceptional." name="John Doe" date="21 Mars 2025" logo={Logo5.src} />
-                <Card imgSrc="/experts/portrait-home5.jpg" title="astrologue" description="Haris came in and helped us transfer ur true knowledge from our departing developer, meeting a serious deadline, without fail. His knowledge and experience are exceptional." name="John Doe" date="21 Mars 2025" logo={Logo.src} />
+                {cardsData.map((card, i) => (
+                    <Card key={i} {...card} />
+                ))}
             </div>
         </div>
     );

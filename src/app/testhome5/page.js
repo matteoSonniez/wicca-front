@@ -9,8 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 import HeaderDown from "@/components/HeaderDown";
 import Services from "@/components/HomeComp4/Services";
 import TripleIcons from "@/components/HomeComp4/TripleIcon";
-import WiccaChiffre from "@/components/HomeComp4/Chiffres";
-import DevenirPractitien from "@/components/HomeComp4/DevenirPracticienHome";
+import AboutUs from "@/components/HomeComp4/AboutUs";
+import DevenirPractitien from "@/components/HomeComp4/BecomeExpert";
 import SlideExpert from "@/components/HomeComp4/ExpertSlide";
 import Steps from "@/components/HomeComp4/Steps";
 import AllServices from "@/components/HomeComp4/AllServices2";
@@ -22,10 +22,11 @@ import Avis from "@/components/HomeComp4/Avis";
 import Search from "@/img/chercher.png";
 import Path from "@/img/image3.png";
 import Path2 from "@/img/image2.png";
-import Path3 from "@/img/image6.png";
+import Path3 from "@/img/image6.webp";
 import TopRight from "@/img/backtopright.png";
 import TopLeft from "@/img/backtopleft.png";
 import Fleche from "@/img/icons/fleche.png";
+import Flechebas from "@/img/flechebas.png";
 import Footer from "@/img/footer.png";
 
 // FONTS
@@ -240,20 +241,7 @@ export default function Home() {
             }}
           />
           <div ref={flecheRef} className="absolute bottom-2 left-10 flex space-x-4">
-            <div className="flex flex-col space-y-2">
-              <img src={Fleche.src} className=" rotate-180 w-4"></img>
-              <img src={Fleche.src} className=" rotate-180 w-4"></img>
-              <img src={Fleche.src} className=" rotate-180 w-4"></img>
-              <img src={Fleche.src} className=" rotate-180 w-4"></img>
-              <img src={Fleche.src} className=" rotate-180 w-4"></img>
-            </div>
-            <div className="flex flex-col space-y-2 mt-4">
-              <img src={Fleche.src} className=" rotate-180 w-4"></img>
-              <img src={Fleche.src} className=" rotate-180 w-4"></img>
-              <img src={Fleche.src} className=" rotate-180 w-4"></img>
-              <img src={Fleche.src} className=" rotate-180 w-4"></img>
-              <img src={Fleche.src} className=" rotate-180 w-4"></img>
-            </div>
+            <img src={Flechebas.src} className="w-12"></img>
           </div>
 
           <div
@@ -332,7 +320,7 @@ export default function Home() {
                 <div className="flex flex-col h-full justify-center space-y-10">
                   <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
                     <Image
-                      src="/experts/portrait-home9.jpg"
+                      src="/experts/home2.webp"
                       alt="Portrait de l'expert"
                       fill
                       className="object-cover"
@@ -340,7 +328,7 @@ export default function Home() {
                   </div>
                   <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
                     <Image
-                      src="/experts/portrait-home5.jpg"
+                      src="/experts/home.webp"
                       alt="Portrait de l'expert"
                       fill
                       className="object-cover"
@@ -350,7 +338,7 @@ export default function Home() {
 
                 <div className="h-[50%] relative rounded-3xl overflow-hidden aspect-[0.65/1]">
                   <Image
-                    src="/experts/portrait-home7.jpg"
+                    src="/experts/home3.webp"
                     alt="Portrait de l'expert"
                     fill
                     className="object-cover"
@@ -366,7 +354,7 @@ export default function Home() {
         <section className="mt-20 z-30">
           <TripleIcons />
           <Steps />
-          <WiccaChiffre />
+          <AboutUs />
           <SlideExpert />
           <DevenirPractitien />
           <AllServices />

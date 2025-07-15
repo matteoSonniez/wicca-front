@@ -221,7 +221,7 @@ const Index = () => {
             <div className="flex-1 flex-col">
 
               <h3 className="text-gray-700 font-medium mb-2">
-                Choisissez le bon moment
+                Choisissez le bon momen
               </h3>
               <p
                 className={`${inter.className} text-gray-600 text-sm leading-relaxed text-opacity-60`}

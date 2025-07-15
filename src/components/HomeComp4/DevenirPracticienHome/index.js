@@ -10,6 +10,7 @@ import {
 } from "next/font/google";
 import BlobImage from "@/img/blob-image.png";
 import Blob1 from "@/img/blob-devenir-practicien.png";
+import ImagePracticien from "@/img/becomepract.jpg";  
 
 const latosmall = Lato({
   subsets: ["latin"],

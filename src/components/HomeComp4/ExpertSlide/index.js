@@ -72,7 +72,7 @@ export default function Index() {
   );
 
   return (
-    <div className="w-full pl-[10vw] mt-20 relative flex flex-col">
+    <div className="w-full pl-[10vw] mt-28 relative flex flex-col">
       <span className={`${mont_semi.className} text-[16px] text-maincolor/80 text-start uppercase tracking-[0.2em] mb-2`}>
         Nos practitiens
       </span>

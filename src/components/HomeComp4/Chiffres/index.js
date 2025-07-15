@@ -81,11 +81,11 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="flex relative h-auto pl-[10vw] mt-48 mb-20 items-center">
+    <div className="flex relative h-auto pl-[10vw] mt-80 mb-20 items-center">
       <div className="flex flex-col w-[37%] space-y-6">
         <div className="flex flex-col">
           <span className=" uppercase text-maincolor/80 tracking-[0.2em] text-[16px] mb-5">
-            Qui sommes-nous ?
+            À propos
           </span>
           <span
             className={`${montserrat_bold.className} text-noir/80 text-[30px] mb-4`}
@@ -98,11 +98,13 @@ const Index = () => {
           Une plateforme à la fois humaine et exigeante, pensée pour faciliter les rencontres, fluidifier les échanges, et offrir enfin une expérience à la hauteur de ce que chacun mérite.
           </span> */}
           <span className={`${montserrat.className} text-noir/50 text-[14px]`}>
-          Wicca est née de notre envie commune d’offrir un espace nouveau, accessible et sincère, pour tous ceux qui cherchent des réponses comme pour ceux qui les transmettent.
-          Nous avons construit Wicca pour qu’elle soit bien plus qu’un simple outil : un lieu de confiance, de clarté, et de mise en valeur des pratiques ésotériques.
-          </span>
+            Il y a des questions que l’on ne confie pas à n’importe qui. Des moments de vie où l’on cherche plus qu’un simple conseil : une écoute vraie, un regard éclairé, un espace sûr pour avancer.
+          Wicca est née de cette conviction : repenser la manière dont on accède aux arts divinatoires.  Une plateforme à la fois moderne et profondément humaine, où chaque spécialité est expliquée, chaque expert est certifié, et chaque consultation devient une expérience de clarté.
+                      Ici, pas de jargon, pas de promesses floues. Juste des réponses, des rendez-vous simples à réserver, et des pratiques ésotériques valorisées comme elles le méritent.
+Wicca, c’est une nouvelle manière de consulter. Respectueuse, accessible, exigeante. Pour celles et ceux qui cherchent un vrai mieux-être, et ceux qui les accompagnent avec cœur et savoir-faire.
+                      </span>
         </div>
-
+            
         <div className={`${montserrat.className} flex items-center space-x-4`}>
           <div className="flex flex-col items-center space-y-4">
             <div className="flex flex-col items-center  bg-maincolor/90 rounded-2xl px-6 py-3 shadow-sm w-[200px]">
@@ -120,7 +122,7 @@ const Index = () => {
             
             <div className="flex flex-col items-center bg-white rounded-2xl px-6 py-3 shadow-sm w-[200px]">
               <span className="text-maincolor text-[26px]">100+</span>
-              <span className="text-noir/70 text-[13px]">RDV test</span>
+  <span className="text-noir/70 text-[13px]">RDV test</span>
             </div>
             <div className="flex flex-col items-center bg-white rounded-2xl px-6 py-3 shadow-sm w-[200px]">
               <span className="text-maincolor text-[26px]">50+</span>

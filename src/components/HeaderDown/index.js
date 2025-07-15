@@ -43,7 +43,7 @@ const Index = () => {
             <div className="flex items-center gap-x-10">
                 <span className={`${text_wicca.className} text-maincolor/90 text-[26px]`}>wicca</span>
                 <div
-                    className={`${lato.className} z-50 bg-gris text-noir text-[14px] relative w-[430px] h-12 rounded-full flex items-center pl-6 pr-2`}
+                    className={`${lato.className} z-50 bg-white text-noir text-[14px] relative w-[630px] h-12 rounded-full flex items-center pl-6 pr-2`}
                 >
                     <input
                         type="text"
@@ -57,28 +57,13 @@ const Index = () => {
                     </button>
                 </div>
             </div>
-            <div className="flex items-center gap-x-10 text-noir/90">
-                <div className="flex items-center gap-x-10">
-                    <div className="flex items-center gap-x-2 cursor-pointer">
-                        <span className={`${lato.className} text-[14px] hover:text-maincolor/90 transition-all duration-100`}>Cartomancie</span>
-                        <img src={Flechebas.src} alt="Flechebas" className="w-2" />
-                    </div>
-                    <div className="flex items-center gap-x-2 cursor-pointer">
-                        <span className={`${lato.className} text-[14px] hover:text-maincolor/90 transition-all duration-100`}>Tarologie</span>
-                        <img src={Flechebas.src} alt="Flechebas" className="w-2" />
-                    </div>
-                    <div className="flex items-center gap-x-2 cursor-pointer">
-                        <span className={`${lato.className} text-[14px] hover:text-maincolor/90 transition-all duration-100`}>Astrologie</span>
-                        <img src={Flechebas.src} alt="Flechebas" className="w-2" />
-                    </div>
-                    <div className="flex items-center gap-x-2 cursor-pointer">
-                        <span className={`${lato.className} text-[14px] hover:text-maincolor/90 transition-all duration-100`}>Autre spécialités</span>
-                        <img src={Flechebas.src} alt="Flechebas" className="w-2" />
-                    </div>
-                </div>
-            </div>
+
 
             <div className={`flex space-x-8 text-noir/90 items-center text-[15px] ${lato.className}`}>
+                <div className="flex items-center gap-x-2 text-noir/90 cursor-pointer">
+                    <span className={`${lato.className} text-[14px] hover:text-maincolor/90 transition-all duration-100`}>Spécialités</span>
+                    <img src={Flechebas.src} alt="Flechebas" className="w-2" />
+                </div>
                 <span className="cursor-pointer hover:text-maincolor/90 transition-all duration-100">Vous êtes praticien ?</span>
                 <div className="border-[1px] text-noir/90 border-noir/60 hover:bg-maincolor hover:text-blanc hover:border-maincolor/80 transition-all duration-100 cursor-pointer rounded-full px-4 py-2">
                     <span className="">Me connecter</span>

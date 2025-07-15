@@ -41,7 +41,7 @@ const Index = () => {
                 <div className="flex w-full h-[32%] justify-between">
                     <div className="group w-[50%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
                         <Image
-                            src="/specialty/spe3.jpg"
+                            src="/specialty/spe3.webp"
                             alt="Portrait de l'expert"
                             fill
                             className="object-cover transition duration-300 brightness-[.8] group-hover:brightness-[.3]"
@@ -61,7 +61,7 @@ const Index = () => {
                     </div>
                     <div className="group w-[24%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
                         <Image
-                            src="/specialty/spe8.jpg"
+                            src="/specialty/spe8.webp"
                             alt="Portrait de l'expert"
                             fill
                             className="object-cover transition duration-300 brightness-[.8] group-hover:brightness-[.3]"
@@ -79,7 +79,7 @@ const Index = () => {
                     </div>
                     <div className="group w-[24%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
                         <Image
-                            src="/specialty/spe.jpg"
+                            src="/specialty/spe.webp"
                             alt="Portrait de l'expert"
                             fill
                             className="object-cover transition duration-300 brightness-[.8] group-hover:brightness-[.3]"
@@ -99,7 +99,7 @@ const Index = () => {
                 <div className="flex w-full h-[32%] justify-between">
                     <div className="group w-[29%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
                         <Image
-                            src="/specialty/spe9.png"
+                            src="/specialty/spe9.webp"
                             alt="Portrait de l'expert"
                             fill
                             className="object-cover transition duration-300 brightness-[.8] group-hover:brightness-[.3]"
@@ -117,7 +117,7 @@ const Index = () => {
                     </div>
                     <div className="group w-[40%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
                         <Image
-                            src="/specialty/spe5.jpg"
+                            src="/specialty/spe5.webp"
                             alt="Portrait de l'expert"
                             fill
                             className="object-cover transition duration-300 brightness-[.8] group-hover:brightness-[.3]"
@@ -136,7 +136,7 @@ const Index = () => {
                     </div>
                     <div className="group w-[29%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
                         <Image
-                            src="/specialty/spe10.jpg"
+                            src="/specialty/spe10.webp"
                             alt="Portrait de l'expert"
                             fill
                             className="object-cover transition duration-300 brightness-[.8] group-hover:brightness-[.3]"
@@ -156,7 +156,7 @@ const Index = () => {
                 <div className="flex w-full h-[32%] justify-between">
                     <div className="group w-[40%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
                         <Image
-                            src="/specialty/spe13.jpg"
+                            src="/specialty/spe13.webp"
                             alt="Portrait de l'expert"
                             fill
                             className="object-cover transition duration-300 brightness-[.8] group-hover:brightness-[.3]"
@@ -174,7 +174,7 @@ const Index = () => {
                     </div>
                     <div className="group w-[40%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
                         <Image
-                            src="/specialty/spe11.jpg"
+                            src="/specialty/spe11.webp"
                             alt="Portrait de l'expert"
                             fill
                             className="object-cover transition duration-300 brightness-[.8] group-hover:brightness-[.3]"
@@ -192,7 +192,7 @@ const Index = () => {
                     </div>
                     <div className="group w-[18%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
                         <Image
-                            src="/specialty/spe12.jpg"
+                            src="/specialty/spe12.webp"
                             alt="Portrait de l'expert"
                             fill
                             className="object-cover transition duration-300 brightness-[.8] group-hover:brightness-[.3]"

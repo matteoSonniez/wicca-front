@@ -114,7 +114,7 @@ const SearchBar = () => {
     };
 
     return (
-        <div className={`${lato.className} z-40 bg-blanc relative w-full h-16 rounded-full border-[1px] border-gray-400/70 flex items-center pl-6 pr-2`}>
+        <div className={`${lato.className} z-40 bg-white relative w-full h-16 rounded-full border-[1px] border-gray-400/70 flex items-center pl-6 pr-2`}>
             <form className="flex w-full items-center text-noir/80" onSubmit={selectedSpecialty ? handleExpertBySpecialty : e => e.preventDefault()}>
                 {/* Partie gauche : recherche expert/spécialité */}
                 <div className="flex items-center flex-1  w-full">
@@ -123,7 +123,7 @@ const SearchBar = () => {
                             ref={inputRef}
                             type="text"
                             placeholder="Nom, spécialité..."
-                            className="w-full flex-1 bg-blanc placeholder:text-noir/50 focus:outline-none"
+                            className="w-full flex-1 bg-white placeholder:text-noir/50 focus:outline-none"
                             value={search}
                             onChange={handleChange}
                             onFocus={() => search && (resultsExperts.length > 0 || resultsSpecialties.length > 0) && setShowDropdown(true)}
@@ -146,7 +146,7 @@ const SearchBar = () => {
                         <input
                             type="text"
                             placeholder="Localisation..."
-                            className="w-36 bg-blanc placeholder:text-noir/50 focus:outline-none"
+                            className="w-36 bg-white placeholder:text-noir/50 focus:outline-none"
                             value={localisation}
                             onChange={e => setLocalisation(e.target.value)}
                         //disabled={!selectedSpecialty}
