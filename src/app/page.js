@@ -1,234 +1,369 @@
-"use client" 
-
+"use client";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import gsap from "gsap";
-import Services from "@/components/HomeComponents/Services";
-import ExpertHome from "@/components/HomeComponents/ExpertHome";
-import DevenirPracticien from "@/components/HomeComponents/DevenirPracticienHome";
-import AllServices from "@/components/HomeComponents/AllServices";
-import AboutUs from "@/components/HomeComponents/AboutUsSection";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
+// COMPONENTS
+import HeaderDown from "@/components/HeaderDown";
+import Services from "@/components/HomeComp4/Services";
+import TripleIcons from "@/components/HomeComp4/TripleIcon";
+import AboutUs from "@/components/HomeComp4/AboutUs";
+import DevenirPractitien from "@/components/HomeComp4/BecomeExpert";
+import SlideExpert from "@/components/HomeComp4/ExpertSlide";
+import Steps from "@/components/HomeComp4/Steps";
+import AllServices from "@/components/HomeComp4/AllServices2";
+import SearchBar from "@/components/SearchBar";
+import FAQ from "@/components/HomeComp4/FAQ";
+import Avis from "@/components/HomeComp4/Avis";
+
+// ASSETS
 import Search from "@/img/chercher.png";
-import Icon1 from "@/img/icon-group.png";
-import Icon2 from "@/img/icon-calendar.png";
-import Icon3 from "@/img/icon-creditcard.png";
-import BlobIcon from "@/img/blob-for-icon.svg";
-import BlobIcon2 from "@/img/blob-for-icon2.svg";
-import BlobIcon3 from "@/img/blob-for-icon3.svg";
+import Path from "@/img/image3.png";
+import Path2 from "@/img/image2.png";
+import Path3 from "@/img/image6.webp";
+import TopRight from "@/img/backtopright.png";
+import TopLeft from "@/img/backtopleft.png";
+import Fleche from "@/img/icons/fleche.png";
+import Flechebas from "@/img/flechebas.png";
+import Footer from "@/img/footer.png";
 
-import { Inter, Quicksand, Montserrat, Lato } from "next/font/google";
+// FONTS
+import { Inter, Quicksand, Montserrat, Space_Grotesk, Source_Code_Pro, Sora, Cinzel, Poppins } from "next/font/google";
 const inter = Inter({ subsets: ["latin"], weight: ["400"], display: "swap" });
-const quicksand = Quicksand({ subsets: ["latin"], weight: ["400"], display: "swap" });
-const montserrat_bold = Montserrat({ subsets: ["latin"], weight: ["600"], display: "swap" });
-const lato = Lato({ subsets: ["latin"], weight: ["400"], display: "swap" });
-const lato_bold = Lato({ subsets: ["latin"], weight: ["700"], display: "swap" });
 
-export default function Page() {
-  const [inputValue, setInputValue] = useState("");
-  const [isFixed, setIsFixed] = useState(false);
-  const barRef = useRef(null);
-  const pointRef = useRef(null);
-  const initialOffsetRef = useRef({ top: 0, left: 0, width: 0 });
+const text_wicca = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500"],
+  display: "swap",
+});
+
+const quicksand = Inter({
+  subsets: ["latin"],
+  weight: ["600"],
+  display: "swap",
+});
+
+const mont = Montserrat({
+  subsets: ["latin"],
+  weight: ["600"],
+  display: "swap",
+});
+
+const mont_low = Montserrat({
+  subsets: ["latin"],
+  weight: ["500"],
+  display: "swap",
+});
+
+const mont_petit = Montserrat({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["600"],
+  display: "swap",
+});
+
+
+export default function Home() {
+  //const [inputValue, setInputValue] = useState("");
+  const flecheRef = useRef(null);
+  const portraitsRef = useRef(null);
+  const leftBlockRef = useRef(null);
+  const headerRef = useRef(null);
+  const serchRef = useRef(null);
+  const [showFloatingHeader, setShowFloatingHeader] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [renderHeader, setRenderHeader] = useState(false);
+  const animatedBlockRef = useRef(null);
+  const servicesRef = useRef(null);
+  const headerDownRef = useRef(null);
+  // useLayoutEffect(() => {
+  //   if (portraitsRef.current) {
+  //     gsap.set(portraitsRef.current, { x: "50vw" });
+  //   }
+  // }, []);
 
   useEffect(() => {
-    const barEl = barRef.current;
-    const rect = barEl.getBoundingClientRect();
-    initialOffsetRef.current = {
-      top: rect.top + window.scrollY -20,
-      left: rect.left,
-      width: rect.width,
-    };
-    gsap.set(barEl, {
-      position: "absolute",
-      top: initialOffsetRef.current.top,
-      left: initialOffsetRef.current.left,
-      width: initialOffsetRef.current.width,
-      scale: 1,
+    // On crée un timer de 1s avant de démarrer les animations
+    const timer = setTimeout(() => {
+      gsap.to(portraitsRef.current, {
+        x: 0,
+        duration: 1.6,
+        ease: "power3.out",
+      });
+
+      gsap.to(leftBlockRef.current, {
+        x: 0,
+        duration: 1.6,
+        ease: "power3.out",
+      });
+
+      gsap.to(headerRef.current, {
+        y: 0,
+        duration: 1.6,
+        ease: "power3.out",
+      });
+
+      gsap.to(servicesRef.current, {
+        y: 0,
+        duration: 1.6,
+        ease: "power3.out",
+      });
+    }, 300);
+
+    // Nettoyage du timer si le composant se démonte
+    return () => clearTimeout(timer);
+  }, []);
+
+
+
+  useEffect(() => {
+    //if (!animatedBlockRef.current) return;
+    gsap.to(servicesRef.current, {
+      x: 400, // ou "100vw" pour sortir complètement de l'écran
+      opacity: 0.4,
+      scrollTrigger: {
+        trigger: animatedBlockRef.current,
+        start: "bottom bottom", // quand le haut du bloc atteint le centre du viewport
+        end: "bottom top", // quand le bas du bloc atteint le haut du viewport
+        scrub: true,
+      },
+    });
+
+    gsap.to(flecheRef.current, {
+      y: 300, // ou la distance que tu veux
+      ease: "none",
+      scrollTrigger: {
+        trigger: flecheRef.current, // ou "body" si tu veux que ce soit tout le scroll
+        start: "bottom 95%", // déclenche dès que le haut du container touche le bas du viewport
+        end: "bottom top",  // jusqu'à ce que le bas du container touche le haut du viewport
+        scrub: true,         // "scrub" = suit le scroll
+      }
     });
   }, []);
 
-  // 2) On gère le scroll pour sticky / desticky
   useEffect(() => {
-    const barEl = barRef.current;
-    const handleScroll = () => {
-      const pointTop = pointRef.current.getBoundingClientRect().top;
-      const { top, left: initLeft, width: initWidth } = initialOffsetRef.current;
-      const initTop = top + 20;
+    if (!headerDownRef.current || !serchRef.current) return;
 
-      // Sticky
-      if (pointTop < 100 && !isFixed) {
-        setIsFixed(true);
-        const curTop = barEl.getBoundingClientRect().top;
-        gsap.set(barEl, { position: "fixed", top: curTop, scale: 1 });
-        gsap.to(barEl, {
+    // Positionne la div hors écran au départ
+    gsap.set(headerDownRef.current, { y: "-100%" });
+
+    ScrollTrigger.create({
+      trigger: serchRef.current,
+      start: "bottom top", // quand le bas de la barre de recherche touche le haut du viewport
+      end: "+=1", // juste après
+      onEnter: () => {
+        gsap.to(headerDownRef.current, {
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        });
+      },
+      onLeaveBack: () => {
+        gsap.to(headerDownRef.current, {
+          y: "-100%",
           duration: 0.3,
-          top: 10,
-          scale: 0.7,
-          ease: "none",
+          ease: "power3.in",
         });
-      }
-      // Desticky
-      else if (pointTop >= 100 && isFixed) {
-        setIsFixed(false);
-        const targetTop = initTop - window.scrollY;
-        gsap.set(barEl, { position: "fixed", top: 10, scale: 0.7 });
-        gsap.to(barEl, {
-          duration: 0.2,
-          top: targetTop,
-          scale: 1,
-          ease: "none",
-          onComplete: () => {
-            gsap.set(barEl, {
-              position: "absolute",
-              top: initTop -20,
-              left: initLeft,
-              width: initWidth,
-              scale: 1,
-            });
-          },
-        });
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isFixed]);
+      },
+      toggleActions: "play none none reverse",
+    });
+  }, []);
 
   return (
-    <div className="relative min-h-screen bg-diagonal-fade">
-      <div className="relative flex flex-col items-center">
-        {/* Section vidéo + titre */}
-        <div className="w-screen flex mb-[3vh]">
+    <div className="relative overflow-x-hidden">
+
+      <div
+        ref={headerDownRef}
+        style={{ transform: "translateY(-100%)" }}
+        className={`
+          fixed z-50 w-full flex items-center
+        `}
+      >
+        <HeaderDown />
+      </div>
+      <div>
+        <section
+          ref={animatedBlockRef}
+          className="relative flex flex-col w-full h-screen"
+        >
+          {/* <div className="absolute top-0 right-0 w-[400px]">
+            <img src={TopRight.src}></img>
+          </div>
+          <div className="absolute top-10 -left-12 w-[400px]">
+            <img src={TopLeft.src}></img>
+          </div> */}
+          {/* Fond dégradé en arc de cercle rouge */}
           <div
-            className="relative w-[100vw] h-[75vh] flex flex-col pl-20 justify-center"
             style={{
+              position: "fixed",
+              top: -15,
+              left: -15,
+              width: "15vw",
+              height: "25vw",
               background:
-                "linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.8) 95%)",
+                "radial-gradient(ellipse at top left, #ff9999 0%, #ffcccc 30%, transparent 100%)",
+              zIndex: -1,
+              pointerEvents: "none",
+              filter: "blur(40px)",
+              opacity: 0.7,
             }}
-          >
-            <div
-            className="absolute z-20 top-0 left-0 w-full h-full object-cover"
+          />
+          <div
             style={{
-              background:
-                "linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.8) 95%)",
-            }}>
-
-            </div>
-            <video
-              className="absolute z-10 top-0 left-0 w-full h-full object-cover brightness-75"
-              src="/video/video-home3.mp4"
-              autoPlay
-              loop
-              muted
-            />
-            <div className={`${quicksand.className} z-30 font-bold text-[70px] w-full -mt-16`}>
-              <span className="inline-block leading-tight text-white">
-                Explorez votre chemin
-                <br /> spirituel avec des praticiens
-              </span>
-            </div>
-
-            {/* point de déclenchement (invisible) */}
-            <div ref={pointRef} className="bg-red-100"></div>
-
-            {/* barre de recherche */}
-            <div
-              ref={barRef}
-              className={`
-                z-50 bg-white w-[800px] text-[17px] rounded-xl border-2 border-gray-400
-                flex h-16 items-center pl-6 pr-2
-                shadow-lg
-              `}
-            >
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Chercher un expert..."
-                className="w-full focus:outline-none focus:ring-2 focus:ring-maincolor"
-              />
-              <button className="h-12 w-12 bg-gray-800 rounded-lg flex items-center justify-center">
-                <Image src={Search} alt="Rechercher" className="w-5" />
-              </button>
-            </div>
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              width: "40vw",
+              height: "40vw",
+              background: `
+              radial-gradient(
+                circle at center,
+                rgba(175,166,248,0.7) 0%,
+                rgba(175,166,248,0.5) 40%,
+                rgba(175,166,248,0.3) 40%,
+                transparent 100%
+              )
+            `,
+              zIndex: 0,
+              pointerEvents: "none",
+              filter: "blur(60px)",
+              opacity: 0.5,
+              borderRadius: "50%",
+              overflow: "hidden",
+              transform: "translate(50%, 40%)",
+            }}
+          />
+          <div ref={flecheRef} className="absolute bottom-2 left-10 flex space-x-4">
+            <img src={Flechebas.src} className="w-12"></img>
           </div>
-        </div>
 
-                
-        {/* Les autres sections */}
-        <Services />
-        <div className="mt-[10vh] flex flex-col items-center space-y-16">
-          <span
-            className={`${montserrat_bold.className} text-[25px] text-gray-800`}
+          <div
+            ref={headerRef}
+            className="flex w-full items-center z-50 px-[15vw] -translate-y-[10vh]"
           >
-            Votre partenaire spirituel au quotidien
-          </span>
-          <div className="flex space-x-14">
-            <div className="w-[350px] flex flex-col items-center">
-              <div className="w-[80px] h-[80px] relative flex justify-center items-center mb-8">
-                <img
-                  className="absolute w-full z-[-1] opacity-0"
-                  src={BlobIcon.src}
-                />
-                <img className=" w-[95%]" src={Icon2.src} />
+            <div className="relative w-full flex items-center py-5">
+              <span className={`${text_wicca.className} text-maincolor text-[26px]`}>
+                wicca
+              </span>
+              <div
+                className={`${mont_low.className} flex-1 flex justify-center space-x-7 text-noir/50 text-[14px]`}
+              >
+                <span className="cursor-pointer hover:text-noir/80">
+                  Centre d'aide
+                </span>
+                <span className="cursor-pointer hover:text-noir/80">
+                  Qui nous sommes
+                </span>
+                <span className="cursor-pointer hover:text-noir/80">
+                  Nous contacter
+                </span>
               </div>
-              <span
-                className={`${lato_bold.className} text-center text-black text-[15px]`}
+              <div
+                className={`${mont_low.className} text-noir/50 space-x-5 flex items-center text-[14px] ml-auto`}
               >
-                Consultations 24h sur 24 et 7j sur 7
-              </span>
-              <span
-                className={`${lato.className} text-center text-black text-[14px] leading-relaxed`}
-              >
-                Réservez et gérez vos rendez-vous, selon vos envies, en un clic, avec service de notification personnalisés.
-              </span>
-            </div>
-            <div className="w-[320px] flex flex-col items-center">
-              <div className="w-[80px] h-[80px] relative flex justify-center items-center mb-8">
-                <img
-                  className="absolute w-full z-[-1] opacity-0"
-                  src={BlobIcon3.src}
-                />
-                <img className=" w-[95%]" src={Icon1.src} />
+                <span className="cursor-pointer hover:text-noir/80">
+                  Vous êtes praticien ?
+                </span>
+                <button className="border-[1px] text-blanc border-blanc rounded-full px-4 py-2 bg-maincolor">
+                  Me connecter
+                </button>
               </div>
-              <span
-                className={`${lato_bold.className} text-center text-black text-[16px]`}
-              >
-                Diversité des Prestations
-              </span>
-              <span
-                className={`${lato.className} text-center text-black text-[14px] leading-relaxed`}
-              >
-                Explorez une gamme variée de services spirituels, pour répondre
-                à toutes vos attentes, avec clarté et sérénité.
-              </span>
-            </div>
-            <div className="w-[350px] flex flex-col items-center">
-              <div className="w-[80px] h-[80px] relative flex justify-center items-center mb-8">
-                <img
-                  className="absolute w-full z-[-1] opacity-0"
-                  src={BlobIcon2.src}
-                />
-                <img className=" w-[95%]" src={Icon3.src} />
-              </div>
-              <span
-                className={`${lato_bold.className} text-center text-black text-[16px]`}
-              >
-                Transparence et sécurité
-              </span>
-              <span
-                className={`${lato.className} text-center text-black text-[14px] leading-relaxed`}
-              >
-                Vous savez ce que vous payez, sans frais cachés, avec un
-                paiement sécurisé et une confidentialité totale.
-              </span>
             </div>
           </div>
-        </div>
-        <AboutUs />
-        <ExpertHome />
-        <DevenirPracticien />
-        <AllServices />
+          <div className=" px-[13vw] py-[2vh] h-full flex w-full items-center z-10">
+            <div className="flex w-full h-full items-center justify-center space-x-14">
+              <div
+                ref={leftBlockRef}
+                className="w-[45%] flex flex-col space-y-10 -translate-x-[50vw]"
+              >
+                <span
+                  className={`${poppins.className} text-[46px] text-noir/80 leading-snug`}
+                >
+                  Trouvez <span className="text-maincolor/90">un</span> <br />
+                  <span className="text-maincolor/90">rendez-vous</span>
+                  <br />
+                  avec un médium
+                </span>
+                <span
+                  className={`${mont_petit.className} text-[17px] text-noir/50`}
+                >
+                  Explorez votre chemin spirituel avec des experts et praticiens
+                  certifiés
+                </span>
+                <div ref={serchRef}>
+                  <SearchBar></SearchBar>
+                </div>
+              </div>
+              <div
+                ref={portraitsRef}
+                className="flex w-[52%] translate-x-[60vw] relative justify-center items-center h-full space-x-12"
+              >
+                {/* <img
+                  src={Path.src}
+                  className="absolute w-full scale-[1]"
+                /> */}
+                {/* <img
+                  src={Path2.src}
+                  className="absolute w-full scale-[1.1] ml-16"
+                /> */}
+                <img
+                  src={Path3.src}
+                  className="absolute w-full"
+                />
+                <div className="flex flex-col h-full justify-center space-y-10">
+                  <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
+                    <Image
+                      src="/experts/home2.webp"
+                      alt="Portrait de l'expert"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
+                    <Image
+                      src="/experts/home.webp"
+                      alt="Portrait de l'expert"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+
+                <div className="h-[50%] relative rounded-3xl overflow-hidden aspect-[0.65/1]">
+                  <Image
+                    src="/experts/home3.webp"
+                    alt="Portrait de l'expert"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="py-6 translate-y-[10vh]" ref={servicesRef}>
+            <Services />
+          </div>
+        </section>
+        <section className="mt-20 z-30">
+          <TripleIcons />
+          <Steps />
+          <AboutUs />
+          <SlideExpert />
+          <DevenirPractitien />
+          <AllServices />
+          <Avis />
+          <FAQ />
+          <div className="relative w-full">
+            <Image src={Footer.src} alt="Footer" width={1200} height={300} className="object-cover w-full h-auto" />
+          </div>
+        </section>
       </div>
     </div>
   );
