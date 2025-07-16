@@ -7,17 +7,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 // COMPONENTS
 import HeaderDown from "@/components/HeaderDown";
-import Services from "@/components/HomeComp4/Services";
-import TripleIcons from "@/components/HomeComp4/TripleIcon";
-import AboutUs from "@/components/HomeComp4/AboutUs";
-import DevenirPractitien from "@/components/HomeComp4/BecomeExpert";
-import SlideExpert from "@/components/HomeComp4/ExpertSlide";
-import Steps from "@/components/HomeComp4/Steps";
-import AllServices from "@/components/HomeComp4/AllServices2";
+import Services from "@/components/HomeComp/Services";
+import TripleIcons from "@/components/HomeComp/TripleIcon";
+import AboutUs from "@/components/HomeComp/AboutUs";
+import DevenirPractitien from "@/components/HomeComp/BecomeExpert";
+import SlideExpert from "@/components/HomeComp/ExpertSlide";
+import Steps from "@/components/HomeComp/Steps";
+import AllServices from "@/components/HomeComp/AllServices2";
 import SearchBar from "@/components/SearchBar";
-import FAQ from "@/components/HomeComp4/FAQ";
-import Avis from "@/components/HomeComp4/Avis";
-import Footer from "@/components/HomeComp4/Footer";
+import FAQ from "@/components/HomeComp/FAQ";
+import Avis from "@/components/HomeComp/Avis";
+import Footer from "@/components/HomeComp/Footer";
 
 // ASSETS
 import Search from "@/img/chercher.png";
