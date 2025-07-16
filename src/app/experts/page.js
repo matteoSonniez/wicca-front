@@ -9,6 +9,7 @@ import Image from "next/image";
 import Calendar from "@/img/calendar2.png";
 import Header from "@/components/HeaderStatic"
 import SearchBar from "@/components/SearchBar"
+import { Suspense } from "react";
 
 const lato = Lato({
     subsets: ["latin"],
@@ -101,7 +102,7 @@ const Card = ({ key, firstname, lastname, adress, specialties, image }) => (
     </div>
 );
 
-export default function ExpertsPage() {
+function ExpertsPage() {
     const [experts, setExperts] = useState([]);
     const [loading, setLoading] = useState(true);
     const searchParams = useSearchParams();
@@ -189,4 +190,12 @@ export default function ExpertsPage() {
 
         </div>
     );
+}
+
+export default function ExpertsPageWrapper() {
+  return (
+    <Suspense fallback={<div>Chargement...</div>}>
+      <ExpertsPage />
+    </Suspense>
+  );
 } 
