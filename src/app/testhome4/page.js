@@ -156,7 +156,7 @@ export default function Page() {
 
                 
         {/* Les autres sections */}
-        <Services />
+        {/* <Services /> */}
         <div className="mt-[10vh] flex flex-col items-center space-y-16">
           <span
             className={`${montserrat_bold.className} text-[25px] text-gray-800`}

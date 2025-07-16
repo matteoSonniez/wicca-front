@@ -13,6 +13,11 @@ const mont = Montserrat({
   weight: ["600"],
   display: "swap",
 });
+const mont_low = Montserrat({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
 
 export default function Index() {
   const scrollRef = useRef(null);
@@ -72,10 +77,14 @@ export default function Index() {
   );
 
   return (
-    <div className="w-full pl-[10vw] mt-28 relative flex flex-col">
-      <span className={`${mont_semi.className} text-[16px] text-maincolor/80 text-start uppercase tracking-[0.2em] mb-2`}>
+    <div className="w-full pl-[8vw] mt-20 relative flex flex-col">
+      {/* <span className={`${mont_semi.className} text-[16px] text-maincolor/80 text-start uppercase tracking-[0.2em] mb-2`}>
         Nos practitiens
+      </span> */}
+      <span className={`${mont_semi.className} text-noir/80 text-[40px] text-start  mb-2`}>
+        Nos practitiens certifies
       </span>
+      <span className={`${mont_low.className} text-noir/80 text-[16px] mb-7`}>Des praticiens sélectionnés pour leur expertise et leur professionnalisme</span>
       {/* CONTENEUR scrollable */}
       <div
         className="flex gap-6 overflow-x-auto pb-4 no-scrollbar pt-4"
@@ -83,28 +92,28 @@ export default function Index() {
         style={{ position: "relative", zIndex: 10 }} // Garde les boutons dessus
       >
         <Card
-          imgSrc="/experts/portrait2.webp"
+          imgSrc="/experts/slide.webp"
         />
         <Card
-          imgSrc="/experts/portrait7.webp"
+          imgSrc="/experts/slide2.webp"
         />
         <Card
-          imgSrc="/experts/portrait5.webp"
+          imgSrc="/experts/slide3.webp"
         />
         <Card
-          imgSrc="/experts/portrait6.webp"
+          imgSrc="/experts/slide4.webp"
         />
         <Card
-          imgSrc="/experts/portrait7.webp"
+          imgSrc="/experts/slide5.webp"
         />
         <Card
-          imgSrc="/experts/portrait2.webp"
+          imgSrc="/experts/slide6.webp"
         />
         <Card
-          imgSrc="/experts/portrait8.webp"
+          imgSrc="/experts/slide.webp"
         />
         <Card
-          imgSrc="/experts/portrait2.webp"
+          imgSrc="/experts/slide2.webp"
         />
 
       </div>

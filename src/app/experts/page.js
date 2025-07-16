@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Inter, Lato, Playfair_Display } from "next/font/google";
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -104,39 +104,39 @@ const Card = ({ key, firstname, lastname, adress, specialties, image }) => (
 export default function ExpertsPage() {
     const [experts, setExperts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [specialty, setSpecialty] = useState(null);
-    const [localisation, setLocalisation] = useState("");
-    const router = useRouter();
+    const searchParams = useSearchParams();
+    const specialtyId = searchParams.get("id");
+    const localisation = searchParams.get("localisation");
 
     useEffect(() => {
-        // Récupérer la spécialité et la localisation depuis le localStorage
-        const specialtyData = localStorage.getItem("wicca_selected_specialty");
-        const localisationData = localStorage.getItem("wicca_selected_localisation");
-        if (!specialtyData) {
-            // Si pas de spécialité, retour à l'accueil ou à la recherche
-            router.push("/");
+        if (!specialtyId) {
+            setExperts([]);
+            setLoading(false);
             return;
         }
-        setSpecialty(JSON.parse(specialtyData));
-        setLocalisation(localisationData || "");
-    }, [router]);
-
-    useEffect(() => {
-        // Lancer la recherche en BDD seulement si on a la spécialité
-        if (!specialty) return;
         setLoading(true);
+        const body = { specialtyId: specialtyId };
+        if (localisation) {
+            console.log(localisation, "boyyyyyyy");
+            body.adressrdv = localisation;
+        }
         fetch("http://localhost:8000/api/experts/find-by-specialty", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ specialtyId: specialty._id, adressrdv: localisation })
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
         })
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
                 setExperts(data);
                 setLoading(false);
             })
-            .catch(() => setLoading(false));
-    }, [specialty, localisation]);
+            .catch((err) => {
+                setExperts([]);
+                setLoading(false);
+            });
+    }, [specialtyId, localisation]);
 
     return (
         <div className="flex">
@@ -150,12 +150,20 @@ export default function ExpertsPage() {
                 </div>
             </div>
             <div className="flex px-9 w-full relative">
-                <div className="mt-56 w-[300px] h-[80vh] border border-gray-400/70 rounded-lg fixed top-0 left-9 overflow-hidden">
+                <div className="mt-56 w-[230px] border border-gray-400/70 rounded-lg fixed top-0 left-9 overflow-hidden">
                     <Image
-                        src="/expertpage/image.png"
+                        src="/expertpage/filtre1.png"
                         alt="Portrait de l'expert"
-                        fill
-                        className="object-cover w-full"
+                        width={230}
+                        height={300} // n'importe quelle valeur, c'est juste pour le ratio, sera ajusté automatiquement
+                        className="w-full h-auto object-cover"
+                    />
+                    <Image
+                        src="/expertpage/filtre2.png"
+                        alt="Portrait de l'expert"
+                        width={230}
+                        height={300} // n'importe quelle valeur, c'est juste pour le ratio, sera ajusté automatiquement
+                        className="w-full h-auto object-cover"
                     />
                 </div>
                 {loading ? (
@@ -163,7 +171,7 @@ export default function ExpertsPage() {
                 ) : experts.length === 0 ? (
                     <div>Aucun expert trouvé.</div>
                 ) : (
-                    <div className=" w-full flex flex-wrap mt-56 pl-[320px] justify-between gap-y-8">
+                    <div className=" w-full flex flex-wrap mt-56 pl-[260px] justify-between gap-y-8">
                         {experts.map((expert, idx) => (
                             <Card
                                 key={expert._id}

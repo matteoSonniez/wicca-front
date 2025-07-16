@@ -39,13 +39,15 @@ function debounce(fn, delay) {
     };
 }
 
-const SearchBar = () => {
+const SearchBar = ({ fromHeader }) => {
     const [search, setSearch] = useState("");
     const [resultsExperts, setResultsExperts] = useState([]);
     const [resultsSpecialties, setResultsSpecialties] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
     const [localisation, setLocalisation] = useState("");
     const [selectedSpecialty, setSelectedSpecialty] = useState(null);
+    const [locationSuggestions, setLocationSuggestions] = useState([]);
+    const [showLocationDropdown, setShowLocationDropdown] = useState(false);
     const inputRef = useRef();
     const router = useRouter();
 
@@ -55,16 +57,20 @@ const SearchBar = () => {
         setSearch(spec.name);
         setShowDropdown(false);
         setResultsExperts([]);
+        // On ne stocke plus dans le localStorage
+        // On ne redirige pas ici, on attend le bouton
     };
 
     // On ne lance la recherche d'experts par spécialité+localisation que sur clic bouton
     const handleExpertBySpecialty = async (e) => {
         e.preventDefault();
         if (!selectedSpecialty) return;
-        // Stocker la spécialité et la localisation pour la page /experts
-        localStorage.setItem("wicca_selected_specialty", JSON.stringify(selectedSpecialty));
-        localStorage.setItem("wicca_selected_localisation", localisation);
-        router.push("/experts");
+        // On envoie l'id et la localisation dans l'URL
+        const params = new URLSearchParams({
+            id: selectedSpecialty._id,
+            localisation: localisation
+        });
+        router.push(`/experts?${params.toString()}`);
     };
 
     // Debounce la recherche
@@ -103,6 +109,25 @@ const SearchBar = () => {
         }, 400)
     ).current;
 
+    const debouncedLocationSearch = useRef(
+        debounce(async (value) => {
+            if (!value) {
+                setLocationSuggestions([]);
+                setShowLocationDropdown(false);
+                return;
+            }
+            try {
+                const res = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(value)}&limit=5`);
+                const data = await res.json();
+                setLocationSuggestions(data.features.map(f => f.properties.label));
+                setShowLocationDropdown(true);
+            } catch (error) {
+                setLocationSuggestions([]);
+                setShowLocationDropdown(false);
+            }
+        }, 400)
+    ).current;
+
     const handleChange = (e) => {
         const value = e.target.value;
         setSearch(value);
@@ -114,7 +139,10 @@ const SearchBar = () => {
     };
 
     return (
-        <div className={`${lato.className} z-40 bg-white relative w-full h-16 rounded-full border-[1px] border-gray-400/70 flex items-center pl-6 pr-2`}>
+        <div
+        style={{
+            boxShadow: "0 0 3px 0 rgba(0,0,0,0.10)"
+          }} className={`${lato.className} z-40 bg-white relative ${fromHeader ? "h-12 w-[630px]" : "h-16 w-full"} rounded-full border-[1px] border-gray-300 flex items-center pl-6 pr-2`}>
             <form className="flex w-full items-center text-noir/80" onSubmit={selectedSpecialty ? handleExpertBySpecialty : e => e.preventDefault()}>
                 {/* Partie gauche : recherche expert/spécialité */}
                 <div className="flex items-center flex-1  w-full">
@@ -148,15 +176,18 @@ const SearchBar = () => {
                             placeholder="Localisation..."
                             className="w-36 bg-white placeholder:text-noir/50 focus:outline-none"
                             value={localisation}
-                            onChange={e => setLocalisation(e.target.value)}
-                        //disabled={!selectedSpecialty}
+                            onChange={e => {
+                                setLocalisation(e.target.value);
+                                debouncedLocationSearch(e.target.value);
+                            }}
+                            onBlur={() => setTimeout(() => setShowLocationDropdown(false), 150)}
                         />
                     </div>
                 </div>
 
                 <button
                     type="submit"
-                    className="ml-4 h-12 w-12 bg-maincolor/90 rounded-full flex justify-center items-center"
+                    className={`ml-4 ${fromHeader ? "h-9 w-9" : "h-12 w-12"} bg-maincolor/90 rounded-full flex justify-center items-center`}
                     disabled={!selectedSpecialty}
                 >
                     <Image src={Search} alt="Rechercher" className="w-5" />
@@ -192,6 +223,22 @@ const SearchBar = () => {
                             ))}
                         </div>
                     )}
+                </div>
+            )}
+            {showLocationDropdown && locationSuggestions.length > 0 && (
+                <div className="absolute left-[75%] top-[110%] w-60 bg-white border border-gray-300 rounded-b-xl shadow-lg max-h-60 overflow-y-auto z-50">
+                    {locationSuggestions.map((suggestion, idx) => (
+                        <div
+                            key={idx}
+                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            onMouseDown={() => {
+                                setLocalisation(suggestion);
+                                setShowLocationDropdown(false);
+                            }}
+                        >
+                            {suggestion}
+                        </div>
+                    ))}
                 </div>
             )}
         </div>

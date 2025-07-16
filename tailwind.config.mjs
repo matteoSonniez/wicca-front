@@ -38,7 +38,8 @@ export default {
         green:"#095228",
         green2:"#013912",
         bordaux:"#4E1727",
-        texteclaire:"#74767D"
+        texteclaire:"#74767D",
+        blackfooter:"#181818"
       },
     },
   },

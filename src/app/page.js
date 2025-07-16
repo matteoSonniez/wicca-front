@@ -17,17 +17,19 @@ import AllServices from "@/components/HomeComp4/AllServices2";
 import SearchBar from "@/components/SearchBar";
 import FAQ from "@/components/HomeComp4/FAQ";
 import Avis from "@/components/HomeComp4/Avis";
+import Footer from "@/components/HomeComp4/Footer";
 
 // ASSETS
 import Search from "@/img/chercher.png";
 import Path from "@/img/image3.png";
 import Path2 from "@/img/image2.png";
 import Path3 from "@/img/image6.webp";
+import Path4 from "@/img/solar_back3.webp";
 import TopRight from "@/img/backtopright.png";
 import TopLeft from "@/img/backtopleft.png";
 import Fleche from "@/img/icons/fleche.png";
 import Flechebas from "@/img/flechebas.png";
-import Footer from "@/img/footer.png";
+import FooterImg from "@/img/footer.png";
 
 // FONTS
 import { Inter, Quicksand, Montserrat, Space_Grotesk, Source_Code_Pro, Sora, Cinzel, Poppins } from "next/font/google";
@@ -83,6 +85,9 @@ export default function Home() {
   const animatedBlockRef = useRef(null);
   const servicesRef = useRef(null);
   const headerDownRef = useRef(null);
+  const aboutUsRef = useRef(null);
+  const backRef = useRef(null);
+  const gradientRef = useRef(null);
   // useLayoutEffect(() => {
   //   if (portraitsRef.current) {
   //     gsap.set(portraitsRef.current, { x: "50vw" });
@@ -176,6 +181,20 @@ export default function Home() {
     });
   }, []);
 
+  useLayoutEffect(() => {
+    if (!gradientRef.current || !backRef.current) return;
+
+    gsap.to(gradientRef.current, {
+      y: -350, // ou la valeur souhaitée
+      scrollTrigger: {
+        trigger: backRef.current,
+        start: "top center", // quand backRef entre dans le viewport
+        end: "top top", // jusqu'à ce qu'il soit au centre
+        scrub: true,
+      },
+    });
+  }, []);
+
   return (
     <div className="relative overflow-x-hidden">
 
@@ -201,6 +220,7 @@ export default function Home() {
           </div> */}
           {/* Fond dégradé en arc de cercle rouge */}
           <div
+            ref={gradientRef}
             style={{
               position: "fixed",
               top: -15,
@@ -246,14 +266,14 @@ export default function Home() {
 
           <div
             ref={headerRef}
-            className="flex w-full items-center z-50 px-[15vw] -translate-y-[10vh]"
+            className="flex w-full items-center z-50 px-[13vw] -translate-y-[10vh]"
           >
             <div className="relative w-full flex items-center py-5">
-              <span className={`${text_wicca.className} text-maincolor text-[26px]`}>
+              <span className={`${text_wicca.className} text-noir text-[26px]`}>
                 wicca
               </span>
               <div
-                className={`${mont_low.className} flex-1 flex justify-center space-x-7 text-noir/50 text-[14px]`}
+                className={`${mont_low.className} flex-1 flex justify-center space-x-12 text-noir/50 text-[14px]`}
               >
                 <span className="cursor-pointer hover:text-noir/80">
                   Centre d'aide
@@ -284,7 +304,7 @@ export default function Home() {
                 className="w-[45%] flex flex-col space-y-10 -translate-x-[50vw]"
               >
                 <span
-                  className={`${poppins.className} text-[46px] text-noir/80 leading-snug`}
+                  className={`${mont.className} text-[50px] text-noir/80 leading-snug`}
                 >
                   Trouvez <span className="text-maincolor/90">un</span> <br />
                   <span className="text-maincolor/90">rendez-vous</span>
@@ -298,7 +318,7 @@ export default function Home() {
                   certifiés
                 </span>
                 <div ref={serchRef}>
-                  <SearchBar></SearchBar>
+                  <SearchBar fromHeader={false}></SearchBar>
                 </div>
               </div>
               <div
@@ -314,7 +334,7 @@ export default function Home() {
                   className="absolute w-full scale-[1.1] ml-16"
                 /> */}
                 <img
-                  src={Path3.src}
+                  src={Path4.src}
                   className="absolute w-full"
                 />
                 <div className="flex flex-col h-full justify-center space-y-10">
@@ -354,15 +374,17 @@ export default function Home() {
         <section className="mt-20 z-30">
           <TripleIcons />
           <Steps />
+          <div ref={backRef}></div>
           <AboutUs />
           <SlideExpert />
           <DevenirPractitien />
           <AllServices />
           <Avis />
           <FAQ />
-          <div className="relative w-full">
-            <Image src={Footer.src} alt="Footer" width={1200} height={300} className="object-cover w-full h-auto" />
-          </div>
+          <Footer />
+          {/* <div className="relative w-full">
+            <Image src={FooterImg.src} alt="Footer" width={1200} height={300} className="object-cover w-full h-auto" />
+          </div> */}
         </section>
       </div>
     </div>

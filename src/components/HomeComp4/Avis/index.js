@@ -3,11 +3,11 @@ import { Lato, Montserrat, Inter } from "next/font/google";
 import Image from "next/image";
 import Stars from "@/img/icons/stars.png";
 import Logo from "@/img/balance.png";
-import Logo2 from "@/img/cartes.png";
+import Logo2 from "@/img/spe_icons/cartes.png";
 import Logo3 from "@/img/esprit.png";
-import Logo4 from "@/img/medium.png";
+import Logo4 from "@/img/spe_icons/medium.png";
 import Logo5 from "@/img/numerologie.png";
-import Background from "@/img/traitbg3.png";
+import Background from "@/img/traitbg4.png";
 
 
 const lato = Lato({
@@ -74,11 +74,12 @@ const Index = () => {
     ];
 
     return (
-        <div className="flex flex-col relative w-screen px-[10vw] mt-20">
+        <div className="flex flex-col relative w-screen px-[8vw] mt-10">
             <div className="absolute top-0 left-0 w-full h-full z-0">
                 <Image src={Background.src} alt="Background" fill className=" w-full" />
             </div>
-            <span className={`${mont_semi.className} text-[16px] text-maincolor/80 text-start uppercase tracking-[0.2em] mb-7`}>Avis de nos clients</span>
+            <span className={`${mont_semi.className} text-noir/80 text-[42px] mb-7`}>Avis de nos clients</span>
+            {/* <span className={`${mont_semi.className} text-[16px] text-maincolor/80 text-start uppercase tracking-[0.2em] mb-7`}>Avis de nos clients</span> */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full">
                 {cardsData.map((card, i) => (
                     <Card key={i} {...card} />

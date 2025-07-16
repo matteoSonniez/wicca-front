@@ -110,7 +110,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="flex flex-col relative h-auto px-[10vw] mt-40 items-center justify-between gap-y-28">
+    <div className="flex flex-col relative h-auto px-[8vw] mt-40 items-center justify-between gap-y-28">
       <div className="flex items-center justify-between">
         <div className="flex flex-col w-[45%] space-y-6">
           {/* <span className=" uppercase text-maincolor/80 tracking-[0.2em] text-[16px] mb-5">
@@ -126,7 +126,7 @@ const Index = () => {
             className={`${montserrat.className} text-texteclaire text-[18px]`}
           >
             Il y a des questions que l’on ne confie pas à n’importe qui. Des moments de vie où l’on cherche plus qu’un simple conseil : une écoute vraie, un regard éclairé, un espace sûr pour avancer.
-            Wicca est née de cette conviction : repenser la manière dont on accède aux arts divinatoires. Une plateforme à la fois moderne et profondément humaine, où chaque spécialité est expliquée,chaque expert est certifié, et chaque consultation devient une expérience de clarté.
+            Wicca est née de cette conviction : repenser la manière dont on accède aux arts divinatoires. Une plateforme à la fois moderne et profondément humaine, où chaque spécialité est expliquée, chaque expert est certifié, et chaque consultation devient une expérience de clarté.
           </span>
         </div>
         <div

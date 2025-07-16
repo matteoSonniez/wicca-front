@@ -2,11 +2,6 @@
 import { useEffect, useState } from "react";
 import { Lato, Montserrat, Inter } from "next/font/google";
 import Image from "next/image";
-import Logo from "@/img/balance.png";
-import Logo2 from "@/img/cartes.png";
-import Logo3 from "@/img/esprit.png";
-import Logo4 from "@/img/medium.png";
-import Logo5 from "@/img/numerologie.png";
 
 const lato = Lato({
     subsets: ["latin"],
@@ -36,7 +31,11 @@ const Index = () => {
     const [selectedTab, setSelectedTab] = useState(0);
 
     return (
-        <div className="flex w-screen px-[10vw] mt-20">
+        <div className="flex w-screen px-[8vw] mt-10 flex-col">
+            <span className={`${mont_semi.className} text-noir/80 text-[40px] text-start mb-2`}>
+                Popular services
+            </span>
+            <span className={`${mont.className} text-noir/80 text-[16px] mb-10`}>Des praticiens sélectionnés pour leur expertise et leur professionnalisme</span>
             <div className={`w-full h-[70vh] flex flex-col justify-between ${lato.className}`}>
                 <div className="flex w-full h-[32%] justify-between">
                     <div className="group w-[50%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
