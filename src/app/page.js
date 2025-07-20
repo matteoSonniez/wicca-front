@@ -18,6 +18,8 @@ import SearchBar from "@/components/SearchBar";
 import FAQ from "@/components/HomeComp/FAQ";
 import Avis from "@/components/HomeComp/Avis";
 import Footer from "@/components/HomeComp/Footer";
+import PopUpAuth from "@/components/PopUp/Auth";
+import Link from "next/link";
 
 // ASSETS
 import Search from "@/img/chercher.png";
@@ -88,6 +90,18 @@ export default function Home() {
   const aboutUsRef = useRef(null);
   const backRef = useRef(null);
   const gradientRef = useRef(null);
+  const [showAuthPopup, setShowAuthPopup] = useState(false);
+  const [popupVisible, setPopupVisible] = useState(false);
+
+  const openPopup = () => {
+    setShowAuthPopup(true);
+    setTimeout(() => setPopupVisible(true), 10);
+  };
+  const closePopup = () => {
+    setPopupVisible(false);
+    setTimeout(() => setShowAuthPopup(false), 300);
+  };
+
   // useLayoutEffect(() => {
   //   if (portraitsRef.current) {
   //     gsap.set(portraitsRef.current, { x: "50vw" });
@@ -288,10 +302,13 @@ export default function Home() {
               <div
                 className={`${mont_low.className} text-noir/50 space-x-5 flex items-center text-[14px] ml-auto`}
               >
-                <span className="cursor-pointer hover:text-noir/80">
-                  Vous êtes praticien ?
-                </span>
-                <button className="border-[1px] text-blanc border-blanc rounded-full px-4 py-2 bg-maincolor">
+                <Link href="/register" className="cursor-pointer hover:text-noir/80">
+                  inscription
+                </Link>
+                <button
+                  className="border-[1px] text-blanc border-blanc rounded-full px-4 py-2 bg-maincolor"
+                  onClick={openPopup}
+                >
                   Me connecter
                 </button>
               </div>
@@ -387,6 +404,9 @@ export default function Home() {
           </div> */}
         </section>
       </div>
+      {showAuthPopup && (
+        <PopUpAuth onClose={closePopup} visible={popupVisible} />
+      )}
     </div>
   );
 }

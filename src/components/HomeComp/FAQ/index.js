@@ -107,7 +107,7 @@ const FAQCard = ({ question, answer, fontClass }) => {
           marginTop: 0,
           marginBottom: 0,
         }}
-        className="text-noir/70 text-[15px]"
+        className="text-noir/60 text-[17px]"
       >
         {answer}
       </div>

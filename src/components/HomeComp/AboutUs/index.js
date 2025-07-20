@@ -113,14 +113,10 @@ const Index = () => {
     <div className="flex flex-col relative h-auto px-[8vw] mt-40 items-center justify-between gap-y-28">
       <div className="flex items-center justify-between">
         <div className="flex flex-col w-[45%] space-y-6">
-          {/* <span className=" uppercase text-maincolor/80 tracking-[0.2em] text-[16px] mb-5">
+          <span className=" uppercase text-maincolor/80 tracking-[0.2em] text-[16px] mb-5">
           À propos
         </span>
-        <span
-          className={`${montserrat_bold.className} text-noir/80 text-[30px] mb-4`}
-        >
-          Deux fondateurs, une conviction
-        </span> */}
+        
           <span
             ref={text1Ref}
             className={`${montserrat.className} text-texteclaire text-[18px]`}

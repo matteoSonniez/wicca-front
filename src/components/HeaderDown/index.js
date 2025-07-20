@@ -5,6 +5,7 @@ import { Lato, Space_Grotesk } from 'next/font/google';
 import Flechebas from "@/img/icons/flechebas.png";
 import Search from "@/img/chercher.png";
 import SearchBar from "@/components/SearchBar";
+import { useRouter } from "next/navigation";
 
 const lato = Lato({
     subsets: ['latin'],
@@ -24,7 +25,10 @@ const SPECIALTIES = [
     'Numérologie',
     'Médiumnité',
     'Cartomancie',
-    'Voyance'
+    'Voyance',
+    'Magnétisme',
+    'Reiki',
+    'Autres'
 ];
 
 const MENU_ITEMS = [
@@ -36,6 +40,7 @@ const MENU_ITEMS = [
 ];
 
 const Index = () => {
+    const router = useRouter();
     const [inputValue, setInputValue] = useState("");
     const [openDropdown, setOpenDropdown] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
@@ -130,20 +135,6 @@ const Index = () => {
         </button>
     );
 
-    const renderSearchBar = () => (
-        <div className={`${lato.className} z-20 bg-white text-noir text-[14px] relative w-[630px] h-12 rounded-full flex items-center pl-6 pr-2`}>
-            <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Chercher un expert..."
-                className="w-full flex-1 focus:outline-none bg-transparent text-noir placeholder-noir/60"
-            />
-            <button className="h-9 w-9 bg-maincolor/80 rounded-full grid place-items-center">
-                <img src={Search.src} alt="Rechercher" className="w-5" />
-            </button>
-        </div>
-    );
 
     const renderSideMenu = () => (
         showMenu && (
@@ -184,8 +175,8 @@ const Index = () => {
                 />
             </div>
             {openDropdown && (
-                <div className="absolute left-0 pt-2">
-                    <div className="flex flex-col gap-y-3 bg-white border text-noir/70 border-gray-200 rounded-lg shadow-lg z-50 px-8 py-6">
+                <div className="absolute left-1/2 -translate-x-1/2 pt-5">
+                    <div className="grid grid-cols-3 gap-x-10 gap-y-3 bg-white border text-noir/70 border-gray-200 rounded-lg shadow-lg z-50 px-8 py-6 min-w-max w-auto max-w-xs">
                         {SPECIALTIES.map((specialty, index) => (
                             <span 
                                 key={index}
@@ -223,8 +214,8 @@ const Index = () => {
 
             <div className={`flex space-x-8 text-noir/90 items-center text-[15px] ${lato.className}`}>
                 {renderSpecialtiesDropdown()}
-                <span className="cursor-pointer hover:text-maincolor/90 transition-all duration-100">
-                    Vous êtes praticien ?
+                <span className="cursor-pointer hover:text-maincolor/90 transition-all duration-100" onClick={() => router.push('/register')}>
+                    inscription
                 </span>
                 <div className="border border-noir/60 hover:bg-maincolor hover:text-blanc hover:border-maincolor/80 transition-all duration-100 cursor-pointer rounded-full px-4 py-2">
                     <span>Me connecter</span>

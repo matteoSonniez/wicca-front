@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Inter, Lato, Playfair_Display } from "next/font/google";
+import { Inter, Lato, Playfair_Display, Montserrat } from "next/font/google";
 import Search from "@/img/chercher.png";
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
@@ -25,9 +25,14 @@ const playfair = Playfair_Display({
     display: "swap",
 });
 
-const playfair2 = Playfair_Display({
+const montserrat = Montserrat({
     subsets: ["latin"],
     weight: ["400"],
+    display: "swap",
+});
+const montserrat_bold = Montserrat({
+    subsets: ["latin"],
+    weight: ["500"],
     display: "swap",
 });
 
@@ -140,13 +145,13 @@ const SearchBar = ({ fromHeader }) => {
 
     return (
         <div
-        style={{
-            boxShadow: "0 0 3px 0 rgba(0,0,0,0.10)"
-          }} className={`${lato.className} z-40 bg-white relative ${fromHeader ? "h-12 w-[630px]" : "h-16 w-full"} rounded-full border-[1px] border-gray-300 flex items-center pl-6 pr-2`}>
+            style={{
+                boxShadow: "0 0 3px 0 rgba(0,0,0,0.10)"
+            }} className={`${lato.className} z-40 bg-white relative ${fromHeader ? "h-12 w-[630px]" : "h-16 w-full"} rounded-full border-[1px] border-gray-300 flex items-center pl-6 pr-2`}>
             <form className="flex w-full items-center text-noir/80" onSubmit={selectedSpecialty ? handleExpertBySpecialty : e => e.preventDefault()}>
                 {/* Partie gauche : recherche expert/spécialité */}
                 <div className="flex items-center flex-1  w-full">
-                    <div className="flex items-center w-[70%]">
+                    <div className="flex items-center w-[55%]">
                         <input
                             ref={inputRef}
                             type="text"
@@ -169,7 +174,7 @@ const SearchBar = ({ fromHeader }) => {
                     </div>
                     <div className="h-8 w-px bg-gray-300 mx-4" />
                     {/* Partie droite : champ localisation */}
-                    <div className="flex items-center w-[30%]">
+                    <div className="flex items-center w-[45%]">
                         <Image src={Location} alt="Localisation" className="w-4 mr-2" />
                         <input
                             type="text"
@@ -195,30 +200,36 @@ const SearchBar = ({ fromHeader }) => {
             </form>
             {/* Dropdown résultats */}
             {showDropdown && (resultsExperts.length > 0 || resultsSpecialties.length > 0) && !selectedSpecialty && (
-                <div className="absolute left-0 top-[110%] w-full bg-white border border-gray-300 rounded-b-xl shadow-lg max-h-72 overflow-y-auto z-50">
-                    {resultsExperts.length > 0 && (
+                <div className="absolute left-0 top-[110%] w-full bg-white border border-gray-300 rounded-xl shadow-lg max-h-72 overflow-y-auto z-50">
+                    {resultsSpecialties.length > 0 && (
                         <div>
-                            <div className="px-4 py-2 text-xs font-bold text-maincolor/80 uppercase bg-gray-50">Experts</div>
-                            {resultsExperts.map((expert, idx) => (
-                                <div key={expert._id || idx} className="px-4 py-3 hover:bg-gray-100 cursor-pointer border-b last:border-b-0">
-                                    <div className="font-semibold">{expert.firstName} {expert.lastName}</div>
-                                    {expert.specialties && expert.specialties.length > 0 && (
-                                        <div className="text-sm text-gray-500">
-                                            {expert.specialties.map((s, i) => s.specialty?.name).filter(Boolean).join(", ")}
-                                        </div>
-                                    )}
+                            {resultsSpecialties.map((spec, idx) => (
+                                <div key={spec._id || idx} className="px-4 py-3 hover:bg-maincolor/10 text-noir/80 cursor-pointer border-b last:border-b-0"
+                                    onMouseDown={() => handleSpecialtyClick(spec)}
+                                >
+                                    <div className={`${montserrat.className} text-[15px]`}>{spec.name}</div>
                                 </div>
                             ))}
                         </div>
                     )}
-                    {resultsSpecialties.length > 0 && (
+                    {(resultsSpecialties.length > 0 && resultsExperts.length > 0) && (
+                        <div className="w-full h-[1px] bg-gray-300"></div>
+                    )}
+                    {resultsExperts.length > 0 && (
                         <div>
-                            <div className="px-4 py-2 text-xs font-bold text-maincolor/80 uppercase bg-gray-50">Spécialités</div>
-                            {resultsSpecialties.map((spec, idx) => (
-                                <div key={spec._id || idx} className="px-4 py-3 hover:bg-gray-100 cursor-pointer border-b last:border-b-0"
-                                    onMouseDown={() => handleSpecialtyClick(spec)}
-                                >
-                                    <div className="font-semibold">{spec.name}</div>
+                            {resultsExperts.map((expert, idx) => (
+                                <div key={expert._id || idx} className="px-4 py-3 hover:bg-maincolor/10 text-noir/80 cursor-pointer flex items-center gap-x-4">
+                                    <div className="flex relative items-center justify-center w-10 h-10 rounded-full overflow-hidden">
+                                        <Image src="/experts/home3.webp" alt="Avatar" fill className="" />
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <div className={`${montserrat_bold.className} text-[15px] first-letter:uppercase`}>{expert.firstName} {expert.lastName}</div>
+                                        {expert.specialties && expert.specialties.length > 0 && (
+                                            <div className="text-sm text-gray-500">
+                                                {expert.specialties.map((s, i) => s.specialty?.name).filter(Boolean).join(", ")}
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -226,11 +237,11 @@ const SearchBar = ({ fromHeader }) => {
                 </div>
             )}
             {showLocationDropdown && locationSuggestions.length > 0 && (
-                <div className="absolute left-[75%] top-[110%] w-60 bg-white border border-gray-300 rounded-b-xl shadow-lg max-h-60 overflow-y-auto z-50">
+                <div className="absolute left-[50%] top-[110%] w-60 bg-white border border-gray-300 rounded-xl shadow-lg max-h-60 overflow-y-auto z-50">
                     {locationSuggestions.map((suggestion, idx) => (
                         <div
                             key={idx}
-                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-noir/80"
                             onMouseDown={() => {
                                 setLocalisation(suggestion);
                                 setShowLocationDropdown(false);

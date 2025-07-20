@@ -33,7 +33,7 @@ const Index = () => {
     return (
         <div className="flex w-screen px-[8vw] mt-10 flex-col">
             <span className={`${mont_semi.className} text-noir/80 text-[40px] text-start mb-2`}>
-                Popular services
+                Nos spécialités
             </span>
             <span className={`${mont.className} text-noir/80 text-[16px] mb-10`}>Des praticiens sélectionnés pour leur expertise et leur professionnalisme</span>
             <div className={`w-full h-[70vh] flex flex-col justify-between ${lato.className}`}>

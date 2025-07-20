@@ -179,7 +179,13 @@ function ExpertsPage() {
                                 firstname={expert.firstName}
                                 lastname={expert.lastName}
                                 adress={expert.adressrdv}
-                                specialties={expert.specialties}
+                                specialties={
+                                    specialtyId
+                                        ? [...expert.specialties].sort((a, b) =>
+                                            a.specialty._id === specialtyId ? -1 : b.specialty._id === specialtyId ? 1 : 0
+                                        )
+                                        : expert.specialties
+                                }
                                 image={images[idx % images.length]} // <-- image cyclique
                             />
                         ))}
