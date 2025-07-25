@@ -55,6 +55,7 @@ const SearchBar = ({ fromHeader }) => {
     const [showLocationDropdown, setShowLocationDropdown] = useState(false);
     const inputRef = useRef();
     const router = useRouter();
+    const [isHovered, setIsHovered] = useState(false);
 
     // Ajout de la fonction pour chercher les experts par spécialité
     const handleSpecialtyClick = (spec) => {
@@ -145,9 +146,16 @@ const SearchBar = ({ fromHeader }) => {
 
     return (
         <div
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             style={{
-                boxShadow: "0 0 3px 0 rgba(0,0,0,0.10)"
-            }} className={`${lato.className} z-40 bg-white relative ${fromHeader ? "h-12 w-[630px]" : "h-16 w-full"} rounded-full border-[1px] border-gray-300 flex items-center pl-6 pr-2`}>
+                boxShadow: isHovered
+                    ? "0 4px 10px 0 rgba(0,0,0,0.10)"
+                    : "0 0 8px 0 rgba(0,0,0,0.05)",
+                transition: "box-shadow 0.2s"
+            }}
+            className={`${montserrat.className} z-40 bg-white relative ${fromHeader ? "h-12 w-[630px]" : "h-16 w-full"} rounded-full border-[1px] border-gray-300 flex items-center pl-6 pr-2`}
+        >
             <form className="flex w-full items-center text-noir/80" onSubmit={selectedSpecialty ? handleExpertBySpecialty : e => e.preventDefault()}>
                 {/* Partie gauche : recherche expert/spécialité */}
                 <div className="flex items-center flex-1  w-full">
@@ -156,7 +164,7 @@ const SearchBar = ({ fromHeader }) => {
                             ref={inputRef}
                             type="text"
                             placeholder="Nom, spécialité..."
-                            className="w-full flex-1 bg-white placeholder:text-noir/50 focus:outline-none"
+                            className="w-full flex-1 bg-white placeholder:text-noir/70 text-[15px] focus:outline-none"
                             value={search}
                             onChange={handleChange}
                             onFocus={() => search && (resultsExperts.length > 0 || resultsSpecialties.length > 0) && setShowDropdown(true)}
@@ -179,7 +187,7 @@ const SearchBar = ({ fromHeader }) => {
                         <input
                             type="text"
                             placeholder="Localisation..."
-                            className="w-36 bg-white placeholder:text-noir/50 focus:outline-none"
+                            className="w-36 bg-white placeholder:text-noir/70 text-[15px] focus:outline-none"
                             value={localisation}
                             onChange={e => {
                                 setLocalisation(e.target.value);
@@ -192,7 +200,7 @@ const SearchBar = ({ fromHeader }) => {
 
                 <button
                     type="submit"
-                    className={`ml-4 ${fromHeader ? "h-9 w-9" : "h-12 w-12"} bg-maincolor/90 rounded-full flex justify-center items-center`}
+                    className={`ml-4 ${fromHeader ? "h-9 w-9" : "h-12 w-12"} bg-maincolor rounded-full flex justify-center items-center`}
                     disabled={!selectedSpecialty}
                 >
                     <Image src={Search} alt="Rechercher" className="w-5" />

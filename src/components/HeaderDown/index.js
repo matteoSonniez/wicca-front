@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
 import { Lato, Space_Grotesk } from 'next/font/google';
 import Flechebas from "@/img/icons/flechebas.png";
-import Search from "@/img/chercher.png";
+import Burger from "@/img/icons/burger.png";
 import SearchBar from "@/components/SearchBar";
 import { useRouter } from "next/navigation";
 
@@ -21,7 +21,7 @@ const text_wicca = Space_Grotesk({
 
 const SPECIALTIES = [
     'Astrologie',
-    'Tarot', 
+    'Tarologie', 
     'Numérologie',
     'Médiumnité',
     'Cartomancie',
@@ -46,48 +46,10 @@ const Index = () => {
     const [openMenu, setOpenMenu] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     
-    const bar1 = useRef(null);
-    const bar2 = useRef(null);
     const menuRef = useRef(null);
     const menuPanel = useRef(null);
-    const menuButtonRef = useRef(null);
+    const burgerRef = useRef(null);
 
-    // Gestion du menu hamburger
-    useEffect(() => {
-        const animateBars = () => {
-            if (openMenu) {
-                gsap.to(bar1.current, { rotate: 45, y: 5, duration: 0.3 });
-                gsap.to(bar2.current, { rotate: -45, y: -5, duration: 0.3 });
-            } else {
-                gsap.to(bar1.current, { rotate: 0, y: 0, duration: 0.3 });
-                gsap.to(bar2.current, { rotate: 0, y: 0, duration: 0.3 });
-            }
-        };
-
-        const toggleBodyScroll = () => {
-            document.body.style.overflow = openMenu ? 'hidden' : '';
-        };
-
-        animateBars();
-        toggleBodyScroll();
-
-        if (openMenu) {
-            setShowMenu(true);
-        } else if (menuPanel.current) {
-            gsap.to(menuPanel.current, { 
-                x: -300, 
-                duration: 0.3, 
-                ease: 'power2.in', 
-                onComplete: () => setShowMenu(false) 
-            });
-        } else {
-            setShowMenu(false);
-        }
-
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, [openMenu]);
 
     // Animation d'apparition du menu
     useEffect(() => {
@@ -100,63 +62,23 @@ const Index = () => {
         }
     }, [showMenu]);
 
-    // Fermeture du menu par clic extérieur
+    // Fermeture du menu burger si clic extérieur
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            const isClickOutsideMenu = menuRef.current && !menuRef.current.contains(event.target);
-            const isClickOutsideButton = menuButtonRef.current && !menuButtonRef.current.contains(event.target);
-            
-            if (openMenu && isClickOutsideMenu && isClickOutsideButton) {
+        if (!openMenu) return;
+        function handleClickOutside(event) {
+            if (
+                burgerRef.current &&
+                !burgerRef.current.contains(event.target)
+            ) {
                 setOpenMenu(false);
             }
-        };
-
+        }
         document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
     }, [openMenu]);
 
-    const toggleMenu = () => setOpenMenu(prev => !prev);
-
-    const renderMenuButton = () => (
-        <button
-            ref={menuButtonRef}
-            className="flex flex-col justify-center items-center w-8 h-8 z-50 cursor-pointer"
-            onClick={toggleMenu}
-            aria-label="Ouvrir le menu"
-        >
-            <div
-                ref={bar1}
-                className="w-6 h-1 bg-noir rounded transition-all mb-1.5"
-            />
-            <div
-                ref={bar2}
-                className="w-6 h-1 bg-noir rounded transition-all"
-            />
-        </button>
-    );
-
-
-    const renderSideMenu = () => (
-        showMenu && (
-            <div ref={menuRef} className="fixed top-0 left-0 w-full h-full z-40 flex">
-                <div
-                    ref={menuPanel}
-                    className="bg-white shadow-lg w-64 h-full p-8 flex flex-col gap-6"
-                    style={{ minHeight: '100vh' }}
-                >
-                    <span className="text-lg font-bold mb-4">Menu</span>
-                    {MENU_ITEMS.map((item, index) => (
-                        <span 
-                            key={index}
-                            className="cursor-pointer hover:text-maincolor/90 transition-colors duration-200"
-                        >
-                            {item}
-                        </span>
-                    ))}
-                </div>
-            </div>
-        )
-    );
 
     const renderSpecialtiesDropdown = () => (
         <div
@@ -192,33 +114,45 @@ const Index = () => {
     );
 
     return (
-        <div className={`bg-blanc w-full flex justify-between items-center backdrop-blur-md py-4 px-10 transition-colors duration-300`}>
-            <div className="flex items-center gap-x-4">
-                {renderMenuButton()}
-                <span className={`${text_wicca.className} text-maincolor/90 text-[26px]`}>
+        <div className={`bg-blanc w-full flex z-50 justify-between items-center backdrop-blur-md py-3 px-10 transition-colors duration-300`}>
+            <div className="flex items-center gap-x-8">
+                <span className={`${text_wicca.className} text-noir/90 text-[26px]`}>
                     wicca
                 </span>
                 <SearchBar fromHeader={true} />
             </div>
 
-            {/* Overlay sombre */}
-            {showMenu && (
-                <div
-                    className="fixed top-0 left-0 w-screen h-screen bg-black/60 z-30 transition-opacity duration-300"
-                    style={{ pointerEvents: openMenu ? 'auto' : 'none' }}
-                    onClick={() => setOpenMenu(false)}
-                />
-            )}
+         
 
-            {renderSideMenu()}
-
-            <div className={`flex space-x-8 text-noir/90 items-center text-[15px] ${lato.className}`}>
+            <div className={`flex space-x-8 text-noir/90 items-center text-[14px] ${lato.className}`}>
                 {renderSpecialtiesDropdown()}
                 <span className="cursor-pointer hover:text-maincolor/90 transition-all duration-100" onClick={() => router.push('/register')}>
-                    inscription
+                    Inscription
                 </span>
-                <div className="border border-noir/60 hover:bg-maincolor hover:text-blanc hover:border-maincolor/80 transition-all duration-100 cursor-pointer rounded-full px-4 py-2">
+                <div className="border  bg-maincolor text-blanc hover:border-maincolor/80 transition-all duration-100 cursor-pointer rounded-full px-4 py-2">
                     <span>Me connecter</span>
+                </div>
+                <div
+                    className="flex items-center justify-center bg-gray-200 rounded-full w-10 h-10 relative"
+                    ref={burgerRef}
+                    onClick={() => setOpenMenu((prev) => !prev)}
+                >
+                    <img src={Burger.src} alt="Burger" className="w-5 h-5 cursor-pointer" />
+                    {openMenu && (
+                        <div className="absolute right-0 pt-5 top-full z-50">
+                            <div className="grid grid-cols-1 gap-y-3 bg-white border text-noir/70 border-gray-200 rounded-lg shadow-lg px-8 py-6 min-w-max w-auto max-w-xs">
+                                {MENU_ITEMS.map((item, idx) => (
+                                    <span
+                                        key={idx}
+                                        className="text-[14px] hover:text-maincolor/90 transition-all duration-100 cursor-pointer"
+                                        onClick={() => { setOpenMenu(false); router.push(item === 'Accueil' ? '/' : `/${item.toLowerCase()}`); }}
+                                    >
+                                        {item}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

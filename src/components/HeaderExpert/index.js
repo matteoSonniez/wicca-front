@@ -39,14 +39,13 @@ const playfair2 = Playfair_Display({
 const Index = () => {
     const [inputValue, setInputValue] = useState("");
     return (
-        <div className="fixed top-0 left-0 right-0 z-50 w-full flex justify-between items-center  py-4 px-10">
+        <div className="flex  w-full justify-between items-center  py-4 px-10">
             <div className="flex items-center gap-x-10">
-                <span className={`${text_wicca.className} text-black text-[26px]`}>wicca</span>
+                <span className={`${text_wicca.className} text-nuit text-[26px]`}>wicca</span>
             </div>
 
             <div className={`flex space-x-8 items-center text-[15px] ${lato.className}`}>
-                <span className="cursor-pointer text-white">Inscription</span>
-                <div className="text-noir/80 bg-white hover:bg-maincolor/90 duration-100 cursor-pointer rounded-full px-4 py-2">
+                <div className="text-white bg-maincolor  duration-100 cursor-pointer rounded-full px-4 py-2">
                     <span className="">Me connecter</span>
                 </div>
             </div>

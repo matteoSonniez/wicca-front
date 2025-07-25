@@ -282,12 +282,14 @@ export default function Home() {
             ref={headerRef}
             className="flex w-full items-center z-50 px-[13vw] -translate-y-[10vh]"
           >
-            <div className="relative w-full flex items-center py-5">
-              <span className={`${text_wicca.className} text-noir text-[26px]`}>
-                wicca
-              </span>
+            <div className="relative w-full justify-between flex items-center py-5">
+              <div className="w-[300px]">
+                <span className={`${text_wicca.className} text-noir text-[26px]`}>
+                  wicca
+                </span>
+              </div>
               <div
-                className={`${mont_low.className} flex-1 flex justify-center space-x-12 text-noir/50 text-[14px]`}
+                className={`${mont_low.className} flex justify-center space-x-12 text-noir/50 text-[14px]`}
               >
                 <span className="cursor-pointer hover:text-noir/80">
                   Centre d'aide
@@ -300,10 +302,10 @@ export default function Home() {
                 </span>
               </div>
               <div
-                className={`${mont_low.className} text-noir/50 space-x-5 flex items-center text-[14px] ml-auto`}
+                className={`${mont_low.className} text-noir/50 space-x-5 flex justify-end items-center text-[14px] w-[300px]`}
               >
                 <Link href="/register" className="cursor-pointer hover:text-noir/80">
-                  inscription
+                  Inscription
                 </Link>
                 <button
                   className="border-[1px] text-blanc border-blanc rounded-full px-4 py-2 bg-maincolor"
@@ -321,12 +323,12 @@ export default function Home() {
                 className="w-[45%] flex flex-col space-y-10 -translate-x-[50vw]"
               >
                 <span
-                  className={`${mont.className} text-[50px] text-noir/80 leading-snug`}
+                  className={`${mont.className} text-[50px] text-nuit/90 leading-snug`}
                 >
-                  Trouvez <span className="text-maincolor/90">un</span> <br />
-                  <span className="text-maincolor/90">rendez-vous</span>
+                  Trouvez <span className="text-nuit/90">un</span> <br />
+                  <span className="text-nuit/90">rendez-vous</span>
                   <br />
-                  avec un médium
+                  avec un <span className="text-maincolor/90">médium</span>
                 </span>
                 <span
                   className={`${mont_petit.className} text-[17px] text-noir/50`}

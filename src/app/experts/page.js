@@ -6,10 +6,12 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import Location from "@/img/icons/locablanc.png";
 import Image from "next/image";
-import Calendar from "@/img/calendar2.png";
-import Header from "@/components/HeaderStatic"
+import Calendar from "@/img/calendar_doctolib.png";
+import Header from "@/components/HeaderExpert"
 import SearchBar from "@/components/SearchBar"
 import { Suspense } from "react";
+import { gsap } from "gsap";
+import { useRef } from "react";
 
 const lato = Lato({
     subsets: ["latin"],
@@ -47,10 +49,10 @@ const images = [
   "/experts/portrait7.webp",
   "/experts/portrait8.webp",
 ];
-const Card = ({ key, firstname, lastname, adress, specialties, image }) => (
-    <div className="p-4 rounded-lg bg-white flex space-x-5 w-[48.5%] aspect-[1/0.45]"
+const Card = ({ key, firstname, lastname, adress, specialties, image, onClick }) => (
+    <div onClick={onClick} className="p-4 rounded-lg bg-white flex space-x-5 w-[48.5%] aspect-[1/0.45] border border-gray-200 cursor-pointer hover:shadow-lg transition-shadow duration-200"
         style={{
-            boxShadow: "0 0 8px 0 rgba(0,0,0,0.10)"
+            boxShadow: "0 0 8px 0 rgba(0,0,0,0.05)"
         }}>
         <div className="flex relative aspect-[0.8/1] h-[100%] rounded-lg overflow-hidden">
             <Image
@@ -71,34 +73,16 @@ const Card = ({ key, firstname, lastname, adress, specialties, image }) => (
             {specialties && specialties.length > 0 && (
                 <div className="flex flex-col space-y-2 text-noir/80">
                     {specialties.map((specialty) => (
-                        <div key={specialty._id} className="flex justify-center items-center bg-maincolor/10 rounded-lg p-2">
-                            <span className="text-[11px] text-maincolor">{specialty.specialty.name}</span>
+                        <div key={specialty._id} className="flex justify-center items-center bg-maincolor/5 rounded-lg p-2">
+                            <span className="text-[11px] text-black">{specialty.specialty.name}</span>
                         </div>
                     ))}
                 </div>
             )}
         </div>
-        <div className="flex-1 flex justify-center items-center overflow-hidden">
-            <Image src={Calendar} alt="Calendar" className="object-cover w-full h-full" />
+        <div className="flex-1 relative flex justify-center items-center overflow-hidden">
+            <Image src={Calendar} alt="Calendar" fill className="scale-[0.9]" />
         </div>
-        {/* <FullCalendar
-            plugins={[dayGridPlugin]}
-            initialView="dayGridMonth"
-        // Tu peux personnaliser ici à fond le rendu
-        /> */}
-        {/* <div className="flex">
-            <div style={{ minHeight: 800 }}>
-                <iframe
-                    src="https://cal.com/matteo-sonniez-t6obxr/30min"
-                    width="1000"
-                    height="300"
-                    frameBorder="0"
-                    style={{ border: 'none' }}
-                    allowTransparency="true"
-                ></iframe>
-            </div>
-        </div> */}
-
     </div>
 );
 
@@ -108,6 +92,10 @@ function ExpertsPage() {
     const searchParams = useSearchParams();
     const specialtyId = searchParams.get("id");
     const localisation = searchParams.get("localisation");
+    const searchBarRef = useRef(null);
+    const searchBarContainerRef = useRef(null);
+    const bgBlancRef = useRef(null);
+    const router = useRouter();
 
     useEffect(() => {
         if (!specialtyId) {
@@ -139,19 +127,38 @@ function ExpertsPage() {
             });
     }, [specialtyId, localisation]);
 
-    return (
-        <div className="flex">
-            <div className=" fixed w-full z-50 top-0 bg-maincolor">
-                <Header />
-                <div className="mt-20 px-16 pb-3">
-                    <SearchBar />
-                </div>
-                <div className="bg-white w-full h-10 mt-3 shadow-md">
+    useEffect(() => {
+      const handleScroll = () => {
+        if (window.scrollY > 0) {
+          gsap.to(searchBarRef.current, { y: -60, scale: 0.75, duration: 0.5, ease: "power2.out" });
+          gsap.to(bgBlancRef.current, { height: 80, duration: 0.5, ease: "power2.out" }); // 80px = hauteur du header seul
+        } else {
+          gsap.to(searchBarRef.current, { y: 0, scale: 1, duration: 0.5, ease: "power2.out" });
+          gsap.to(bgBlancRef.current, { height: 180, duration: 0.5, ease: "power2.out" }); // 180px = header + search bar
+        }
+      };
 
+      // Initialiser la hauteur au chargement
+      if (bgBlancRef.current) {
+        bgBlancRef.current.style.height = "180px";
+      }
+
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    return (
+        <div className="flex bg-white">
+            <div ref={bgBlancRef} className="fixed w-full z-50 top-0 bg-blanc border-b border-gray-200">
+                <Header />
+                <div ref={searchBarContainerRef} className="px-[16vw]">
+                    <div ref={searchBarRef}>
+                        <SearchBar />
+                    </div>
                 </div>
             </div>
-            <div className="flex px-9 w-full relative">
-                <div className="mt-56 w-[230px] border border-gray-400/70 rounded-lg fixed top-0 left-9 overflow-hidden">
+            <div className="flex px-12 w-full relative mt-[200px]">
+                {/* <div className="bg-red-500 w-[230px] border border-gray-400/70 rounded-lg top-0 left-9 overflow-hidden">
                     <Image
                         src="/expertpage/filtre1.png"
                         alt="Portrait de l'expert"
@@ -166,13 +173,13 @@ function ExpertsPage() {
                         height={300} // n'importe quelle valeur, c'est juste pour le ratio, sera ajusté automatiquement
                         className="w-full h-auto object-cover"
                     />
-                </div>
+                </div> */}
                 {loading ? (
                     <div>Chargement...</div>
                 ) : experts.length === 0 ? (
                     <div>Aucun expert trouvé.</div>
                 ) : (
-                    <div className=" w-full flex flex-wrap mt-56 pl-[260px] justify-between gap-y-8">
+                    <div className=" w-full flex flex-wrap  justify-between gap-y-8">
                         {experts.map((expert, idx) => (
                             <Card
                                 key={expert._id}
@@ -186,7 +193,8 @@ function ExpertsPage() {
                                         )
                                         : expert.specialties
                                 }
-                                image={images[idx % images.length]} // <-- image cyclique
+                                image={images[idx % images.length]}
+                                onClick={() => router.push(`/experts/${expert._id}`)}
                             />
                         ))}
                     </div>

@@ -51,8 +51,9 @@ const lato_bold = Lato({
 const Index = () => {
     return (
         <div className="flex w-screen justify-center mt-12 px-[8vw]">
-            <div className="w-full bg-green rounded-xl flex flex-col items-center justify-center shadow-sm pt-12 pb-12">
-                <span className={`${mont.className} text-white text-[56px] mb-2`}>Devenir praticien avec wicca right now</span>
+            <div className="w-full bg-becomepract rounded-xl flex flex-col items-center justify-center shadow-sm pt-12 pb-12">
+                {/* <span className={`${mont.className} text-white text-[41px] text-center mb-2`}>Experts en arts divinatoires ? Gagnez en visibilité et en sérénité. Rejoignez Wicca.</span> */}
+                <span className={`${mont.className} text-white text-[48px] text-center mb-2`}>Experts en arts divinatoires ? Rejoignez Wicca.</span>
                 <button className={`${mont_semi.className} text-[15px] bg-white shadow-sm px-4 py-2 w-auto rounded-lg mt-8 text-noir`}>Nous rejoindre</button>
             </div>
         </div>

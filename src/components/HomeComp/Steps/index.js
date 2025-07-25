@@ -360,7 +360,7 @@ const Index = () => {
             <div className="flex flex-col space-y-4 flex-1">
               <span
                 className={`${mont_bold.className} text-[22px] leading-none transition-colors duration-200 
-                  ${isStep === 1 ? 'text-noir font-bold' : 'text-noir/50 group-hover:text-noir/90'}`}
+                  ${isStep === 1 ? 'text-maincolor/90 font-bold' : 'text-noir/50 group-hover:text-noir/90'}`}
               >
                 1. Réservez en toute simplicité
               </span>
@@ -383,7 +383,7 @@ const Index = () => {
             <div className="flex flex-col space-y-4 flex-1">
               <span
                 className={`${mont_bold.className} text-[22px] leading-none transition-colors duration-200 
-                  ${isStep === 2 ? 'text-noir font-bold' : 'text-noir/50 group-hover:text-noir/90'}`}
+                  ${isStep === 2 ? 'text-maincolor/90 font-bold' : 'text-noir/50 group-hover:text-noir/90'}`}
               >
                 2. Choisissez le bon moment
               </span>
@@ -406,7 +406,7 @@ const Index = () => {
             <div className="flex flex-col space-y-4 flex-1">
               <span
                 className={`${mont_bold.className} text-[22px] leading-none transition-colors duration-200 
-                  ${isStep === 3 ? 'text-noir font-bold' : 'text-noir/50 group-hover:text-noir/90'}`}
+                  ${isStep === 3 ? 'text-maincolor/90 font-bold' : 'text-noir/50 group-hover:text-noir/90'}`}
               >
                 3. Recevez votre guidance
               </span>

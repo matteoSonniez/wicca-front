@@ -82,7 +82,7 @@ export default function Index() {
         Nos practitiens
       </span> */}
       <span className={`${mont_semi.className} text-noir/80 text-[40px] text-start  mb-2`}>
-        Nos practitiens certifies
+        Nos praticiens certifiés
       </span>
       <span className={`${mont_low.className} text-noir/80 text-[16px] mb-7`}>Des praticiens sélectionnés pour leur expertise et leur professionnalisme</span>
       {/* CONTENEUR scrollable */}

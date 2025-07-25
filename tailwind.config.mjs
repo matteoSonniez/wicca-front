@@ -39,7 +39,21 @@ export default {
         green2:"#013912",
         bordaux:"#4E1727",
         texteclaire:"#74767D",
-        blackfooter:"#181818"
+        blackfooter:"#181818",
+        nuit: "#1F1E2A",
+        becomepract: "#411C2A",
+
+//         #1F1E2A – Nuit violacée, élégante et mystique.
+
+// #2A0F19 – Bordeaux profond tirant sur le prune.
+
+// #411C2A – Framboise sombre (fait ressortir ton rose clair).
+
+// #3A3F4A – Gris ardoise bleuté, sérieux mais pas triste.
+
+// #12333A – Vert sarcelle très sombre, vibe ésotérique.
+
+// #4B0D0D – Rouge/brun sombre, dramatique.
       },
     },
   },
