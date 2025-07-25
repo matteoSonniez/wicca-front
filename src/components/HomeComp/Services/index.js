@@ -1,6 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 import { Lato } from "next/font/google";
+import { useRouter } from "next/navigation";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import Carto from "@/img/spe_icons/cartes.png";
 import Carto_red from "@/img/spe_icons/carto_red.png";
 import Voyance from "@/img/spe_icons/medium.png";
@@ -13,8 +18,6 @@ import Tarologie from "@/img/spe_icons/taro.png";
 import TarologieRed from "@/img/spe_icons/taro_red.png";
 import Numero from "@/img/spe_icons/numerologie2.png";
 import NumeroRed from "@/img/spe_icons/numerologie_red.png";
-import { useRouter } from "next/navigation";
-
 
 const lato = Lato({
   subsets: ["latin"],
@@ -24,58 +27,132 @@ const lato = Lato({
 
 const Card = ({ imgSrc, imgSrcHover, title }) => {
   const [hovered, setHovered] = useState(false);
+  const wrapperRef = useRef(null);
   const router = useRouter();
+
+  useEffect(() => {
+    return () => {
+      if (wrapperRef.current) {
+        gsap.killTweensOf(wrapperRef.current);
+      }
+    };
+  }, []);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+    if (wrapperRef.current) {
+      gsap.to(wrapperRef.current, {
+        scale: 1.1,
+        duration: 0.3,
+        force3D: false,
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+    if (wrapperRef.current) {
+      gsap.to(wrapperRef.current, {
+        scale: 1,
+        duration: 0.3,
+        force3D: false,
+      });
+    }
+  };
 
   const handleClick = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/specialties/search", {
+      const res = await fetch("/api/specialties/search", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ search: title }),
       });
-      const data = await response.json();
-      // Supposons que l'id est dans data.id ou data[0].id
-      // Affiche dans la console pour debug
-      console.log(data[0]._id, "data");
-      if (data[0]._id) {
-        router.push("/experts?id=" + data[0]._id);
+      const data = await res.json();
+      const id = data[0]?._id;
+      if (id) {
+        router.push(`/experts?id=${id}`);
       }
-    } catch (error) {
-      console.error("Erreur lors de la recherche de la spécialité:", error);
+    } catch (err) {
+      console.error("Recherche de spécialité échouée :", err);
     }
   };
 
   return (
     <div
-      style={{
-        boxShadow: "0 0 8px 0 rgba(0,0,0,0.10)"
-      }}
-      className="cursor-pointer bg-white relative group w-[20%] aspect-[1/0.45] rounded-2xl  overflow-hidden shadow-sm text-noir/70 hover:text-maincolor"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      ref={wrapperRef}
+      className="
+        cursor-pointer 
+        bg-white
+        w-1/5 
+        aspect-[20/9] 
+        rounded-2xl 
+        overflow-hidden
+        text-gray-700 
+        hover:text-maincolor
+        flex
+        items-center
+        px-4
+        space-x-4
+      "
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       onClick={handleClick}
     >
-      <div className="relative w-full h-full flex px-4 py-4 space-x-4 items-center">
-        <img className="w-7 h-7 text-gray-700" src={hovered ? imgSrcHover : imgSrc} alt={title} />
-        <span className={`${lato.className} text-[15px]`}>{title}</span>
+      <div className="relative w-7 h-7 will-change-transform">
+        <Image
+          src={hovered ? imgSrcHover : imgSrc}
+          alt={title}
+          fill
+          sizes="1.75rem"
+          className="object-contain"
+          unoptimized
+        />
       </div>
+      <span className={`${lato.className} text-sm`}>{title}</span>
     </div>
   );
 };
 
-const Index = () => {
+export default function Index() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    if (containerRef.current) {
+      gsap.fromTo(
+        containerRef.current,
+        { x: 0, opacity: 1 },
+        {
+          x: 300,
+          opacity: 1,
+          ease: "linear",
+          force3D: true,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 95%",
+            end: "top top",
+            scrub: true, // Animation liée au scroll
+          },
+        }
+      );
+    }
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
-    <div className="flex w-[100vw] px-[14vw] justify-center space-x-6">
-      <Card imgSrc={Astro.src} imgSrcHover={AstroRed.src} title="Astrologie" />
-      <Card imgSrc={Carto.src} imgSrcHover={Carto_red.src} title="Cartomancie" />
-      <Card imgSrc={Numero.src} imgSrcHover={NumeroRed.src} title="Numérologie" />
-      <Card imgSrc={Voyance.src} imgSrcHover={Voyance_red.src} title="Voyance" />
-      <Card imgSrc={Medium.src} imgSrcHover={MediumRed.src} title="Médiumnité" />
-      <Card imgSrc={Tarologie.src} imgSrcHover={TarologieRed.src} title="Tarologie" />
+    <div
+      ref={containerRef}
+      className="flex w-screen px-[14vw] justify-center space-x-6 will-change-transform"
+      style={{ backfaceVisibility: "hidden" }}
+    >
+      <Card imgSrc={Astro.src}       imgSrcHover={AstroRed.src}     title="Astrologie" />
+      <Card imgSrc={Carto.src}       imgSrcHover={Carto_red.src}    title="Cartomancie" />
+      <Card imgSrc={Numero.src}      imgSrcHover={NumeroRed.src}    title="Numérologie" />
+      <Card imgSrc={Voyance.src}     imgSrcHover={Voyance_red.src}  title="Voyance" />
+      <Card imgSrc={Medium.src}      imgSrcHover={MediumRed.src}    title="Médiumnité" />
+      <Card imgSrc={Tarologie.src}   imgSrcHover={TarologieRed.src} title="Tarologie" />
     </div>
   );
-};
-
-export default Index;
+}

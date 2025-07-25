@@ -3,7 +3,7 @@ import Image from "next/image";
 import Header from "@/components/HeaderDown";
 import Loca from "@/img/icons/loca-red.png";
 import Visio from "@/img/icons/camera-red.png";
-import PriseRdv from "@/components/PopUp/Auth";
+import PriseRdv from "@/components/PopUp/PriseRdv";
 import {
     Montserrat
 } from "next/font/google";

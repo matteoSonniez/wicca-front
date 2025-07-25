@@ -60,8 +60,8 @@ export default function Index() {
         boxShadow: "0 0 8px 0 rgba(0,0,0,0.10)"
       }}
     >
-      <img src={imgSrc} className="w-[42%] h-full object-cover rounded-xl" />
-      <div className="flex flex-col justify-between">
+      <img src={imgSrc} className="w-[38%] h-full object-cover rounded-xl" />
+      <div className="flex-1 flex-col justify-between">
         <span className={`${mont_semi.className} text-[12px] text-noir/60 text-start leading-relaxed`}>
           Je suis Léa, praticienne en ésotérisme passionnée par les mystères de l'univers et les voies spirituelles qui nous connectent à notre essence profonde. Depuis mon plus jeune âge, j'ai exploré les enseignements anciens et les pratiques traditionnelles
         </span>
