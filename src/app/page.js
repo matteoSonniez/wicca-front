@@ -25,7 +25,7 @@ import Search from "@/img/chercher.png";
 import Path from "@/img/image3.png";
 import Path2 from "@/img/image2.png";
 import Path3 from "@/img/image6.webp";
-import Path4 from "@/img/solar_back3.webp";
+import Path4 from "@/img/solar_back4.webp";
 import TopRight from "@/img/backtopright.png";
 import TopLeft from "@/img/backtopleft.png";
 import Fleche from "@/img/icons/fleche.png";
@@ -259,7 +259,7 @@ export default function Home() {
             </motion.div>
           )}
           <div className=" px-[13vw] py-[2vh] h-full flex w-full items-center z-10">
-            <div className="flex w-full h-full items-center justify-center space-x-14">
+            <div className="flex w-full h-full items-center justify-center space-x-10">
               {/* Bloc gauche animé */}
               {isSafariReady && (
                 <motion.div
@@ -296,7 +296,7 @@ export default function Home() {
               {isSafariReady && (
                 <motion.div
                   ref={portraitsRef}
-                  className="flex w-[52%] relative justify-center items-center h-full space-x-12"
+                  className="flex w-[50%] relative justify-center items-center h-full space-x-12"
                   initial={isSafari ? { translateX: 200, opacity: 0 } : { translateX: 300, opacity: 0 }}
                   animate={{ translateX: 0, opacity: 1 }}
                   transition={isSafari ? { duration: 0.8, delay: 0.8, ease: "linear" } : { duration: 0.8, delay: 0.7, ease: "linear" }}
@@ -314,30 +314,33 @@ export default function Home() {
                     src={Path4.src}
                     className="absolute w-full"
                   />
-                  <div className="flex flex-col h-full justify-center space-y-10">
-                    <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
+                  <div className="flex flex-col h-full w-[38%] justify-center gap-y-10">
+                    <div className="h-[40%] w-full relative rounded-3xl overflow-hidden">
                       <Image
                         src="/experts/home2.webp"
                         alt="Portrait de l'expert"
                         fill
+                        priority
                         className="object-cover"
                       />
                     </div>
-                    <div className="h-[38%] relative rounded-3xl overflow-hidden aspect-[0.9/1]">
+                    <div className="h-[40%] w-full relative rounded-3xl overflow-hidden">
                       <Image
                         src="/experts/home.webp"
                         alt="Portrait de l'expert"
                         fill
+                        priority
                         className="object-cover"
                       />
                     </div>
                   </div>
 
-                  <div className="h-[50%] relative rounded-3xl overflow-hidden aspect-[0.65/1]">
+                  <div className="h-[50%] w-[38%] relative rounded-3xl overflow-hidden">
                     <Image
                       src="/experts/home3.webp"
                       alt="Portrait de l'expert"
                       fill
+                      priority
                       className="object-cover"
                     />
                   </div>
