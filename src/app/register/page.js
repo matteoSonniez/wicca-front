@@ -43,7 +43,7 @@ function Page() {
                         <span className={`${mont_low.className} text-noir/80 text-[15px] font-bold mt-2`}>je suis un praticien</span>
                     </div>
                 </div>
-                <span className={`${mont_low.className} text-noir/80 text-[13px] mt-5`}>Vous avez deja un compte ? <span className="text-maincolor">Connexion</span></span>
+                <span className={`${mont_low.className} text-noir/80 text-[13px] mt-5`}>Vous avez deja un compte ? <span className="text-maincolor">Me connecter</span></span>
             </div>
         </div>
     );

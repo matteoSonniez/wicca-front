@@ -5,7 +5,7 @@ import { Lato } from "next/font/google";
 import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import "./index.css";
 import Carto from "@/img/spe_icons/cartes.png";
 import Carto_red from "@/img/spe_icons/carto_red.png";
 import Voyance from "@/img/spe_icons/medium.png";
@@ -25,18 +25,31 @@ const lato = Lato({
   display: "swap",
 });
 
-const Card = ({ imgSrc, imgSrcHover, title, bgIcon }) => {
+const Card = ({ imgSrc, imgSrcHover, title, bgIcon, fromHome }) => {
   const [hovered, setHovered] = useState(false);
   const wrapperRef = useRef(null);
+  const iconRef = useRef(null);
   const router = useRouter();
 
   useEffect(() => {
+    if (iconRef.current && wrapperRef.current) {
+      const iconRect = iconRef.current.getBoundingClientRect();
+      const cardRect = wrapperRef.current.getBoundingClientRect();
+      // Centre de l'icône par rapport à la card
+      const centerX = iconRect.left - cardRect.left + iconRect.width / 2;
+      const centerY = iconRect.top - cardRect.top + iconRect.height / 2;
+      wrapperRef.current.style.setProperty('--icon-center-x', `${centerX}px`);
+      wrapperRef.current.style.setProperty('--icon-center-y', `${centerY}px`);
+      // Couleur de fond réelle
+      const bgColor = window.getComputedStyle(iconRef.current).backgroundColor;
+      wrapperRef.current.style.setProperty('--bgicon-color', bgColor);
+    }
     return () => {
       if (wrapperRef.current) {
         gsap.killTweensOf(wrapperRef.current);
       }
     };
-  }, []);
+  }, [hovered]);
 
   const handleMouseEnter = () => {
     setHovered(true);
@@ -80,47 +93,37 @@ const Card = ({ imgSrc, imgSrcHover, title, bgIcon }) => {
   return (
     <div
       ref={wrapperRef}
-      className="
-        cursor-pointer 
-        bg-white
-        w-1/5 
-        aspect-[20/8] 
-        p-1
-        px-4
-        rounded-xl 
-        overflow-hidden
-        text-gray-700 
-        hover:text-maincolor
-        flex
-        items-center
-        space-x-4
-      "
+      className={`card-service cursor-pointer bg-white ${fromHome ? "w-[170px] h-[50px] rounded-xl" : "w-[150px] h-[40px] rounded-lg"} p-1  overflow-hidden text-gray-700 flex items-center space-x-3 ${hovered ? "hovered" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
+      style={{ position: 'relative', zIndex: 0 }}
     >
       <div
-        className={`relative h-7 w-7 flex items-center justify-center will-change-transform`}
+        ref={iconRef}
+        className={`icon-wrapper relative h-full flex items-center justify-center ${fromHome ? "rounded-xl" : "rounded-lg"} aspect-square will-change-transform ${bgIcon}`}
       >
         <Image
-          src={hovered ? imgSrcHover : imgSrc}
+          src={imgSrc}
           alt={title}
-          fill
-          className="object-contain"
+          width={48}
+          height={48}
+          className={`w-[25px] ${fromHome ? "w-[25px]" : "w-[20px]"}`}
+          style={{ filter: 'invert(1) brightness(100)' }}
           unoptimized
         />
       </div>
-      <span className={`${lato.className} text-sm`}>{title}</span>
+      <span className={`${lato.className} content ${fromHome ? "text-[15px]" : "text-[13px]"}`} style={{ position: 'relative', zIndex: 2 }}>{title}</span>
     </div>
   );
 };
 
-export default function Index() {
+export default function Index({ fromHome }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    if (containerRef.current) {
+    if (fromHome && containerRef.current) {
       gsap.fromTo(
         containerRef.current,
         { x: 0, opacity: 1 },
@@ -141,20 +144,20 @@ export default function Index() {
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, []);
+  }, [fromHome]);
 
   return (
     <div
       ref={containerRef}
-      className="flex w-screen px-[14vw] justify-center space-x-6 will-change-transform"
+      className={`flex w-full ${fromHome ? 'px-[14vw]' : 'gap-x-10'} justify-between will-change-transform`}
       style={{ backfaceVisibility: "hidden" }}
     >
-      <Card imgSrc={Astro.src}       imgSrcHover={AstroRed.src}     title="Astrologie" bgIcon="bg-service1" />
-      <Card imgSrc={Carto.src}       imgSrcHover={Carto_red.src}    title="Cartomancie" bgIcon="bg-service2" />
-      <Card imgSrc={Numero.src}      imgSrcHover={NumeroRed.src}    title="Numérologie" bgIcon="bg-service3" />
-      <Card imgSrc={Voyance.src}     imgSrcHover={Voyance_red.src}  title="Voyance" bgIcon="bg-service1" />
-      <Card imgSrc={Medium.src}      imgSrcHover={MediumRed.src}    title="Médiumnité" bgIcon="bg-service2" />
-      <Card imgSrc={Tarologie.src}   imgSrcHover={TarologieRed.src} title="Tarologie" bgIcon="bg-service3" />
+      <Card imgSrc={Astro.src}       imgSrcHover={AstroRed.src}     title="Astrologie"   bgIcon="bg-service1" fromHome={fromHome} />
+      <Card imgSrc={Carto.src}       imgSrcHover={Carto_red.src}    title="Cartomancie"  bgIcon="bg-service2" fromHome={fromHome} />
+      <Card imgSrc={Numero.src}      imgSrcHover={NumeroRed.src}    title="Numérologie"  bgIcon="bg-service3" fromHome={fromHome} />
+      <Card imgSrc={Voyance.src}     imgSrcHover={Voyance_red.src}  title="Voyance"      bgIcon="bg-service1" fromHome={fromHome} />
+      <Card imgSrc={Medium.src}      imgSrcHover={MediumRed.src}    title="Médiumnité"   bgIcon="bg-service2" fromHome={fromHome} />
+      <Card imgSrc={Tarologie.src}   imgSrcHover={TarologieRed.src} title="Tarologie"    bgIcon="bg-service3" fromHome={fromHome} />
     </div>
   );
 }

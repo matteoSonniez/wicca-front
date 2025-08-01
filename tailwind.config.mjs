@@ -42,6 +42,11 @@ export default {
         blackfooter:"#181818",
         nuit: "#1F1E2A",
         becomepract: "#411C2A",
+        bleutext: "#011E62",
+        service1: "#AEAEE9",
+        service2: "#C6E09F",
+        service3: "#F9AA6C",
+        grisbg: "#F6F3F1",
 
 //         #1F1E2A – Nuit violacée, élégante et mystique.
 

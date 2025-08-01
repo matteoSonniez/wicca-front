@@ -1,0 +1,24 @@
+.animated-fill {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+.animated-fill::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: #411C2A; /* Remplace par ta couleur becomepract */
+  z-index: -1;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+  border-radius: 9999px; /* Ajout pour l’arrondi */
+}
+.animated-fill:hover::before {
+  width: 100%;
+}
+.animated-fill span {
+  position: relative;
+  z-index: 1;
+}

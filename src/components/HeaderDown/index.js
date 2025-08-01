@@ -6,6 +6,8 @@ import Flechebas from "@/img/icons/flechebas.png";
 import Burger from "@/img/icons/burger.png";
 import SearchBar from "@/components/SearchBar";
 import { useRouter } from "next/navigation";
+import "./index.css";
+import PopUpAuth from "@/components/PopUp/Auth";
 
 const lato = Lato({
     subsets: ['latin'],
@@ -45,6 +47,8 @@ const Index = () => {
     const [openDropdown, setOpenDropdown] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
+    const [showAuthPopup, setShowAuthPopup] = useState(false);
+    const [popupVisible, setPopupVisible] = useState(false);
     
     const menuRef = useRef(null);
     const menuPanel = useRef(null);
@@ -113,10 +117,19 @@ const Index = () => {
         </div>
     );
 
+    const openPopup = () => {
+        setShowAuthPopup(true);
+        setTimeout(() => setPopupVisible(true), 10);
+    };
+    const closePopup = () => {
+        setPopupVisible(false);
+        setTimeout(() => setShowAuthPopup(false), 300);
+    };
+
     return (
         <div className={`bg-blanc w-full flex z-50 justify-between items-center backdrop-blur-md py-3 px-10 transition-colors duration-300`}>
             <div className="flex items-center gap-x-8">
-                <span className={`${text_wicca.className} text-noir/90 text-[26px]`}>
+                <span className={`${text_wicca.className} text-becomepract text-[26px] cursor-pointer`} onClick={() => router.push('/') }>
                     wicca
                 </span>
                 <SearchBar fromHeader={true} />
@@ -129,15 +142,15 @@ const Index = () => {
                 <span className="cursor-pointer hover:text-maincolor/90 transition-all duration-100" onClick={() => router.push('/register')}>
                     Inscription
                 </span>
-                <div className="border  bg-maincolor text-blanc hover:border-maincolor/80 transition-all duration-100 cursor-pointer rounded-full px-4 py-2">
+                <div className="animated-fill border bg-maincolor text-blanc transition-all duration-100 cursor-pointer rounded-full px-4 py-2" onClick={openPopup}>
                     <span>Me connecter</span>
                 </div>
                 <div
-                    className="flex items-center justify-center bg-gray-200 rounded-full w-10 h-10 relative"
+                    className="flex items-center justify-center bg-gray-200 rounded-full w-10 h-10 relative cursor-pointer"
                     ref={burgerRef}
                     onClick={() => setOpenMenu((prev) => !prev)}
                 >
-                    <img src={Burger.src} alt="Burger" className="w-5 h-5 cursor-pointer" />
+                    <img src={Burger.src} alt="Burger" className="w-5 h-5" />
                     {openMenu && (
                         <div className="absolute right-0 pt-5 top-full z-50">
                             <div className="grid grid-cols-1 gap-y-3 bg-white border text-noir/70 border-gray-200 rounded-lg shadow-lg px-8 py-6 min-w-max w-auto max-w-xs">
@@ -155,6 +168,9 @@ const Index = () => {
                     )}
                 </div>
             </div>
+            {showAuthPopup && (
+                <PopUpAuth onClose={closePopup} visible={popupVisible} />
+            )}
         </div>
     );
 };

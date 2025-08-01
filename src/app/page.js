@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 // COMPONENTS
 import HeaderDown from "@/components/HeaderDown";
 import Services from "@/components/HomeComp/Services";
+import ServicesBis from "@/components/HomeComp/ServicesBis";
 import TripleIcons from "@/components/HomeComp/TripleIcon";
 import AboutUs from "@/components/HomeComp/AboutUs";
 import DevenirPractitien from "@/components/HomeComp/BecomeExpert";
@@ -130,112 +131,6 @@ export default function Home() {
     setTimeout(() => setShowAuthPopup(false), 300);
   };
 
-  // useLayoutEffect(() => {
-  //   if (portraitsRef.current) {
-  //     gsap.set(portraitsRef.current, { x: "50vw" });
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   // On crée un timer de 1s avant de démarrer les animations
-  //   const timer = setTimeout(() => {
-  //     gsap.to(portraitsRef.current, {
-  //       x: 0,
-  //       duration: 1.6,
-  //       ease: "power3.out",
-  //     });
-
-  //     gsap.to(leftBlockRef.current, {
-  //       x: 0,
-  //       duration: 1.6,
-  //       ease: "power3.out",
-  //     });
-
-  //     gsap.to(headerRef.current, {
-  //       y: 0,
-  //       duration: 1.6,
-  //       ease: "power3.out",
-  //     });
-
-  //     gsap.to(servicesRef.current, {
-  //       y: 0,
-  //       duration: 1.6,
-  //       ease: "power3.out",
-  //     });
-  //   }, 300);
-
-  //   // Nettoyage du timer si le composant se démonte
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-
-
-  // useEffect(() => {
-  //   //if (!animatedBlockRef.current) return;
-  //   gsap.to(servicesRef.current, {
-  //     x: 400, // ou "100vw" pour sortir complètement de l'écran
-  //     opacity: 0.4,
-  //     scrollTrigger: {
-  //       trigger: animatedBlockRef.current,
-  //       start: "bottom bottom", // quand le haut du bloc atteint le centre du viewport
-  //       end: "bottom top", // quand le bas du bloc atteint le haut du viewport
-  //       scrub: true,
-  //     },
-  //   });
-
-  //   gsap.to(flecheRef.current, {
-  //     y: 300, // ou la distance que tu veux
-  //     ease: "none",
-  //     scrollTrigger: {
-  //       trigger: flecheRef.current, // ou "body" si tu veux que ce soit tout le scroll
-  //       start: "bottom 95%", // déclenche dès que le haut du container touche le bas du viewport
-  //       end: "bottom top",  // jusqu'à ce que le bas du container touche le haut du viewport
-  //       scrub: true,         // "scrub" = suit le scroll
-  //     }
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!headerDownRef.current || !serchRef.current) return;
-
-  //   // Positionne la div hors écran au départ
-  //   gsap.set(headerDownRef.current, { y: "-100%" });
-
-  //   ScrollTrigger.create({
-  //     trigger: serchRef.current,
-  //     start: "bottom top", // quand le bas de la barre de recherche touche le haut du viewport
-  //     end: "+=1", // juste après
-  //     onEnter: () => {
-  //       gsap.to(headerDownRef.current, {
-  //         y: 0,
-  //         duration: 0.6,
-  //         ease: "power3.out",
-  //       });
-  //     },
-  //     onLeaveBack: () => {
-  //       gsap.to(headerDownRef.current, {
-  //         y: "-100%",
-  //         duration: 0.3,
-  //         ease: "power3.in",
-  //       });
-  //     },
-  //     toggleActions: "play none none reverse",
-  //   });
-  // }, []);
-
-  // useLayoutEffect(() => {
-  //   if (!gradientRef.current || !backRef.current) return;
-
-  //   gsap.to(gradientRef.current, {
-  //     y: -350, // ou la valeur souhaitée
-  //     scrollTrigger: {
-  //       trigger: backRef.current,
-  //       start: "top center", // quand backRef entre dans le viewport
-  //       end: "top top", // jusqu'à ce qu'il soit au centre
-  //       scrub: true,
-  //     },
-  //   });
-  // }, []);
 
   return (
     <div className="relative overflow-x-hidden">
@@ -266,7 +161,7 @@ export default function Home() {
           <div
             ref={gradientRef}
             style={{
-              position: "fixed",
+              position: "absolute",
               top: -15,
               left: -15,
               width: "15vw",
@@ -330,27 +225,27 @@ export default function Home() {
             >
               <div className="relative w-full justify-between flex items-center py-5">
                 <div className="w-[300px]">
-                  <span className={`${text_wicca.className} text-noir text-[26px]`}>
+                  <span className={`${text_wicca.className} text-becomepract text-[26px]`}>
                     wicca
                   </span>
                 </div>
                 <div
                   className={`${mont_low.className} flex justify-center space-x-12 text-noir/50 text-[14px]`}
                 >
-                  <span className="cursor-pointer hover:text-noir/80">
+                  <span className="cursor-pointer hover:text-becomepract">
                     Centre d'aide
                   </span>
-                  <span className="cursor-pointer hover:text-noir/80">
-                    Qui nous sommes
+                  <span className="cursor-pointer hover:text-becomepract">
+                    Qui nous sommes ?
                   </span>
-                  <span className="cursor-pointer hover:text-noir/80">
+                  <span className="cursor-pointer hover:text-becomepract">
                     Nous contacter
                   </span>
                 </div>
                 <div
                   className={`${mont_low.className} text-noir/50 space-x-5 flex justify-end items-center text-[14px] w-[300px]`}
                 >
-                  <Link href="/register" className="cursor-pointer hover:text-noir/80">
+                  <Link href="/register" className="cursor-pointer hover:text-becomepract">
                     Inscription
                   </Link>
                   <button
@@ -369,19 +264,22 @@ export default function Home() {
               {isSafariReady && (
                 <motion.div
                   ref={leftBlockRef}
-                  className="w-[45%] flex flex-col space-y-10"
+                  className="w-[50%] flex flex-col space-y-10"
                   initial={isSafari ? { translateX: -200, opacity: 0 } : { translateX: -300, opacity: 0 }}
                   animate={{ translateX: 0, opacity: 1 }}
                   transition={isSafari ? { duration: 0.7, delay: 0.9, ease: "linear" } : { duration: 0.8, delay: 0.7, ease: "linear" }}
                   style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
                 >
                   <span
-                    className={`${mont.className} text-[50px] text-nuit/90 leading-snug`}
+                    className={`${poppins.className} text-[52px] text-becomepract leading-snug`}
                   >
-                    Trouvez <span className="text-nuit/90">un</span> <br />
-                    <span className="text-nuit/90">rendez-vous</span>
-                    <br />
-                    avec un <span className="text-maincolor/90">médium</span>
+                    Trouvez un <br />rendez-vous <br />
+                    <div className="flex items-center">
+                      <span className="mr-1">
+                        avec un 
+                      </span>
+                      <RouletteMot />
+                    </div>
                   </span>
                   <span
                     className={`${mont_petit.className} text-[17px] text-noir/50`}
@@ -391,7 +289,7 @@ export default function Home() {
                   </span>
                   <SearchBar fromHeader={false} />
                   {/* Div invisible pour observer la disparition de la SearchBar */}
-                  
+
                 </motion.div>
               )}
               {/* Portraits animés */}
@@ -458,7 +356,7 @@ export default function Home() {
               transition={isSafari ? { duration: 0.7, delay: 0.9, ease: "linear" } : { duration: 1.2, delay: 1, ease: "linear" }}
               style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
             >
-              <Services />
+              <ServicesBis fromHome={true} />
             </motion.div>
           )}
         </section>
@@ -482,5 +380,52 @@ export default function Home() {
         <PopUpAuth onClose={closePopup} visible={popupVisible} />
       )}
     </div>
+  );
+}
+
+function RouletteMot() {
+  const mots = ["médium", "astrologue", "magnétiseur", "tarologue"];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % mots.length);
+    }, 1800);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        minWidth: 300,      // plus large
+        height: 70,         // plus haut
+        position: "relative",
+        overflow: "hidden",
+        verticalAlign: "middle",
+      }}
+    >
+      <AnimatePresence initial={false}>
+        <motion.span
+          key={mots[index]}
+          initial={{ y: 70, opacity: 0 }} // même valeur que height
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -70, opacity: 0 }}   // même valeur que height
+          transition={{ duration: 1.3 }} // <-- plus lent
+          className="text-becomepract"
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width: "100%",
+            textAlign: "left",
+            lineHeight: "70px", // même valeur que height
+            fontSize: "52px",
+          }}
+        >
+          &nbsp;{mots[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
   );
 }

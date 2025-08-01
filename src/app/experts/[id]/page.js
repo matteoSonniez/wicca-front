@@ -149,7 +149,7 @@ function Page() {
                 <div className="text-red-500">{error}</div>
             ) : expert ? (
                 <div className="flex flex-col">
-                    <div ref={stickyRef} className="w-full bg-blanc flex shadow-md pt-[80px] pl-[10vw] sticky -top-[40px] z-20 relative">
+                    <div ref={stickyRef} className="w-full bg-grisbg flex shadow-md pt-[80px] pl-[10vw] sticky -top-[40px] z-20 relative">
                         <div className="flex flex-col space-y-10">
                             <div className="flex items-center space-x-20">
                                 <div className="flex items-center justify-center relative w-[180px] h-[230px] rounded-xl overflow-hidden">
@@ -176,14 +176,14 @@ function Page() {
                                     </div>
                                 </div>
                             </div>
-                            <div ref={buttonRef} className=" w-full h-[60px] flex items-end bg-blanc">
+                            <div ref={buttonRef} className=" w-full h-[60px] flex items-end">
                                 <button
                                     className={`text-[14px] ${activeSection === "presentation" ? mont_low.className + " text-maincolor" : mont.className + " text-nuit/90"} relative pb-4 px-5`}
                                     onClick={() => scrollToSection(presentationRef)}
                                 >
                                     PRÉSENTATION
                                     <span
-                                        className={`absolute left-0 bottom-0 w-full h-[2px] rounded transition-all duration-200 ${activeSection === "presentation" ? "bg-maincolor" : "bg-white"}`}
+                                        className={`absolute left-0 bottom-0 w-full h-[2px] rounded transition-all duration-200 ${activeSection === "presentation" ? "bg-maincolor" : "bg-grisbg"}`}
                                     ></span>
                                 </button>
                                 <button
@@ -192,7 +192,7 @@ function Page() {
                                 >
                                     INFORMATIONS PRATIQUES
                                     <span
-                                        className={`absolute left-0 bottom-0 w-full h-[2px] rounded transition-all duration-200 ${activeSection === "infos" ? "bg-maincolor" : "bg-white"}`}
+                                        className={`absolute left-0 bottom-0 w-full h-[2px] rounded transition-all duration-200 ${activeSection === "infos" ? "bg-maincolor" : "bg-grisbg"}`}
                                     ></span>
                                 </button>
                                 <button
@@ -201,7 +201,7 @@ function Page() {
                                 >
                                     AVIS ET RECOMMANDATIONS
                                     <span
-                                        className={`absolute left-0 bottom-0 w-full h-[2px] rounded transition-all duration-200 ${activeSection === "avis" ? "bg-maincolor" : "bg-white"}`}
+                                        className={`absolute left-0 bottom-0 w-full h-[2px] rounded transition-all duration-200 ${activeSection === "avis" ? "bg-maincolor" : "bg-grisbg"}`}
                                     ></span>
                                 </button>
                             </div>

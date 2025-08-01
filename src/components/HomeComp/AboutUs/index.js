@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import RoundBg from "@/img/roundbg7.png";
 import Man from "@/img/manhold.png";
 import Mokup2 from "@/img/becomepract.webp";
-import Mokup from "@/img/mokup.webp";
+import Mokup from "@/img/mokup3.webp";
 import Image from "next/image";
 
 const lato = Lato({
@@ -38,7 +38,7 @@ const Index = () => {
     <div className="flex flex-col relative h-auto px-[8vw] mt-40 items-center justify-between gap-y-28">
       <div className="flex items-center justify-between">
         <div className="flex flex-col w-[45%] space-y-6">
-          <span className=" uppercase text-maincolor/80 tracking-[0.2em] text-[16px] mb-5">
+          <span className=" uppercase text-maincolor/80 tracking-[0.2em] text-[18px] mb-5">
             À propos
           </span>
 
@@ -48,7 +48,7 @@ const Index = () => {
             animate={text1InView ? { opacity: 1, translateY: 0 } : {}}
             transition={{ duration: 0.8, ease: "linear" }}
             style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
-            className={`${montserrat.className} text-texteclaire text-[18px]`}
+            className={`${montserrat.className} text-becomepract text-[18px]`}
           >
             Il y a des questions que l’on ne confie pas à n’importe qui. Des moments de vie où l’on cherche plus qu’un simple conseil : une écoute vraie, un regard éclairé, un espace sûr pour avancer.
             Wicca est née de cette conviction : repenser la manière dont on accède aux arts divinatoires. Une plateforme à la fois moderne et profondément humaine, où chaque spécialité est expliquée, chaque expert est certifié, et chaque consultation devient une expérience de clarté.
@@ -84,7 +84,7 @@ const Index = () => {
             animate={text2InView ? { opacity: 1, translateY: 0 } : {}}
             transition={{ duration: 0.8, ease: "linear" }}
             style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
-            className={`${montserrat.className} text-texteclaire text-[18px]`}
+            className={`${montserrat.className} text-becomepract text-[18px]`}
           >
             Ici, pas de jargon, pas de promesses floues. Juste des réponses, des rendez-vous simples à réserver, et des pratiques ésotériques valorisées comme elles le méritent.
             Wicca, c’est une nouvelle manière de consulter. Respectueuse, accessible, exigeante. Pour celles et ceux qui cherchent un vrai mieux-être, et ceux qui les accompagnent avec cœur et savoir-faire.

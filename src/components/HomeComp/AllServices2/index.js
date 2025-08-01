@@ -1,7 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
-import { Lato, Montserrat, Inter } from "next/font/google";
+import { useEffect, useState, useRef } from "react";
+import { Lato, Montserrat, Inter, Poppins } from "next/font/google";
 import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 
 const lato = Lato({
     subsets: ["latin"],
@@ -21,6 +22,12 @@ const mont_semi = Montserrat({
     display: "swap",
 });
 
+const poppins = Poppins({
+    subsets: ["latin"],
+    weight: ["600"],
+    display: "swap",
+});
+
 const inter = Inter({
     subsets: ["latin"],
     weight: ["500"],
@@ -29,16 +36,23 @@ const inter = Inter({
 
 const Index = () => {
     const [selectedTab, setSelectedTab] = useState(0);
+    const containerRef = useRef(null);
+    const isInView = useInView(containerRef, { once: true, amount: 0.2 }); // 0.2 = 20% visible
 
     return (
         <div className="flex w-screen px-[8vw] mt-10 flex-col">
-            <span className={`${mont_semi.className} text-noir/80 text-[40px] text-start mb-2`}>
+            <span className={`${poppins.className} text-becomepract text-[40px] text-start mb-2`}>
                 Nos spécialités
             </span>
-            <span className={`${mont.className} text-noir/80 text-[16px] mb-10`}>Des praticiens sélectionnés pour leur expertise et leur professionnalisme</span>
-            <div className={`w-full h-[70vh] flex flex-col justify-between ${lato.className}`}>
+            <span className={`${mont.className} text-becomepract text-[16px] mb-10`}>Des pratiques ésotériques sélectionnées avec soin pour explorer, comprendre et agir sur les plans émotionnels, spirituels et personnels</span>
+            <div ref={containerRef} className={`w-full h-[70vh] flex flex-col justify-between ${lato.className}`}>
                 <div className="flex w-full h-[32%] justify-between">
-                    <div className="group w-[50%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
+                    <motion.div
+                        className="group w-[50%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer"
+                        initial={{ x: 30, opacity: 0 }}
+                        animate={isInView ? { x: 0, opacity: 1 } : { x: 30, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut", delay: isInView ? 0 : 0 }}
+                    >
                         <Image
                             src="/specialty/spe3.webp"
                             alt="Portrait de l'expert"
@@ -57,8 +71,13 @@ const Index = () => {
                                 À qui ça s’adresse ? À ceux qui veulent mettre du sens sur leur chemin et leurs émotions.
                             </span>
                         </div>
-                    </div>
-                    <div className="group w-[24%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
+                    </motion.div>
+                    <motion.div
+                        className="group w-[24%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer"
+                        initial={{ x: 30, opacity: 0 }}
+                        animate={isInView ? { x: 0, opacity: 1 } : { x: 30, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut", delay: isInView ? 0.15 : 0 }}
+                    >
                         <Image
                             src="/specialty/spe8.webp"
                             alt="Portrait de l'expert"
@@ -75,8 +94,13 @@ const Index = () => {
                                 À qui ça s’adresse ? À ceux qui cherchent une guidance profonde, spirituelle et intuitive.
                             </span>
                         </div>
-                    </div>
-                    <div className="group w-[24%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
+                    </motion.div>
+                    <motion.div
+                        className="group w-[24%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer"
+                        initial={{ x: 30, opacity: 0 }}
+                        animate={isInView ? { x: 0, opacity: 1 } : { x: 30, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut", delay: isInView ? 0.3 : 0 }}
+                    >
                         <Image
                             src="/specialty/spe.webp"
                             alt="Portrait de l'expert"
@@ -93,10 +117,15 @@ const Index = () => {
                                 À qui ça s’adresse ? À ceux qui veulent comprendre leurs schémas, leurs forces et leurs défis personnels.
                             </span>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
                 <div className="flex w-full h-[32%] justify-between">
-                    <div className="group w-[29%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
+                    <motion.div
+                        className="group w-[29%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer"
+                        initial={{ x: 30, opacity: 0 }}
+                        animate={isInView ? { x: 0, opacity: 1 } : { x: 30, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut", delay: isInView ? 0.45 : 0 }}
+                    >
                         <Image
                             src="/specialty/spe9.webp"
                             alt="Portrait de l'expert"
@@ -113,8 +142,13 @@ const Index = () => {
                                 À qui ça s’adresse ? À ceux qui cherchent des réponses profondes, une paix intérieure ou un contact spirituel.
                             </span>
                         </div>
-                    </div>
-                    <div className="group w-[40%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
+                    </motion.div>
+                    <motion.div
+                        className="group w-[40%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer"
+                        initial={{ x: 30, opacity: 0 }}
+                        animate={isInView ? { x: 0, opacity: 1 } : { x: 30, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut", delay: isInView ? 0.6 : 0 }}
+                    >
                         <Image
                             src="/specialty/spe5.webp"
                             alt="Portrait de l'expert"
@@ -132,8 +166,13 @@ const Index = () => {
 
                             </span>
                         </div>
-                    </div>
-                    <div className="group w-[29%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
+                    </motion.div>
+                    <motion.div
+                        className="group w-[29%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer"
+                        initial={{ x: 30, opacity: 0 }}
+                        animate={isInView ? { x: 0, opacity: 1 } : { x: 30, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut", delay: isInView ? 0.75 : 0 }}
+                    >
                         <Image
                             src="/specialty/spe10.webp"
                             alt="Portrait de l'expert"
@@ -150,10 +189,15 @@ const Index = () => {
                                 À qui ça s’adresse ? À ceux qui cherchent un éclairage rapide, direct et sans détour.
                             </span>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
                 <div className="flex w-full h-[32%] justify-between">
-                    <div className="group w-[40%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
+                    <motion.div
+                        className="group w-[40%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer"
+                        initial={{ x: 30, opacity: 0 }}
+                        animate={isInView ? { x: 0, opacity: 1 } : { x: 30, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut", delay: isInView ? 0.9 : 0 }}
+                    >
                         <Image
                             src="/specialty/spe13.webp"
                             alt="Portrait de l'expert"
@@ -170,8 +214,13 @@ const Index = () => {
                                 À qui ça s’adresse ? À celles et ceux qui ressentent un déséquilibre intérieur, physique ou mental, et souhaitent un mieux-être global.
                             </span>
                         </div>
-                    </div>
-                    <div className="group w-[40%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
+                    </motion.div>
+                    <motion.div
+                        className="group w-[40%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer"
+                        initial={{ x: 30, opacity: 0 }}
+                        animate={isInView ? { x: 0, opacity: 1 } : { x: 30, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut", delay: isInView ? 1.05 : 0 }}
+                    >
                         <Image
                             src="/specialty/spe11.webp"
                             alt="Portrait de l'expert"
@@ -188,8 +237,13 @@ const Index = () => {
                                 À qui ça s’adresse ? À celles et ceux qui veulent relâcher la pression, retrouver de la sérénité, ou s’ouvrir à une transformation intérieure.
                             </span>
                         </div>
-                    </div>
-                    <div className="group w-[18%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer">
+                    </motion.div>
+                    <motion.div
+                        className="group w-[18%] h-full bg-blue-500 rounded-2xl relative overflow-hidden cursor-pointer"
+                        initial={{ x: 30, opacity: 0 }}
+                        animate={isInView ? { x: 0, opacity: 1 } : { x: 30, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut", delay: isInView ? 1.2 : 0 }}
+                    >
                         <Image
                             src="/specialty/spe12.webp"
                             alt="Portrait de l'expert"
@@ -206,7 +260,7 @@ const Index = () => {
                                 Chaque pratique sera sélectionnée avec soin, pour vous offrir une expérience toujours plus complète et alignée.
                             </span>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </div>

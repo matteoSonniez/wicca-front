@@ -7,10 +7,12 @@ import {
     Inter,
     Montserrat,
     Lato,
+    Poppins,
 } from "next/font/google";
 import BlobImage from "@/img/blob-image.png";
 import Blob1 from "@/img/blob-devenir-practicien.png";
 import ImagePracticien from "@/img/becomepract.jpg";
+import { motion } from "framer-motion";
 
 const latosmall = Lato({
     subsets: ["latin"],
@@ -48,15 +50,35 @@ const lato_bold = Lato({
     display: "swap",
 });
 
+const poppins = Poppins({
+    subsets: ["latin"],
+    weight: ["500"],
+    display: "swap",
+});
+
 const Index = () => {
     return (
-        <div className="flex w-screen justify-center mt-12 px-[8vw]">
-            <div className="w-full bg-becomepract rounded-xl flex flex-col items-center justify-center shadow-sm pt-12 pb-12">
+        <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="flex w-screen justify-center mt-12 px-[8vw]"
+        >
+            <div className="w-full bg-becomepract rounded-xl flex flex-col items-center justify-center shadow-sm py-14">
                 {/* <span className={`${mont.className} text-white text-[41px] text-center mb-2`}>Experts en arts divinatoires ? Gagnez en visibilité et en sérénité. Rejoignez Wicca.</span> */}
-                <span className={`${mont.className} text-white text-[48px] text-center mb-2`}>Experts en arts divinatoires ? Rejoignez Wicca.</span>
-                <button className={`${mont_semi.className} text-[15px] bg-white shadow-sm px-4 py-2 w-auto rounded-lg mt-8 text-noir`}>Nous rejoindre</button>
+                <motion.span
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    className={`${poppins.className} text-white text-[36px] text-center mb-2`}
+                >
+                    Expert en arts divinatoires ? Gagnez en visibilité et en sérénité.
+                </motion.span>
+                <button className={`${mont_semi.className} text-[13px] bg-white shadow-sm px-4 py-2 w-auto rounded-lg mt-8 text-noir`}>Rejoignez Wicca</button>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { Lato, Montserrat } from "next/font/google";
+import { Lato, Montserrat, Poppins } from "next/font/google";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -22,6 +22,12 @@ const lato = Lato({
   weight: ["400"],
   display: "swap",
 });
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["600"],
+  display: "swap",
+});
 const mont_bold = Montserrat({
   subsets: ["latin"],
   weight: ["600"],
@@ -34,7 +40,7 @@ const mont_semi = Montserrat({
 });
 const mont = Montserrat({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["500"],
   display: "swap",
 });
 
@@ -43,35 +49,16 @@ const TripleIconCard = ({ imgSrc, alt, title, description, fontBold, fontNormal 
     <div className="relative flex justify-center rounded-full items-center">
       <img src={imgSrc} alt={alt} className="w-14 h-14" />
     </div>
-    <span className={`${fontBold} text-center text-noir/80 text-[16px]`}>
+    <span className={`${poppins.className} text-center text-becomepract text-[16px]`}>
       {title}
     </span>
-    <span className={`${fontNormal} text-center text-noir/60 text-[12px] leading-relaxed`}>
+    <span className={`${mont.className} text-center text-becomepract/90 text-[12px] leading-relaxed`}>
       {description}
     </span>
   </div>
 );
 
 const Index = () => {
-  const cardsContainerRef = useRef(null);
-
-  useEffect(() => {
-    if (!cardsContainerRef.current) return;
-    // gsap.fromTo(
-    //   cardsContainerRef.current,
-    //   { x: 200 },
-    //   {
-    //     x: 0,
-    //     duration: 2,
-    //     ease: "power3.out",
-    //     scrollTrigger: {
-    //       trigger: cardsContainerRef.current,
-    //       start: "top 80%",
-    //       toggleActions: "play none none none",
-    //     },
-    //   }
-    // );
-  }, []);
 
   return (
     <div className="flex pl-[10vw] pr-[7vw] justify-between items-center">
@@ -79,11 +66,11 @@ const Index = () => {
         <span className={`${mont_semi.className} text-[15px] text-maincolor/80 text-start uppercase tracking-[0.2em]`}>
           Services
         </span>
-        <span className={`${mont_semi.className} text-noir/80 text-[26px]`}>
+        <span className={`${poppins.className} text-becomepract text-[26px]`}>
           Votre partenaire  <br></br>spirituel au quotidien
         </span>
         <span
-          className={`${mont.className} text-noir/60 text-[15px]`}
+          className={`${mont.className} text-becomepract/80 text-[15px]`}
         >
           Vous payez en toute transparence, sans frais cachés, grâce à un système sécurisé
         </span>
@@ -91,7 +78,6 @@ const Index = () => {
 
       <div
         className="flex w-[70%] justify-between"
-        ref={cardsContainerRef}
       >
         <TripleIconCard
           imgSrc={Icon2.src}

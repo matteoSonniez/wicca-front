@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { Lato, Inter, Montserrat } from "next/font/google";
+import { Lato, Inter, Montserrat, Poppins } from "next/font/google";
 import Bgtest from "@/img/traitbg.png";
 import BlobImage from "@/img/Vector2.png";
 import { gsap } from "gsap";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -26,6 +27,12 @@ const inter = Inter({
 const lato_bold = Lato({
   subsets: ["latin"],
   weight: ["700"],
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["500"],
   display: "swap",
 });
 
@@ -357,9 +364,14 @@ const Index = () => {
                 <div ref={bar1Ref} className="w-full bg-gray-700 rounded" style={{ height: '0%' }} />
               </div>
             </div>
-            <div className="flex flex-col space-y-4 flex-1">
+            <motion.div
+              className="flex flex-col space-y-4 flex-1"
+              initial={{ x: 100, opacity: 0 }}
+              animate={isVisible ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: isVisible ? 0 : 0 }}
+            >
               <span
-                className={`${mont_bold.className} text-[22px] leading-none transition-colors duration-200 
+                className={`${poppins.className} text-[22px] leading-none transition-colors duration-200 
                   ${isStep === 1 ? 'text-maincolor/90 font-bold' : 'text-noir/50 group-hover:text-noir/90'}`}
               >
                 1. Réservez en toute simplicité
@@ -371,7 +383,7 @@ const Index = () => {
                 Parcourez nos praticiens certifiés et choisissez celui ou
                 celle qui résonne avec vos besoins : tarologue, voyant, numérologue, médium...
               </span>
-            </div>
+            </motion.div>
           </div>
           <div onClick={changeDivTwo} className="flex flex-row items-stretch space-x-4 cursor-pointer group">
             {/* Barre verticale animée */}
@@ -380,9 +392,14 @@ const Index = () => {
                 <div ref={bar2Ref} className="w-full bg-gray-700 rounded" style={{ height: '0%' }} />
               </div>
             </div>
-            <div className="flex flex-col space-y-4 flex-1">
+            <motion.div
+              className="flex flex-col space-y-4 flex-1"
+              initial={{ x: 100, opacity: 0 }}
+              animate={isVisible ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: isVisible ? 0.2 : 0 }}
+            >
               <span
-                className={`${mont_bold.className} text-[22px] leading-none transition-colors duration-200 
+                className={`${poppins.className} text-[22px] leading-none transition-colors duration-200 
                   ${isStep === 2 ? 'text-maincolor/90 font-bold' : 'text-noir/50 group-hover:text-noir/90'}`}
               >
                 2. Choisissez le bon moment
@@ -394,7 +411,7 @@ const Index = () => {
                 Réservez un créneau en ligne, à distance ou en présentiel.
                 La prise de rendez-vous est rapide, claire et sécurisée.
               </span>
-            </div>
+            </motion.div>
           </div>
           <div onClick={changeDivThree} className="flex flex-row items-stretch space-x-4 cursor-pointer group">
             {/* Barre verticale animée */}
@@ -403,9 +420,14 @@ const Index = () => {
                 <div ref={bar3Ref} className="w-full bg-gray-700 rounded" style={{ height: '0%' }} />
               </div>
             </div>
-            <div className="flex flex-col space-y-4 flex-1">
+            <motion.div
+              className="flex flex-col space-y-4 flex-1"
+              initial={{ x: 100, opacity: 0 }}
+              animate={isVisible ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: isVisible ? 0.4 : 0 }}
+            >
               <span
-                className={`${mont_bold.className} text-[22px] leading-none transition-colors duration-200 
+                className={`${poppins.className} text-[22px] leading-none transition-colors duration-200 
                   ${isStep === 3 ? 'text-maincolor/90 font-bold' : 'text-noir/50 group-hover:text-noir/90'}`}
               >
                 3. Recevez votre guidance
@@ -418,7 +440,7 @@ const Index = () => {
                 Dans un cadre bienveillant et confidentiel, vous êtes guidé
                 avec clarté et justesse.
               </span>
-            </div>
+            </motion.div>
           </div>
         </div>
 

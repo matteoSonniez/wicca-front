@@ -1,5 +1,5 @@
 "use client";
-import { Lato, Montserrat, Inter } from "next/font/google";
+import { Lato, Montserrat, Inter, Poppins } from "next/font/google";
 import Image from "next/image";
 import Stars from "@/img/icons/stars.png";
 import Logo from "@/img/balance.png";
@@ -28,9 +28,9 @@ const mont_semi = Montserrat({
     display: "swap",
 });
 
-const inter = Inter({
+const poppins = Poppins({
     subsets: ["latin"],
-    weight: ["500"],
+    weight: ["600"],
     display: "swap",
 });
 
@@ -78,7 +78,7 @@ const Index = () => {
             <div className="absolute top-0 left-0 w-full h-full z-0">
                 <Image src={Background.src} alt="Background" fill className=" w-full" />
             </div>
-            <span className={`${mont_semi.className} text-noir/80 text-[42px] mb-7`}>Avis de nos clients</span>
+            <span className={`${poppins.className} text-becomepract text-[42px] mb-7`}>Avis de nos clients</span>
             {/* <span className={`${mont_semi.className} text-[16px] text-maincolor/80 text-start uppercase tracking-[0.2em] mb-7`}>Avis de nos clients</span> */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full">
                 {cardsData.map((card, i) => (

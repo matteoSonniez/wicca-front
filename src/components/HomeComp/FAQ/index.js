@@ -7,6 +7,7 @@ import {
   Inter,
   Montserrat,
   Lato,
+  Poppins,
 } from "next/font/google";
 import BlobImage from "@/img/blob-image.png";
 import Fleche from "@/img/icons/flechebas.png";
@@ -46,6 +47,12 @@ const mont_bold = Montserrat({
 const lato_bold = Lato({
   subsets: ["latin"],
   weight: ["700"],
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["600"],
   display: "swap",
 });
 
@@ -119,7 +126,7 @@ const Index = () => {
   return (
     <div className="flex w-screen justify-center mt-20 px-[15vw] mb-20">
       <div className="w-full flex flex-col items-center space-y-10">
-        <span className={`${mont_semi.className} text-noir/90 text-[43px] mb-2`}>Les questions fréquentes</span>
+        <span className={`${poppins.className} text-becomepract text-[43px] mb-2`}>Les questions fréquentes</span>
         <div className="flex flex-col w-full space-y-4">
           <FAQCard
             question="Pourquoi Wicca ne facture pas à la minute comme les autres plateformes ?"
